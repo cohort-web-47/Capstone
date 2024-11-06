@@ -5,26 +5,17 @@ import { IoMdSearch } from "react-icons/io";
 
 export function Footer   () {
     return (
-
-        <footer className="bg-[#D1BBA0] py-10 flex justify-between mx-auto p-4 ">
-
+        <>
 
             <div>
-                <FiHome className={"h-96 w-96"} />
+                <footer className="bg-[#D1BBA0] flex justify-between w-full bottom-0 fixed">
+                    <FiHome className={"h-24 w-24"}/>
+                    <IoMdSearch className={"h-24 w-24"}/>
+                    <GoPeople className={"h-24 w-24"}/>
+                    <IoMdNotificationsOutline className={"h-24 w-24"}/>
+                </footer>
             </div>
 
-            <div>
-                <IoMdSearch className={"h-96 w-96"} />
-            </div>
-
-            <div>
-                <GoPeople className={"h-96 w-96"} />
-            </div>
-
-            <div>
-                <IoMdNotificationsOutline className={"h-96 w-96"} />
-            </div>
-
-        </footer>
+        </>
     )
 }
