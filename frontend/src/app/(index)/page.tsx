@@ -1,6 +1,4 @@
-
 import {Post} from "@/components/Post";
-
 export default function Home() {
     const posts = [
         {postId: "1", postImageUrl: "https://picsum.photos/200", postCaption: "I love cat", postPetId: "1"},
@@ -22,5 +20,3 @@ export default function Home() {
         </>
     )
 }
-
-
