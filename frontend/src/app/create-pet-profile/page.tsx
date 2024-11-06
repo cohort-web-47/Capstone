@@ -1,4 +1,4 @@
-import {Button, Checkbox, Label, TextInput} from "flowbite-react";
+import {Button, Checkbox, Label, Select, TextInput} from "flowbite-react";
 import Link from "next/link";
 
 export default function () {
@@ -17,24 +17,38 @@ export default function () {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="breed" value="Dog Breed"/>
+                        <Label htmlFor="DogBreed" value="Dog Breed"/>
                     </div>
-                    <TextInput id="breed" type="Dog Breed" placeholder='"Poodle"' required shadow/>
+                    <TextInput id="DogBreed" type="DogBreed" placeholder='"Dog Breed"' required shadow/>
                 </div>
-                <div>
+                <div className="max-w-md">
                     <div className="mb-2 block">
-                        <Label htmlFor="size" value="Dog Size"/>
+                        <Label htmlFor="DogSize" value="Size of your dog"/>
                     </div>
-                    <TextInput id="size" type="Dog Size" placeholder='"Small"' required shadow/>
+                    <Select id="DogSize" required>
+                        <option>Size of your dog</option>
+                        <option>Tea Cup</option>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </Select>
                 </div>
-                <div>
+                <div className="max-w-md">
                     <div className="mb-2 block">
-                        <Label htmlFor="personality" value="Personality"/>
+                        <Label htmlFor="Personality" value="Personality of your dog"/>
                     </div>
-                    <TextInput id="personality" type="Personality" placeholder='"Excited"' required shadow/>
+                    <Select id="Personality" required >
+                        <option>Personality</option>
+                        <option>Calm</option>
+                        <option>Playful</option>
+                        <option>Excited</option>
+                        <option>Grumpy</option>
+                    </Select>
                 </div>
+
                 <Button type="submit"> Edit Profile | Save </Button>
             </form>
+
         </>
     )
 }
