@@ -19,9 +19,9 @@ export function Post(props: PostProps) {
     const {post, pet} = props;
     return (
         <>
-        <h1>Post</h1>
-            <div className="flex">
-            <img className={"rounded-full w-6 h-6"} src={pet.petImageUrl} alt="profile picture"/>
+
+            <div className="flex p-4">
+            <img className={"rounded-full w-6 h-6 mx-4"} src={pet.petImageUrl} alt="profile picture"/>
                 <div>
                     <p>{pet.petName}</p>
                     <p>{post.postCaption}</p>
