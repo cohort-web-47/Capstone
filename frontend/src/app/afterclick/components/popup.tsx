@@ -1,6 +1,5 @@
-import </components/page.tsx>
+import <components/>
 
 function page(){
     return
-    <components/>
 }
