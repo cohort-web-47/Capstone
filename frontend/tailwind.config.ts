@@ -24,6 +24,7 @@ const config: Config = {
       },
 
   },
+  darkTheme: "dark",
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
