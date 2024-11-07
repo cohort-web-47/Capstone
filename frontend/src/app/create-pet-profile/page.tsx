@@ -9,8 +9,8 @@ export default function () {
             </div>
             <form className="flex max-w-md flex-col gap-4 mx-auto">
                 <div>
-                    <h3>Create Pet Profile</h3>
-
+                    <h3 className={"text-center"}>Create Pet Profile</h3>
+<br/>
                     <div className="w-36">
                         <div className="mb-2 block">
                             <Label htmlFor="SelectTypeofPet" value="Select Type of Pet"/>
