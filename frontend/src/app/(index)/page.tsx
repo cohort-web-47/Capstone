@@ -15,7 +15,7 @@ export default function Home() {
 
             <h1 className={"text-3xl font-bold underline"}>Home Page</h1>
             <div className="container mx-auto">
-                {posts.map(post =><Post post={post} pet={pets[0]} key={post.postId}/>)}
+                {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
             </div>
         </>
     )
