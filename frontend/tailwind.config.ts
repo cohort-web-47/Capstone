@@ -20,10 +20,10 @@ const config: Config = {
   //       'search': '#B6C1BF',
   //       'header': '#F5F5E6',
   //       'font': '#1A1A1A',
-  //
+
   //     },
-  //
   // },
+  // darkTheme: "dark",
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
