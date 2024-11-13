@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import {Footer} from "@/components/Footer";
+import {Flowbite} from "flowbite-react";
+import React from "react";
+import {customTheme} from "@/utils/theme.utils";
 
 
 export const metadata: Metadata = {
@@ -19,8 +22,9 @@ export default function RootLayout(props : RootLayoutProps) {
 
         <body>
 
-       {children}
-        <Footer/>
+        <Flowbite theme={{ theme: customTheme }}>
+            {children}
+            </Flowbite>
         </body>
 
         </html>
