@@ -5,7 +5,7 @@ import {content, plugin} from "flowbite-react/tailwind"
 const config: Config = {
   content: [
     content(),
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src-1/**/*.{js,ts,jsx,tsx,mdx}",
 
   ],
   theme: {},
