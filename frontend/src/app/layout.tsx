@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import {Footer} from "@/components/Footer";
+import {Nav} from "@/components/Nav";
 
 
 export const metadata: Metadata = {
@@ -15,7 +17,13 @@ export default function RootLayout(props : RootLayoutProps) {
     const { children } = props
     return (
         <html  lang="en" suppressHydrationWarning>
-        <body>{children}</body>
+
+        <body>
+        <Nav />
+       {children}
+         <Footer/>
+        </body>
+
         </html>
     )
 }
