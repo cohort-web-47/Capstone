@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function () {
-    // ask marty about building functions to populated profile name and profile image into html.
 
     return (
         <>
