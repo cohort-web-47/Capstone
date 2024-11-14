@@ -43,39 +43,47 @@ export default function SearchPage() {
         <>
             <Searchbar />
 
-            <div className=" container bg-background flex-col md:flex-row ">
+            <div className="container bg-themeBackround flex-col md:flex-row ">
 
 
-            <div
-                    className="left hidden  md:flex md:flex-col bg-background md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
+                <div
+                    className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
                     <div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome className={"min-h-10 min-w-10"}/><p
-                        className="text-2xl font-bold ">Home</p>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl font-bold ">Home</p>
                     </div>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><IoMdSearch className={"min-h-10 min-w-10"}/><p
-                        className="text-2xl">Search</p>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><IoMdSearch
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl">Search</p>
                     </div>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople className={"min-h-10 min-w-10"}/><p
-                        className="text-2xl cursor-pointer">Connections</p>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl cursor-pointer">Connections</p>
                     </div>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><IoMdNotificationsOutline
-                        className={"min-h-10 min-w-10"}/><p className="text-2xl">Notifications</p></div>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark className={"min-h-10 min-w-10"} /><p className="text-2xl">Bookmarks</p></div>
-
-                    <button className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
-                    </button>
-                    <button className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign out
-                    </button>
-                <div className="h-24"></div>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
+                        <IoMdNotificationsOutline
+                            className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p></div>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
+                        className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
+                    <div className="flex flex-col pr-40">
+                        <button
+                            className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
+                        </button>
+                        <button
+                            className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
+                            out
+                        </button>
+                    </div>
                 </div>
-                <div id="mobile-view" className="h-fit w-screen bg-background flex flex-col py-20 md:hidden">
+                <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
 
 
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
                         {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
                     </div>
-                    <div className=" bg-background my-6 flex flex-col gap-6 items-center ">
+                    <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
                         <p className={"text-2xl"}>Connections</p>
 
@@ -85,7 +93,7 @@ export default function SearchPage() {
                     </div>
                 </div>
                 <div
-                    className="middle hidden md:flex  md:bg-background md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
+                    className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
 
                     <div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>
                         <p className={"text-3xl text-center"}>Popular Post</p>
@@ -96,8 +104,8 @@ export default function SearchPage() {
 
                 </div>
                 <div
-                    className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-background md:flex-col md:items-center md:fixed md:top-0 md:right-0">
-                <div className="w-full bg-background my-6  flex flex-col gap-6 items-center justify-center">
+                    className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
+                <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
                         <p className={"text-2xl"}>Connections</p>
                     {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
