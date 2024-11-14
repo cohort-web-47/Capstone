@@ -1,8 +1,14 @@
 import ProfileImageUrl from "./profileimageurl";
 
-export default function Page() {
+export default function PetProfile() {
 return(
     <>
-<ProfileImageUrl/>
-    </>)
+
+        <ProfileImageUrl />
+
+
+    </>
+
+)
 }
+
