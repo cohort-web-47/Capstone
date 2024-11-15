@@ -6,6 +6,8 @@ import { GoPeople } from "react-icons/go";
 import { FiHome } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { CiBookmark } from "react-icons/ci";
+
+
 import Searchbar from "@/components/Searchbar";
 
 
