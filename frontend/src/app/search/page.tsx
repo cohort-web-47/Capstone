@@ -9,6 +9,7 @@ import { CiBookmark } from "react-icons/ci";
 
 
 import Searchbar from "@/components/Searchbar";
+import {Footer} from "@/components/Footer";
 
 
 
@@ -113,7 +114,7 @@ export default function SearchPage() {
                 </div>
 
             </div>
-
+    <Footer />
         </>
     )
 }
