@@ -22,7 +22,7 @@ export default function SearchPage() {
                 <div id="mobile-view" className="h-screen w-screen bg-themeBackground flex flex-col py-20 md:hidden">
 
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
-                        <p className={"text-2xl"}>Followers</p>
+                        <p className={"text-2xl"}>Following</p>
                         {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
                     </div>
                 </div>
@@ -30,7 +30,7 @@ export default function SearchPage() {
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
-                        <p className={"text-2xl"}>Followers</p>
+                        <p className={"text-2xl"}>Following</p>
                         {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
                     </div>
                 </div>
@@ -39,7 +39,7 @@ export default function SearchPage() {
                     className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
 
                 </div>
-                </div>
-            </>
-            )
-            }
+            </div>
+        </>
+    )
+}
