@@ -5,14 +5,12 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoPeople } from "react-icons/go";
 import { FiHome } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
-import { FaRegBookmark } from "react-icons/fa6";
 import { CiBookmark } from "react-icons/ci";
 
 
-
-import {DropdownButton} from "@/components/ProfileDropdown";
 import Searchbar from "@/components/Searchbar";
-import {string} from "postcss-selector-parser";
+import {Footer} from "@/components/Footer";
+
 
 
 

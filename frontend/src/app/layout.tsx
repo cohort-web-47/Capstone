@@ -24,7 +24,7 @@ export default function RootLayout(props: RootLayoutProps) {
         <Flowbite theme={{theme: customTheme}}>
             {children}
         </Flowbite>
-        <Footer/>
+
         </body>
         </html>
     )
