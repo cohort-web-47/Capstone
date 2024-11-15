@@ -3,6 +3,7 @@ import {InputText} from "@/app/create-post/inputtext";
 import ProfileTab from "@/components/ProfileTab"
 import {customTheme} from "@/utils/theme.utils";
 import {Dropdown} from "flowbite-react";
+import {ProfileDropdown} from "@/components/ProfileDropdown";
 
 
 export default function () {
@@ -18,8 +19,9 @@ export default function () {
                     <ProfileDropdown/>
                     <p className="text-center pt-2 px-2">PetName</p>
                 </div>
-                <div>
+                <div className="bg-themeBackground flex-col items-center">
                     <InputText/>
+                    <img src="https://picsum.photos/400/" alt="image post" className="rounded-2xl p-2"/>
                 </div>
                 <div className="mx-auto flex flex-row pl-4 justify-left bg-themeNavbar mt-2">
                     <button className='bg-themeNavbar rounded px-2 py-0 hover:bg-themeBackground'><img

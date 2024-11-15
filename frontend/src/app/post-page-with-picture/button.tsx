@@ -9,9 +9,6 @@ export function CancelButton() {
 
         </>
 
-        // <div className="flex flex-wrap gap-2">
-        //
-        //     <Button color="success">Blue</Button>
-        // </div>
+
     );
 }
