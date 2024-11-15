@@ -7,7 +7,7 @@ export function CancelButton() {
         <>
             <button className='bg-themeNavbar'>Default</button>
 
-            </>
+        </>
 
         // <div className="flex flex-wrap gap-2">
         //
