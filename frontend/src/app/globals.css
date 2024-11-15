@@ -9,7 +9,6 @@ body {
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -190,7 +189,10 @@ h3 span{
 /*Style for the search bar*/
 
 .nav-flex {
-    border: 10px solid;
     display: flex;
     justify-content: center;
+}
+
+.app {
+    display: flex;
 }
