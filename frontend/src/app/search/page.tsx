@@ -10,7 +10,7 @@ import { CiBookmark } from "react-icons/ci";
 
 
 
-import {DropdownButton} from "@/components/Dropdown";
+import {DropdownButton} from "@/components/ProfileDropdown";
 import Searchbar from "@/components/Searchbar";
 import {string} from "postcss-selector-parser";
 
