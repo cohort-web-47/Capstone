@@ -1,6 +1,10 @@
-import type { Metadata } from 'next'
+import type {Metadata} from 'next'
 import './globals.css'
 import {Footer} from "@/components/Footer";
+import {Flowbite} from "flowbite-react";
+import React from "react";
+import {customTheme} from "@/utils/theme.utils";
+import {Nav} from "@/components/Nav";
 
 
 export const metadata: Metadata = {
@@ -12,17 +16,18 @@ type RootLayoutProps = {
     children: React.ReactNode
 }
 
-export default function RootLayout(props : RootLayoutProps) {
-    const { children } = props
+export default function RootLayout(props: RootLayoutProps) {
+    const {children} = props
     return (
-        <html  lang="en" suppressHydrationWarning>
-
+        <html lang="en" suppressHydrationWarning>
         <body>
+        <Flowbite theme={{theme: customTheme}}>
+            {children}
+        </Flowbite>
+        <Footer />
 
-       {children}
-        <Footer/>
+
         </body>
-
         </html>
     )
 }
