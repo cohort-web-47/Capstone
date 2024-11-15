@@ -1,12 +1,11 @@
-import ProfileImageUrl from "./PetProfile";
-import PetProfile from "./PetProfile";
+
+import PetProfileComponent from "./PetProfileComponent";
 import {Footer} from "@/components/Footer";
 
-export default function PetProfile() {
+export default function PetProfilePage() {
 return(
     <>
-
-        <ProfileImageUrl />
+        <PetProfileComponent />
         <Footer />
 
     </>
