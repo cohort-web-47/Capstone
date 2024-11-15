@@ -9,7 +9,7 @@ export function Footer   () {
         <>
 
             <div>
-                <footer className="bg-[#D1BBA0] flex justify-between w-full bottom-0 fixed">
+                <footer className="bg-themeNavbar flex justify-between w-full bottom-0 fixed">
                     <FiHome className={"h-12 w-12"}/>
                     <IoMdSearch className={"h-12 w-12"}/>
                     <GoPeople className={"h-12 w-12"}/>
