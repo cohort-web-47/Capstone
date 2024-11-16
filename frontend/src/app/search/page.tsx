@@ -25,7 +25,7 @@ export default function SearchPage() {
 
     ]
     const pets=[
-        {petId:"1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
+        {petProfileId:"1", petId:"1", petImageUrl:"https://picsum.photos/200", petName:"Fido"}
     ]
     const profiles = [
         { profileId: "1", imageUrl: "https://picsum.photos/400",  profileName: "Mittens"},
@@ -43,6 +43,7 @@ export default function SearchPage() {
 
             <div className="container bg-themeBackround flex-col md:flex-row ">
 
+                {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
 
                 <div
                     className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
@@ -74,9 +75,9 @@ export default function SearchPage() {
                         </button>
                     </div>
                 </div>
+                            {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
+
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
-
-
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
                         {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
@@ -90,6 +91,9 @@ export default function SearchPage() {
 
                     </div>
                 </div>
+
+                            {/*CENTER portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
+
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
 
@@ -101,6 +105,9 @@ export default function SearchPage() {
                     </div>
 
                 </div>
+
+                {/*RIGHT portion of the screen when in desktop view, Hidden when screen size is Sm. Display: flex when Md or larger*/}
+
                 <div
                     className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
                 <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
