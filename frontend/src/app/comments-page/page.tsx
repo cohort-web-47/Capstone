@@ -1,13 +1,13 @@
-import CommentsPage from "@/app/comments-page/CommentsPage";
 import Searchbar from "@/components/Searchbar";
-import SearchPage from "@/app/search/page";
+import CommentsPage from "@/app/comments-page/CommentsPage";
 
 
 export default function () {
     return (
 
         <>
-            <Searchbar/>
+ <Searchbar/>
+<CommentsPage/>
 
         </>
 
