@@ -7,11 +7,9 @@ export default function Home() {
         {postId: "3", postImageUrl: "https://picsum.photos/200", postCaption: "I love cow", postPetId: "1"},
 
     ]
-    const pets=[
-        {petId:"1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
+    const pets = [
+        {petId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
     ]
-
-
 
 
     return (
@@ -19,8 +17,8 @@ export default function Home() {
 
             <h1 className={"text-3xl font-bold underline"}>Home Page</h1>
             <div className="container mx-auto">
-                {posts.map(post =><Post post={post} pet={pets[0]} key={post.postId}/>)}
+                {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
             </div>
         </>
     )
-// }
+}
