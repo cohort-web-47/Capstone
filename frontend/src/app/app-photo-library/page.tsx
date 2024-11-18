@@ -17,13 +17,15 @@ export default function PhotoLibraryPage() {
         {picId: "11", picUrl: "https://picsum.photos/500", picName: "test"},
         {picId: "12", picUrl: "https://picsum.photos/700", picName: "test"},
         {picId: "13", picUrl: "https://picsum.photos/400", picName: "test"},
-        {picId: "14", picUrl: "https://picsum.photos/100", picName: "test"}, {picId: "15", picUrl: "https://picsum.photos/200", picName: "test"},
+        {picId: "14", picUrl: "https://picsum.photos/100", picName: "test"},
+        {picId: "15", picUrl: "https://picsum.photos/200", picName: "test"},
         {picId: "16", picUrl: "https://picsum.photos/100", picName: "test"},
         {picId: "17", picUrl: "https://picsum.photos/400", picName: "test"},
         {picId: "18", picUrl: "https://picsum.photos/300", picName: "test"},
         {picId: "19", picUrl: "https://picsum.photos/500", picName: "test"},
         {picId: "20", picUrl: "https://picsum.photos/700", picName: "test"},
-        {picId: "21", picUrl: "https://picsum.photos/400", picName: "test"}
+        {picId: "21", picUrl: "https://picsum.photos/400", picName: "test"},
+        {picId: "22", picUrl: "https://picsum.photos/200", picName: "test"}
     ]
     return (
         <>
