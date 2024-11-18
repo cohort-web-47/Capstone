@@ -126,9 +126,9 @@ export default function SearchPage() {
 
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
-                  <div className={"shrink"}>
+
                     <Nav />
-                  </div>
+
 
                         <h1 className={"text-2xl self-center font-black"}>Profile Settings</h1>
 
