@@ -6,16 +6,16 @@ import {createClient, RedisClientType} from "redis";
 let redisClient : RedisClientType | undefined
 
 async function main (): Promise<void> {
-    if (redisClient === undefined) {
-        redisClient = createClient({ socket: { host: process.env.REDIS_HOST } })
-        redisClient.connect().catch(console.error)
-    }
-    try {
-        const app = new App(redisClient)
-        await app.listen()
-    } catch (e) {
-        console.log(e)
-    }
+  if (redisClient === undefined) {
+    redisClient = createClient({ socket: { host: process.env.REDIS_HOST } })
+    redisClient.connect().catch(console.error)
+  }
+  try {
+    const app = new App(redisClient)
+    await app.listen()
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 main().catch(error => { console.error(error) })
