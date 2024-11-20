@@ -6,6 +6,12 @@ import { z } from 'zod'
  * @property profileEmail {string} the email
  */
 export const signInProfileSchema = z.object({
-    profilePassword: z.string().min(8, { message: 'please provide a valid password (min 8 characters)' }).max(32, { message: 'please provide a valid password (max 32 characters)' }),
-    profileEmail: z.string().email({ message: 'please provide a valid email' }).max(128, { message: 'please provide a valid email (max 128 characters)' })
+    profilePassword: z.string({
+        required_error: 'profilePassword is required',
+        invalid_type_error: 'Please provide a valid profilePassword'
+    }).min(8, { message: 'please provide a valid password (min 8 characters)' }).max(32, { message: 'please provide a valid password (max 32 characters)' }),
+    profileEmail: z.string({
+        required_error: 'profileEmail is required',
+        invalid_type_error: 'Please provide a valid profileEmail'
+    }).email({ message: 'please provide a valid email' }).max(128, { message: 'please provide a valid email (max 128 characters)' })
 })
