@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { signInController } from "./sign-in.controller";
 
-const basePath = "/api/sign-in";
+const basePath = "/apis/sign-in";
 
 const router = Router();
 
