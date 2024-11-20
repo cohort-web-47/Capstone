@@ -1,6 +1,8 @@
 import {z} from "zod"
 import {createZodErrorMessages} from "../../utils/zod.utils";
 import {sql} from "../../utils/database.utils";
+
+
 export const PrivateProfileSchema =z.object({
     profileId: z.string(createZodErrorMessages('profileId')).uuid
     ('profileId must be uuid'),
@@ -26,5 +28,24 @@ export async function insertPrivateProfile(profile: PrivateProfile) : Promise<St
     await sql`INSERT INTO profile(profile_id, profile_hash, profile_email, profile_username, profile_activation_token) VALUES (gen_random_uuid(), ${profileHash}, ${profileEmail}, ${profileUsername}, ${profileActivationToken})`
     return 'Profile Successfully Created'
 }
+/**
+ * updates a profile in the profile table
+ * @param profile
+ * @returns {Promise<string>} 'Profile successfully updated'
+ */
+export async function updateProfile(profile: PrivateProfile) : Promise<String> {
+    const {profileHash, profileEmail, profileId, profileUsername, profileActivationToken} = profile
+    await sql`UPDATE profile SET profile_hash = ${profileHash}, profile_email = ${profileEmail},profile_id = ${profileId}, profile_username = ${profileUsername}, profile_activation_token = ${profileActivationToken} WHERE profile_id =${profileId}`
+    return 'Profile successfully updated'
+
+}
+
+export async function selectPrivateProfileByProfileActivationToken(profileActivationToken: string) : Promise<PrivateProfile|null> {
+    const rowList =await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_username FROM profile WHERE profile_profile_activation_token = ${profileActivationToken}`
+    const result = PrivateProfileSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
+
+
 
 
