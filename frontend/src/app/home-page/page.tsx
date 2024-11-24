@@ -79,14 +79,7 @@ export default function HomePage() {
                     <div className="container mx-auto flex flex-col items-center pr-8">
                         {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
                     </div>
-                    <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
-                        <p className={"text-2xl"}>Connections</p>
-
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
-
-
-                    </div>
                 </div>
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
@@ -100,7 +93,7 @@ export default function HomePage() {
 
                 </div>
                 <div
-                    className="right-side hidden md:flex md:w-1/3 md:h-auto md:bg-themeBackground md:flex-col md:items-center md:fixed md:overflow-auto md:top-0 md:right-0">
+                    className="right-side hidden md:flex md:w-1/3 md:h-svh md:bg-themeBackground border-white border-2 md:flex-col md:items-center md:fixed md:overflow-auto md:top-0 md:right-0">
                     <Searchbar med={med}/>
                     <div
                         className="w-full bg-themeBackround mt-20 mb-6  pr-8 flex flex-col gap-6 items-center justify-center flex-1">
