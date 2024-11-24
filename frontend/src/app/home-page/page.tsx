@@ -82,7 +82,7 @@ export default function HomePage() {
 
                 </div>
                 <div
-                    className="middle hidden md:flex  md:bg-themeBackground md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
+                    className="middle hidden md:flex border-white border-2 md:bg-themeBackground md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                     <Nav/>
                     <div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>
                         <p className={"text-3xl text-center"}>Popular Post</p>
@@ -93,11 +93,13 @@ export default function HomePage() {
 
                 </div>
                 <div
-                    className="right-side hidden md:flex md:w-1/3 md:h-svh md:bg-themeBackground border-white border-2 md:flex-col md:items-center md:fixed md:overflow-auto md:top-0 md:right-0">
+                    className="right-side hidden md:flex md:w-1/3 md:h-svh md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
                     <Searchbar med={med}/>
                     <div
-                        className="w-full bg-themeBackround mt-20 mb-6  pr-8 flex flex-col gap-6 items-center justify-center flex-1">
+                        className="w-full bg-themeBackround pr-8 flex flex-col gap-6 items-center justify-center flex-1">
+                        <div className="w-3/4 h-auto">
                         <Post post={posts[0]} pet={pets[0]}/>
+                        </div>
 
 
                         <p className={"text-2xl"}>Connections</p>
