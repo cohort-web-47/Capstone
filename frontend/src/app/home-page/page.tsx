@@ -7,16 +7,13 @@ import { FiHome } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa6";
 import { CiBookmark } from "react-icons/ci";
-
-
-
-import {DropdownButton} from "@/components/Dropdown";
 import Searchbar from "@/components/Searchbar";
-import {string} from "postcss-selector-parser";
+import {Nav} from "@/components/Nav";
 
 
 
-export default function SearchPage() {
+
+export default function HomePage() {
 
     const posts = [
         {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
@@ -27,7 +24,7 @@ export default function SearchPage() {
 
     ]
     const pets=[
-        {petId:"1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
+        {petId:"1", petProfileId: "1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
     ]
     const profiles = [
         { profileId: "1", imageUrl: "https://picsum.photos/400",  profileName: "Mittens"},
@@ -37,12 +34,13 @@ export default function SearchPage() {
         { profileId: "5", imageUrl: "https://picsum.photos/100",  profileName: "Lemmy"},
 
     ]
+    let med = {width: 'w-1/3', position: 'right-1/3'};
 
 
     return (
         <>
 
-
+            {/*<div className={"fixed z-10 w-screen"}><Nav/></div>*/}
             <div className="container bg-themeBackround flex-col md:flex-row ">
 
 
@@ -63,7 +61,8 @@ export default function SearchPage() {
                     </div>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
                         <IoMdNotificationsOutline
-                            className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p></div>
+                            className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p>
+                    </div>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
                         className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
                     <div className="flex flex-col pr-40">
@@ -77,7 +76,7 @@ export default function SearchPage() {
                     </div>
                 </div>
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
-
+                    <Nav/>
 
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
@@ -87,14 +86,14 @@ export default function SearchPage() {
 
                         <p className={"text-2xl"}>Connections</p>
 
-                        { profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
+                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
 
                     </div>
                 </div>
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
-
+                    <Nav/>
                     <div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
@@ -104,11 +103,16 @@ export default function SearchPage() {
 
                 </div>
                 <div
-                    className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
-                    <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
+                    className="right-side hidden md:flex md:w-1/3 md:h-auto md:bg-themeBackground md:flex-col md:items-center md:fixed md:overflow-auto md:top-0 md:right-0">
+                    <Searchbar med={med}/>
+                    <div
+                        className="w-full bg-themeBackround mt-20 mb-6  pr-8 flex flex-col gap-6 items-center justify-center">
+                        <Post post={posts[0]} pet={pets[0]}/>
+
 
                         <p className={"text-2xl"}>Connections</p>
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
+                        {/*const result = numbers.slice(0, n).map(x => x * 2);*/}
+                        {profiles.slice(0, 3).map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
                     </div>
 
