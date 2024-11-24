@@ -7,7 +7,7 @@ export default function Home() {
 
     ]
     const pets=[
-        {petId:"1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
+        {petProfileId:"1", petId:"1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
     ]
     return (
         <>

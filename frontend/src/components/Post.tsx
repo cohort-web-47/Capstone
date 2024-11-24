@@ -1,18 +1,11 @@
 import { FaRegComment } from "react-icons/fa6";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoIosSave } from "react-icons/io";
+import {Pet} from "@/utils/models/Pet";
+import {Post as PostType} from "@/utils/models/Post";
 type PostProps = {
-    post:{
-        postId:string,
-        postImageUrl:string,
-        postCaption:string,
-        postPetId:string,
-    },
-    pet:{
-        petId:string,
-        petImageUrl:string,
-        petName:string,
-    }
+    post:PostType
+    pet:Pet
 }
 
 export function Post(props: PostProps) {
