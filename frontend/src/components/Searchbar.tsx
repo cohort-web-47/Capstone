@@ -5,6 +5,7 @@ type SearchBarProps = {
     med: {
         position: string,
         width: string
+
     }
 }
 
