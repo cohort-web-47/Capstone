@@ -4,7 +4,7 @@ import {PetSchema} from "./pet.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {PublicProfile} from "../profile/profile.model";
 import {PrivateProfile} from "../profile/profile.model";
-import {insertPet, Pet, getPetByPetId, getPetByPetProfileId} from "./pet.model";
+import {insertPet, Pet, getPetByPetId, getPetByPetProfileId, selectAllPets} from "./pet.model";
 import {z} from "zod";
 
 export async function petController(request: Request, response: Response): Promise<Response | undefined> {
@@ -87,6 +87,23 @@ export async function getPetByPetProfileIdController(request: Request, response:
             data: []
         })
     } }
+
+
+export async function getAllPetsController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const data = await selectAllPets()
+
+        const status: Status = {status: 200, message: null, data}
+        return response.json(status)
+    } catch (error) {
+        console.error(error)
+        return response.json ({
+            status: 500,
+            message: 'Error getting Pets. Try again',
+            data: []
+        })
+    }
+}
 
 
 
