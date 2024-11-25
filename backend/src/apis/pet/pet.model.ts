@@ -65,6 +65,7 @@ export async function selectAllPets(): Promise<Pet[]> {
     }
 
 export async function selectPetsByPetBreed(petBreed: string): Promise<Pet[]> {
+    const petBreedWithWildcards = `%${petBreed}%`
     const rowList = <Pet[]>await sql
         `SELECT pet_id,
                     pet_profile_id,
@@ -75,12 +76,29 @@ export async function selectPetsByPetBreed(petBreed: string): Promise<Pet[]> {
                     pet_size,
                     pet_type
                 FROM pet
-                WHERE pet_breed = ${petBreed}
+                WHERE pet_breed LIKE ${petBreedWithWildcards}
                 GROUP BY pet_id`
 
     return PetSchema.array().parse(rowList)
 }
 
+export async function selectPetsByPetSize(petSize: string): Promise<Pet[]> {
+    const petSizeWithWildcards = `%${petSize}%`
+    const rowList = <Pet[]>await sql
+        `SELECT pet_id,
+                    pet_profile_id,
+                    pet_breed,
+                    pet_image_url,
+                    pet_name,
+                    pet_personality,
+                    pet_size,
+                    pet_type
+                FROM pet
+                WHERE pet_size LIKE ${petSizeWithWildcards}
+                GROUP BY pet_id`
+
+    return PetSchema.array().parse(rowList)
+}
 
 
 

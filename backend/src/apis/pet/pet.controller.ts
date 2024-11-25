@@ -4,7 +4,15 @@ import {PetSchema} from "./pet.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {PublicProfile} from "../profile/profile.model";
 import {PrivateProfile} from "../profile/profile.model";
-import {insertPet, Pet, getPetByPetId, getPetByPetProfileId, selectAllPets, selectPetsByPetBreed} from "./pet.model";
+import {
+    insertPet,
+    Pet,
+    getPetByPetId,
+    getPetByPetProfileId,
+    selectAllPets,
+    selectPetsByPetBreed,
+    selectPetsByPetSize
+} from "./pet.model";
 import {z} from "zod";
 
 export async function petController(request: Request, response: Response): Promise<Response | undefined> {
@@ -116,6 +124,28 @@ export async function getPetByPetBreedController (request: Request, response: Re
         const petBreed = validationResult.data
 
         const data = await selectPetsByPetBreed(petBreed)
+
+        return response.json({status: 200, message: null, data})
+
+    } catch (error) {
+        return response.json ({
+            status: 500,
+            message: '',
+            data: []
+        })
+    } }
+
+export async function getPetByPetSizeController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.string(({message: 'Please provide a valid Pet Breed'})).safeParse(request.params.petSize)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const petSize = validationResult.data
+
+        const data = await selectPetsByPetSize(petSize)
 
         return response.json({status: 200, message: null, data})
 
