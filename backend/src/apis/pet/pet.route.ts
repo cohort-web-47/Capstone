@@ -2,14 +2,14 @@ import { Router } from 'express'
 import {
     getPetByPetIdController,
     getPetByPetProfileIdController,
-    petController,
     getAllPetsController,
     getPetByPetBreedController,
     getPetByPetSizeController,
     getPetByPetTypeController,
     getPetByPetNameController,
-    getPetByPetPersonalityController
+    getPetByPetPersonalityController, postPetController, updatePetController
 } from "./pet.controller"
+import {getPetByPetProfileId, updatePet} from "./pet.model";
 
 
 const basePath = '/apis/pet'
@@ -18,7 +18,7 @@ const basePath = '/apis/pet'
 const router = Router()
 
 
-router.route('/').post(petController)
+router.route('/').post(postPetController)
 router.route('/:petId').get(getPetByPetIdController)
 router.route('/petProfileId/:petProfileId').get(getPetByPetProfileIdController)
 router.route('/').get(getAllPetsController)
@@ -27,6 +27,8 @@ router.route('/petSize/:petSize').get(getPetByPetSizeController)
 router.route('/petType/:petType').get(getPetByPetTypeController)
 router.route('/petName/:petName').get(getPetByPetNameController)
 router.route('/petPersonality/:petPersonality').get(getPetByPetPersonalityController)
+router.route('/:petId').put(updatePetController)
+
 
 
 export const petRoute = { basePath, router }
