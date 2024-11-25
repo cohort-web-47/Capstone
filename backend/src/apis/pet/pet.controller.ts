@@ -10,6 +10,7 @@ import {z} from "zod";
 export async function petController(request: Request, response: Response): Promise<Response | undefined> {
     try {
         const validationResult = PetSchema.safeParse(request.body);
+        console.log(validationResult);
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
