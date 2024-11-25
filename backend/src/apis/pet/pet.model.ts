@@ -15,6 +15,25 @@ VALUES (gen_random_uuid(), ${petProfileId}, ${petBreed}, ${petImageUrl}, ${petNa
 export async function getPetByPetId(PetId: string): Promise<Pet | null> {
     const rowList = <Pet[]>await sql
         `SELECT pet_id,
+                pet_profile_id,
+                pet_breed,
+                pet_image_url,
+                pet_name,
+                pet_personality,
+                pet_size,
+                pet_type
+         FROM pet
+         WHERE pet_id = ${PetId}`
+
+    const result = PetSchema.array().max(1).parse(rowList)
+
+    return result.length === 0 ? null : result[0]
+
+}
+
+    export async function getPetByPetProfileId(PetProfileId: string): Promise<Pet[] | null> {
+        const rowList = <Pet[]>await sql
+            `SELECT pet_id,
          pet_profile_id,
          pet_breed,
          pet_image_url,
@@ -23,12 +42,12 @@ export async function getPetByPetId(PetId: string): Promise<Pet | null> {
          pet_size,
          pet_type
          FROM pet
-         WHERE pet_id = ${PetId}`
+         WHERE pet_profile_id = ${PetProfileId}`
 
-    const result = PetSchema.array().max(1).parse(rowList)
-
-    return result.length === 0 ? null : result[0]
+        return PetSchema.array().parse(rowList)
 }
+
+
 
 
 

@@ -4,7 +4,7 @@ import {PetSchema} from "./pet.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {PublicProfile} from "../profile/profile.model";
 import {PrivateProfile} from "../profile/profile.model";
-import {insertPet, Pet, getPetByPetId} from "./pet.model";
+import {insertPet, Pet, getPetByPetId, getPetByPetProfileId} from "./pet.model";
 import {z} from "zod";
 
 export async function petController(request: Request, response: Response): Promise<Response | undefined> {
@@ -44,7 +44,7 @@ export async function petController(request: Request, response: Response): Promi
 
 export async function getPetByPetIdController(request: Request, response: Response): Promise<Response<Status>> {
    try {
-       const validationResult = z.string().uuid({message: 'Please provide a valid Pet Profile Id'}).safeParse(request.params.petId)
+       const validationResult = z.string().uuid({message: 'Please provide a valid Pet Id'}).safeParse(request.params.petId)
 
        if (!validationResult.success) {
            return zodErrorResponse(response, validationResult.error)
@@ -64,6 +64,28 @@ export async function getPetByPetIdController(request: Request, response: Respon
        })
    }
 }
+
+export async function getPetByPetProfileIdController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.string().uuid({message: 'Please provide a valid Pet Profile Id'}).safeParse(request.params.petProfileId)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const petProfileId = validationResult.data
+
+        const data = await getPetByPetProfileId(petProfileId)
+
+        return response.json({status: 200, message: null, data})
+
+    } catch (error) {
+        return response.json ({
+            status: 500,
+            message: '',
+            data: []
+        })
+    } }
 
 
 
