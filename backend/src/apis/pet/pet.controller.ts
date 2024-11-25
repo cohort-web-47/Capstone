@@ -11,11 +11,17 @@ import {
     getPetByPetProfileId,
     selectAllPets,
     selectPetsByPetBreed,
-    selectPetsByPetSize, selectPetsByPetType, selectPetsByPetName, selectPetsByPetPersonality
+    selectPetsByPetSize,
+    selectPetsByPetType,
+    selectPetsByPetName,
+    selectPetsByPetPersonality,
+    updatePet,
+    selectPetByPetId
 } from "./pet.model";
 import {z} from "zod";
+import session from "express-session";
 
-export async function petController(request: Request, response: Response): Promise<Response | undefined> {
+export async function postPetController(request: Request, response: Response): Promise<Response | undefined> {
     try {
         const validationResult = PetSchema.safeParse(request.body);
         console.log(validationResult);
@@ -61,7 +67,7 @@ export async function getPetByPetIdController(request: Request, response: Respon
 
        const petId = validationResult.data
 
-       const data = await getPetByPetId(petId)
+       const data = await selectPetByPetId(petId)
 
        return response.json({status: 200, message: null, data})
 
@@ -203,7 +209,7 @@ export async function getPetByPetNameController (request: Request, response: Res
 
 export async function getPetByPetPersonalityController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string(({message: 'Please provide a valid Pet Name'})).safeParse(request.params.petPersonality)
+        const validationResult = z.string(({message: 'Please provide a valid Pet Personality'})).safeParse(request.params.petPersonality)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -222,6 +228,56 @@ export async function getPetByPetPersonalityController (request: Request, respon
             data: []
         })
     } }
+
+export async function updatePetController(request: Request, response: Response): Promise<Response | undefined> {
+    try {
+        const validationResult = PetSchema.safeParse(request.body);
+        console.log(validationResult);
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+
+        }
+
+
+        const petProfileFromSession = request.session?.profile
+        const petProfileIdFromSession = petProfileFromSession?.profileId
+
+        const {petProfileId} = validationResult.data
+
+        if (petProfileIdFromSession !== petProfileId) {
+            return response.json({status: 400, message: "You cannot update a pet that is not yours", data: null})
+        }
+
+        const {petBreed, petImageUrl, petName, petPersonality, petSize, petType, petId} = validationResult.data
+
+        // @ts-ignore
+        const pet: Pet | null = await selectPetByPetId(petId)
+
+        if (pet === null) {
+            return response.json({status: 400, message: "Pet Does Not Exist", data: null})
+        }
+
+
+        pet.petBreed = petBreed
+        pet.petImageUrl = petImageUrl
+        pet.petName = petName
+        pet.petPersonality = petPersonality
+        pet.petSize = petSize
+        pet.petType = petType
+
+        await updatePet(pet)
+
+        return response.json({ status: 200, message: "Pet Successfully Updated", data: null })
+
+    } catch (error: unknown) {
+        return response.json ({status: 500, message: "internal server error", data: null})
+    }
+}
+
+
+
+
 
 
 
