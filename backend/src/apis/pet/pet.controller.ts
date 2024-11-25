@@ -11,7 +11,7 @@ import {
     getPetByPetProfileId,
     selectAllPets,
     selectPetsByPetBreed,
-    selectPetsByPetSize, selectPetsByPetType, selectPetsByPetName
+    selectPetsByPetSize, selectPetsByPetType, selectPetsByPetName, selectPetsByPetPersonality
 } from "./pet.model";
 import {z} from "zod";
 
@@ -190,6 +190,28 @@ export async function getPetByPetNameController (request: Request, response: Res
         const petName = validationResult.data
 
         const data = await selectPetsByPetName(petName)
+
+        return response.json({status: 200, message: null, data})
+
+    } catch (error) {
+        return response.json ({
+            status: 500,
+            message: '',
+            data: []
+        })
+    } }
+
+export async function getPetByPetPersonalityController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.string(({message: 'Please provide a valid Pet Name'})).safeParse(request.params.petPersonality)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const petPersonality = validationResult.data
+
+        const data = await selectPetsByPetPersonality(petPersonality)
 
         return response.json({status: 200, message: null, data})
 

@@ -4,7 +4,11 @@ import {
     getPetByPetProfileIdController,
     petController,
     getAllPetsController,
-    getPetByPetBreedController, getPetByPetSizeController, getPetByPetTypeController, getPetByPetNameController
+    getPetByPetBreedController,
+    getPetByPetSizeController,
+    getPetByPetTypeController,
+    getPetByPetNameController,
+    getPetByPetPersonalityController
 } from "./pet.controller"
 
 
@@ -22,6 +26,7 @@ router.route('/petBreed/:petBreed').get(getPetByPetBreedController)
 router.route('/petSize/:petSize').get(getPetByPetSizeController)
 router.route('/petType/:petType').get(getPetByPetTypeController)
 router.route('/petName/:petName').get(getPetByPetNameController)
+router.route('/petPersonality/:petPersonality').get(getPetByPetPersonalityController)
 
 
 export const petRoute = { basePath, router }
