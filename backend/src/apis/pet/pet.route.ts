@@ -1,5 +1,11 @@
 import { Router } from 'express'
-import { getPetByPetIdController, getPetByPetProfileIdController, petController, getAllPetsController } from "./pet.controller"
+import {
+    getPetByPetIdController,
+    getPetByPetProfileIdController,
+    petController,
+    getAllPetsController,
+    getPetByPetBreedController
+} from "./pet.controller"
 
 
 const basePath = '/apis/pet'
@@ -12,6 +18,7 @@ router.route('/').post(petController)
 router.route('/:petId').get(getPetByPetIdController)
 router.route('/petProfileId/:petProfileId').get(getPetByPetProfileIdController)
 router.route('/').get(getAllPetsController)
+router.route('/petBreed/:petBreed').get(getPetByPetBreedController)
 
 
 export const petRoute = { basePath, router }
