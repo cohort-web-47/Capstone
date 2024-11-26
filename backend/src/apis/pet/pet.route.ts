@@ -7,7 +7,7 @@ import {
     getPetByPetSizeController,
     getPetByPetTypeController,
     getPetByPetNameController,
-    getPetByPetPersonalityController, postPetController, updatePetController
+    getPetByPetPersonalityController, postPetController, updatePetController, deletePetController
 } from "./pet.controller"
 import {getPetByPetProfileId, updatePet} from "./pet.model";
 
@@ -28,6 +28,7 @@ router.route('/petType/:petType').get(getPetByPetTypeController)
 router.route('/petName/:petName').get(getPetByPetNameController)
 router.route('/petPersonality/:petPersonality').get(getPetByPetPersonalityController)
 router.route('/:petId').put(updatePetController)
+router.route('/:petId').delete(deletePetController)
 
 
 
