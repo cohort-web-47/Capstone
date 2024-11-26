@@ -166,4 +166,12 @@ export async function selectPetByPetId (petId: string): Promise<Pet | null> {
 
 }
 
+export async function deletePetByPetId(petId: string): Promise<String> {
+    await sql `DELETE 
+               FROM pet
+               WHERE pet_id = ${petId}`
+
+    return 'Pet Successfully Deleted'
+}
+
 

@@ -16,7 +16,8 @@ import {
     selectPetsByPetName,
     selectPetsByPetPersonality,
     updatePet,
-    selectPetByPetId
+    selectPetByPetId,
+    deletePetByPetId
 } from "./pet.model";
 import {z} from "zod";
 import session from "express-session";
@@ -274,6 +275,42 @@ export async function updatePetController(request: Request, response: Response):
         return response.json ({status: 500, message: "internal server error", data: null})
     }
 }
+
+
+export async function deletePetController(request: Request, response: Response): Promise<Response | undefined> {
+    try {
+        const validationResult = z.string().uuid({message: 'Please provide a valid PetID'}).safeParse(request.params.petId)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+
+        const profileFromSession = request.session?.profile
+        const profileIdFromSession = profileFromSession?.profileId
+
+        const petId = validationResult.data
+
+        const pet = await selectPetByPetId(petId)
+
+        if (profileIdFromSession !== pet?.petProfileId) {
+            return response.json({status: 400, message: "You cannot update a pet that is not yours", data: null})
+        }
+
+        const result = await deletePetByPetId(petId)
+
+        return response.json({status: 200, message: 'You Successfully Deleted a Pet', data: null})
+
+    } catch (error) {
+        return response.json ({
+            status: 500,
+            message: 'Internal Server Error',
+            data: []
+        })
+
+    }
+}
+
 
 
 
