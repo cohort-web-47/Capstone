@@ -13,7 +13,24 @@ export async function insertComment(comment: Comment): Promise<string> {
 }
 
 export async function selectCommentByCommentId (commentId: string): Promise<Comment | null> {
-    const rowlist = <Comment[]>await sql `SELECT * FROM comment WHERE comment_id = ${commentId}`
+    const rowlist = <Comment[]>await sql `SELECT comment_id, comment_pet_id, comment_post_id, comment_caption, comment_datetime
+    FROM comment
+    WHERE comment_id = ${commentId}`
     const result = CommentSchema.array().max(1).parse(rowlist)
     return result.length === 0 ? null : result[0]
+
+}
+
+export async function selectCommentsByCommentPostId (commentPostId: string): Promise<Comment[] | null> {
+    const rowlist = <Comment[]>await sql`SELECT comment_id, comment_pet_id, comment_post_id, comment_caption, comment_datetime
+                                         FROM comment
+                                         WHERE comment_post_id = ${commentPostId}`
+    return CommentSchema.array().parse(rowlist)
+}
+
+export async function selectCommentsByCommentPetId (commentPetId: string): Promise<Comment[] | null> {
+    const rowlist = <Comment[]>await sql`SELECT comment_id, comment_pet_id, comment_post_id, comment_caption, comment_datetime
+                                         FROM comment
+                                         WHERE comment_pet_id = ${commentPetId}`
+    return CommentSchema.array().parse(rowlist)
 }

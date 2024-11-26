@@ -1,7 +1,13 @@
 import {CommentSchema} from "./comment.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {PublicProfile} from "../profile/profile.model";
-import {Comment, insertComment, selectCommentByCommentId} from "./comment.model";
+import {
+    Comment,
+    insertComment,
+    selectCommentByCommentId,
+    selectCommentsByCommentPetId,
+    selectCommentsByCommentPostId
+} from "./comment.model";
 import {Request, Response} from 'express';
 import {Status} from "../../utils/interfaces/Status";
 import {Pet, selectPetByPetId} from "../pet/pet.model";
@@ -55,5 +61,39 @@ export async function getCommentByCommentIdController (request: Request, respons
 
         } catch (error) {
             return response.json ({status: 500, message: '', data: []})
+    }
+}
+
+
+
+export async function getCommentsByCommentPetIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try{
+        const validationResult = z.string().uuid({message: 'Please provide a valid pet CommentPetId'}).safeParse(request.params.commentPetId)
+        console.log(validationResult)
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+        const commentPetId = validationResult.data
+        const data = await selectCommentsByCommentPetId(commentPetId)
+        return response.json({status: 200, message: null, data})
+
+    } catch (error) {
+        return response.json ({status: 500, message: '', data: []})
+    }
+}
+
+export async function getCommentsByCommentPostIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try{
+        const validationResult = z.string().uuid({message: 'Please provide a valid pet CommentPostId'}).safeParse(request.params.commentPostId)
+        console.log(validationResult)
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+        const commentPostId = validationResult.data
+        const data = await selectCommentsByCommentPostId(commentPostId)
+        return response.json({status: 200, message: null, data})
+
+    } catch (error) {
+        return response.json ({status: 500, message: '', data: []})
     }
 }
