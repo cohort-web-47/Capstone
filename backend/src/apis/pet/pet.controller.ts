@@ -7,7 +7,6 @@ import {PrivateProfile} from "../profile/profile.model";
 import {
     insertPet,
     Pet,
-    getPetByPetId,
     getPetByPetProfileId,
     selectAllPets,
     selectPetsByPetBreed,
