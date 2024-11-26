@@ -1,10 +1,11 @@
 import {CommentSchema} from "./comment.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {PublicProfile} from "../profile/profile.model";
-import {Comment, insertComment} from "./comment.model";
+import {Comment, insertComment, selectCommentByCommentId} from "./comment.model";
 import {Request, Response} from 'express';
 import {Status} from "../../utils/interfaces/Status";
 import {Pet, selectPetByPetId} from "../pet/pet.model";
+import {z} from "zod";
 
 export async function postCommentController (request: Request, response: Response): Promise<Response | undefined> {
  try{
@@ -40,4 +41,19 @@ console.log(validationResult);
      console.error(error)
      return response.json({status: 500, message: 'Error creating Comment. Try again.', data: null})
  }
+}
+
+export async function getCommentByCommentIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try{
+        const validationResult = z.string().uuid({message: 'Please provide a valid pet CommentId'}).safeParse(request.params.commentId)
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+            const commentId = validationResult.data
+            const data = await selectCommentByCommentId(commentId)
+            return response.json({status: 200, message: null, data})
+
+        } catch (error) {
+            return response.json ({status: 500, message: '', data: []})
+    }
 }
