@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-    createPostController, getAllPosts
+    createPostController, getAllPosts, getPostByPetIdController
 
 } from "./post.controller";
 import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
@@ -11,5 +11,8 @@ const router = Router()
 
 router.route('/').post(isLoggedInController,createPostController)
 router.route('/').get(getAllPosts)
+router.route('/petId/:petId').get(getPostByPetIdController)
+
+
 
 export const postRoute = {basePath, router}

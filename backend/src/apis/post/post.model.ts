@@ -25,3 +25,23 @@ export async function selectAllPosts(): Promise<Post[]> {
 
     return PostSchema.array().parse(rowList)
 }
+
+// export async function deletePostByPostId(postId: string): Promise<string> {
+//     await sql `DELETE
+//              FROM post
+//              WHERE post_id = ${postId}`
+//
+//     return 'Post successfully Deleted'
+// }
+
+export async function selectPostByPetId (postPetId: string): Promise<Post[]> {
+    const rowList = <Post[]>await sql`SELECT post_id,
+                                             post_pet_id,
+                                             post_caption,
+                                             post_image_url,
+                                             post_datetime
+                                             FROM post
+                                             WHERE post_pet_id = ${postPetId}`
+
+        return PostSchema.array().parse(rowList)
+}

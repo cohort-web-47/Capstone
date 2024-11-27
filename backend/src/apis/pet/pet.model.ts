@@ -1,6 +1,7 @@
 import {z} from 'zod';
 import {PetSchema} from "./pet.validator";
 import {sql} from "../../utils/database.utils";
+import {Post} from "../post/post.model";
 
 export type Pet = z.infer<typeof PetSchema>
 
@@ -173,5 +174,6 @@ export async function deletePetByPetId(petId: string): Promise<String> {
 
     return 'Pet Successfully Deleted'
 }
+
 
 
