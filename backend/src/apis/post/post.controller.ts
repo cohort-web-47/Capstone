@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {
     insertPost,
-    Post
+    Post, selectAllPosts
 
 
 } from "./post.model"
@@ -51,5 +51,21 @@ export async function createPostController(request: Request, response: Response)
     } catch (error) {
         console.log(error)
         return response.json({status: 500, message: 'Error creating Post. Try again', data: null})
+    }
+}
+
+export async function getAllPosts (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const data = await selectAllPosts()
+
+        const status: Status = {status: 200, message: null, data}
+        return response.json(status)
+    } catch (error) {
+        console.error(error)
+        return response.json ({
+            status: 500,
+            message: 'Error getting all posts.',
+            data: []
+        })
     }
 }
