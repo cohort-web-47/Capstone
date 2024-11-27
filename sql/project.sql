@@ -63,7 +63,8 @@ create table if not exists "like"
     like_post_id  uuid      not null,
     like_datetime timestamp not null,
     foreign key (like_pet_id) references pet (pet_id),
-    foreign key (like_post_id) references post (post_id)
+    foreign key (like_post_id) references post (post_id),
+    primary key (like_pet_id, like_post_id)
 
 );
 CREATE INDEX ON "like"(like_pet_id);
