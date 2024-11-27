@@ -11,6 +11,7 @@ import {signOutRoute} from "./apis/sign-out/sign-out.route";
 import {petRoute} from "./apis/pet/pet.route";
 import {postRoute} from "./apis/post/post.route";
 import {commentRoute} from "./apis/comment/comment.route";
+import {likeRoute} from "./apis/like/like.route";
 
 
 // The following class creates the app and instantiates the server
@@ -55,6 +56,7 @@ export class App {
     this.app.use(petRoute.basePath, petRoute.router)
     this.app.use(postRoute.basePath, postRoute.router)
     this.app.use(commentRoute.basePath, commentRoute.router)
+    this.app.use(likeRoute.basePath, likeRoute.router)
 
   }
 
