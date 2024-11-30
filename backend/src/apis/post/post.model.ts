@@ -58,9 +58,6 @@ export async function deletePostByPostId(postId: string): Promise<string> {
               FROM post
               WHERE post_id = ${postId}`
 
-    return 'Post Successfully Deleted'
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> post-creation-2
+    return 'Post Successfully Deleted'}
+
+

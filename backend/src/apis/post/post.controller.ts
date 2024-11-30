@@ -132,7 +132,7 @@ export async function deletePostByPostIdController (request: Request, response: 
         const postId = validationResult.data
 
         const post = await selectPostByPostId(postId)
-        if (!post){
+        if (!post) {
             return response.json({
                 status: 403,
                 message: 'No post with this ID',
@@ -141,7 +141,7 @@ export async function deletePostByPostIdController (request: Request, response: 
         }
         const pet = await selectPetByPetId(post.postPetId)
 
-        if (pet?.petProfileId !== profileId ) {
+        if (pet?.petProfileId !== profileId) {
             return response.json({
                 status: 403,
                 message: 'You are not allowed to delete this pets post,',
@@ -161,8 +161,6 @@ export async function deletePostByPostIdController (request: Request, response: 
             data: []
         })
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> post-creation-2
+
+
