@@ -1,5 +1,9 @@
 import { Router } from 'express'
-import {deleteLikeController, postLikeController, toggleLikeController} from "./like.controller";
+import {
+    deleteLikeController, getLikesByPetIdController,
+    postLikeController,
+    toggleLikeController, getLikesByLikePostIdController
+} from "./like.controller";
 import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
 
 
@@ -8,7 +12,8 @@ const router = Router();
 
 router.route ('/').post(postLikeController)
 router.route('/likePostId/:likePostId').delete(deleteLikeController)
-    //.get(getLikesByLikeThreadIdController)
+router.route('/likePostId/:likePostId').get(getLikesByLikePostIdController)
+router.route('/likePetId/:likePetId').get(getLikesByPetIdController)
 router.route('/toggle').post(isLoggedInController, toggleLikeController)
 
 
