@@ -90,7 +90,8 @@ create table if not exists follow
     follower_pet_id uuid not null,
     followee_pet_id uuid not null,
     foreign key (follower_pet_id) references pet (pet_id),
-    foreign key (followee_pet_id) references pet (pet_id)
+    foreign key (followee_pet_id) references pet (pet_id),
+    primary key (follower_pet_id, followee_pet_id)
 );
 CREATE INDEX ON follow(follower_pet_id);
 CREATE INDEX ON follow(followee_pet_id);
