@@ -77,8 +77,9 @@ create table if not exists save
     save_profile_id uuid      not null,
     save_datetime   timestamp not null,
     foreign key (save_post_id) references post (post_id),
-    foreign key (save_profile_id) references profile (profile_id)
+    foreign key (save_profile_id) references profile (profile_id),
 
+primary key (save_post_id, save_profile_id)
 );
 CREATE INDEX ON save(save_post_id);
 CREATE INDEX ON save(save_profile_id);
