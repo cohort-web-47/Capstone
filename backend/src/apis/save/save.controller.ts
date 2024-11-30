@@ -35,18 +35,3 @@ export async function postSaveController(request: Request, response: Response) :
     }
 }
 
-export async function getPostsBySavePostIdController(request: Request, response: Response): Promise<Response<Status>> {
-    try {
-        const validationResult = z.string().uuid({message: 'Please provide a valid savePostId'}).safeParse(request.params.PostId)
-        console.log(validationResult)
-        if (!validationResult.success) {
-            return zodErrorResponse(response, validationResult.error)
-        }
-        const savePostId = validationResult.data
-        const data = await selectPostsBySaveProfileId(saveProfileId)
-        return response.json({status: 200, message: null, data})
-
-    } catch (error) {
-        return response.json ({status: 500, message: '', data: []})
-    }
-}
