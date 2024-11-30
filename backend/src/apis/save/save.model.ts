@@ -13,6 +13,31 @@ export async function insertSave(save: Save): Promise<string> {
     return 'Post successfully saved.'
 }
 
+export async function deleteSave (save : Save): Promise<string> {
+    const {saveProfileId, savePostId, saveDatetime} = save
+    await sql`DELETE FROM save
+           WHERE save_profile_id = ${saveProfileId}
+             AND save_post_id = ${savePostId}`
+        return 'Save successfully deleted'
+
+}
+
+export async function selectSaveByPrimaryKey (save: Save): Promise<Save | null> {
+    const {saveProfileId, savePostId, saveDatetime} = save
+    const rows = await sql`SELECT save_profile_id, save_post_id, save_datetime 
+    
+                 FROM save
+                 WHERE save_profile_id = ${saveProfileId}
+                 AND save_post_id = ${savePostId}`
+
+        const result = SaveSchema.array().max (1).parse(rows)
+
+        return result.length === 0 ? null : result[0]
+
+
+
+}
+
 export async function selectPostsBySaveProfileId(saveProfileId: string): Promise<Post[]> {
 
 
