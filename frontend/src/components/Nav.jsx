@@ -47,7 +47,7 @@ export function Nav() {
         {/* Logo Functionality */}
 
         <div className="logo-container">
-          <img src="/petlogo.jpg" alt="Pet Logo" className="logo-image"/>
+          <img src="/petlogo.jpg" alt="PetModel Logo" className="logo-image"/>
         </div>
 
 

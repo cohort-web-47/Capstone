@@ -1,15 +1,16 @@
 import { FaRegComment } from "react-icons/fa6";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoIosSave } from "react-icons/io";
-import {Pet} from "@/utils/models/Pet";
-import {Post as PostType} from "@/utils/models/Post";
+import {fetchPetById} from "@/utils/models/pet/pet.action";
+import {Post} from "@/utils/models/post/post.model";
 type PostProps = {
-    post:PostType
-    pet:Pet
+    post:Post
 }
 
-export function Post(props: PostProps) {
-    const {post, pet} = props;
+export async function PostCard(props: PostProps) {
+    const {post} = props;
+    console.log(post.postPetId)
+const pet = await fetchPetById(post.postPetId)
     return (
         <>
 

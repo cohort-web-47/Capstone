@@ -9,14 +9,14 @@ export default function () {
             </div>
             <form className="flex max-w-md flex-col gap-4 mx-auto">
                 <div>
-                    <h3 className={"text-center"}>Create Pet Profile</h3>
+                    <h3 className={"text-center"}>Create PetModel Profile</h3>
 <br/>
                     <div className="w-36">
                         <div className="mb-2 block">
-                            <Label htmlFor="SelectTypeofPet" value="Select Type of Pet"/>
+                            <Label htmlFor="SelectTypeofPet" value="Select Type of PetModel"/>
                         </div>
                         <Select id="Selected Pet" required>
-                            <option>Pet Type</option>
+                            <option>PetModel Type</option>
                             <option>Cat</option>
                             <option>Dog</option>
                         </Select>
@@ -25,9 +25,9 @@ export default function () {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="petname" value="Pet Name"/>
+                        <Label htmlFor="petname" value="PetModel Name"/>
                     </div>
-                    <TextInput id="petname" type="Pet Name" placeholder='"Pet Name"' required shadow/>
+                    <TextInput id="petname" type="PetModel Name" placeholder='"PetModel Name"' required shadow/>
                 </div>
                 <div>
                     <div className="mb-2 block">
@@ -69,12 +69,12 @@ export default function () {
                 <img className="rounded-full w-36 h-36 mx-auto" src={"https://placehold.co/400"} alt="placeholder"/>
             </div>
             <form className="flex max-w-md flex-col gap-4 mx-auto">
-                <h3>Create Pet Profile</h3>
+                <h3>Create PetModel Profile</h3>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="petname" value="Pet Name"/>
+                        <Label htmlFor="petname" value="PetModel Name"/>
                     </div>
-                    <TextInput id="petname" type="Pet Name" placeholder='"Pet Name"' required shadow/>
+                    <TextInput id="petname" type="PetModel Name" placeholder='"PetModel Name"' required shadow/>
                 </div>
                 <div>
                     <div className="mb-2 block">

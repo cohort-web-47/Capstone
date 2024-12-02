@@ -1,5 +1,5 @@
 import ProfileTab from "@/components/ProfileTab";
-import {Post} from "@/components/Post";
+import {PostCard} from "@/components/PostCard";
 import {IoMdNotificationsOutline} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
@@ -77,7 +77,7 @@ export default function HomePage() {
 
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
-                        {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}
                     </div>
 
                 </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
                     <div className="container w-full pr-8">
-                        {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}
                     </div>
 
                 </div>
@@ -98,7 +98,7 @@ export default function HomePage() {
                     <div
                         className="w-full bg-themeBackround pr-8 flex flex-col gap-6 items-center justify-center flex-1">
                         <div className="w-3/4 h-auto">
-                        <Post post={posts[0]} pet={pets[0]}/>
+                        <PostCard post={posts[0]} pet={pets[0]}/>
                         </div>
 
 

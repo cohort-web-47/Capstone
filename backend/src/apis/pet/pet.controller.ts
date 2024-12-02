@@ -53,13 +53,13 @@ export async function postPetController(request: Request, response: Response): P
         return response.json(status)
     } catch (error) {
         console.log(error)
-        return response.json({status: 500, message: 'Error creating Pet. Try again.', data: null})
+        return response.json({status: 500, message: 'Error creating PetModel. Try again.', data: null})
     }
 }
 
 export async function getPetByPetIdController(request: Request, response: Response): Promise<Response<Status>> {
    try {
-       const validationResult = z.string().uuid({message: 'Please provide a valid Pet Id'}).safeParse(request.params.petId)
+       const validationResult = z.string().uuid({message: 'Please provide a valid PetModel Id'}).safeParse(request.params.petId)
 
        if (!validationResult.success) {
            return zodErrorResponse(response, validationResult.error)
@@ -82,7 +82,7 @@ export async function getPetByPetIdController(request: Request, response: Respon
 
 export async function getPetByPetProfileIdController(request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string().uuid({message: 'Please provide a valid Pet Profile Id'}).safeParse(request.params.petProfileId)
+        const validationResult = z.string().uuid({message: 'Please provide a valid PetModel Profile Id'}).safeParse(request.params.petProfileId)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -121,7 +121,7 @@ export async function getAllPetsController (request: Request, response: Response
 
 export async function getPetByPetBreedController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string(({message: 'Please provide a valid Pet Breed'})).safeParse(request.params.petBreed)
+        const validationResult = z.string(({message: 'Please provide a valid PetModel Breed'})).safeParse(request.params.petBreed)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -143,7 +143,7 @@ export async function getPetByPetBreedController (request: Request, response: Re
 
 export async function getPetByPetSizeController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string(({message: 'Please provide a valid Pet Breed'})).safeParse(request.params.petSize)
+        const validationResult = z.string(({message: 'Please provide a valid PetModel Breed'})).safeParse(request.params.petSize)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -165,7 +165,7 @@ export async function getPetByPetSizeController (request: Request, response: Res
 
 export async function getPetByPetTypeController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string(({message: 'Please provide a valid Pet Type'})).safeParse(request.params.petType)
+        const validationResult = z.string(({message: 'Please provide a valid PetModel Type'})).safeParse(request.params.petType)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -187,7 +187,7 @@ export async function getPetByPetTypeController (request: Request, response: Res
 
 export async function getPetByPetNameController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string(({message: 'Please provide a valid Pet Name'})).safeParse(request.params.petName)
+        const validationResult = z.string(({message: 'Please provide a valid PetModel Name'})).safeParse(request.params.petName)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -209,7 +209,7 @@ export async function getPetByPetNameController (request: Request, response: Res
 
 export async function getPetByPetPersonalityController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string(({message: 'Please provide a valid Pet Personality'})).safeParse(request.params.petPersonality)
+        const validationResult = z.string(({message: 'Please provide a valid PetModel Personality'})).safeParse(request.params.petPersonality)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -255,7 +255,7 @@ export async function updatePetController(request: Request, response: Response):
         const pet: Pet | null = await selectPetByPetId(petId)
 
         if (pet === null) {
-            return response.json({status: 400, message: "Pet Does Not Exist", data: null})
+            return response.json({status: 400, message: "PetModel Does Not Exist", data: null})
         }
 
 
@@ -268,7 +268,7 @@ export async function updatePetController(request: Request, response: Response):
 
         await updatePet(pet)
 
-        return response.json({ status: 200, message: "Pet Successfully Updated", data: null })
+        return response.json({ status: 200, message: "PetModel Successfully Updated", data: null })
 
     } catch (error: unknown) {
         return response.json ({status: 500, message: "internal server error", data: null})
@@ -298,7 +298,7 @@ export async function deletePetController(request: Request, response: Response):
 
         const result = await deletePetByPetId(petId)
 
-        return response.json({status: 200, message: 'You Successfully Deleted a Pet', data: null})
+        return response.json({status: 200, message: 'You Successfully Deleted a PetModel', data: null})
 
     } catch (error) {
         return response.json ({

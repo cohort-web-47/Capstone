@@ -6,7 +6,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 const Login = () => {
     return (
       <div className="login-container">
-        <img src="/petlogo.jpg" alt="Pet Logo" className="login-logo" />
+        <img src="/petlogo.jpg" alt="PetModel Logo" className="login-logo" />
         <div className="wrapper">
           <h1>Login</h1>
           <form action="">

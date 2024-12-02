@@ -12,7 +12,7 @@ export async function insertPost(post: Post): Promise<string> {
     await sql`INSERT INTO post (post_id, post_pet_id, post_caption, post_image_url, post_datetime)
               VALUES (gen_random_uuid(), ${postPetId}, ${postCaption}, ${postImageUrl}, now())`
 
-    return 'Post Successfully Created'
+    return 'PostModel Successfully Created'
 }
 
 export async function selectAllPosts(): Promise<Post[]> {
@@ -58,6 +58,6 @@ export async function deletePostByPostId(postId: string): Promise<string> {
               FROM post
               WHERE post_id = ${postId}`
 
-    return 'Post Successfully Deleted'}
+    return 'PostModel Successfully Deleted'}
 
 

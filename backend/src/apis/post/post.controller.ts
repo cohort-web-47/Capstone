@@ -23,7 +23,7 @@ export async function createPostController(request: Request, response: Response)
 
         const {postCaption, postImageUrl, postPetId} = validationResult.data
 
-        // To Do: Get Pet by Pet ID, make sure pet profileId matches profileId in Session
+        // To Do: Get PetModel by PetModel ID, make sure pet profileId matches profileId in Session
 
         const profile: PublicProfile = request.session.profile as PublicProfile
 
@@ -34,7 +34,7 @@ export async function createPostController(request: Request, response: Response)
         const petProfileId = pet?.petProfileId
 
         if (petProfileId !== profileId){
-            return response.json({status: 401, message: 'This is not your Pet!', data: null})
+            return response.json({status: 401, message: 'This is not your PetModel!', data: null})
 
         }
 
@@ -52,7 +52,7 @@ export async function createPostController(request: Request, response: Response)
         return response.json(status)
     } catch (error) {
         console.log(error)
-        return response.json({status: 500, message: 'Error creating Post. Try again', data: null})
+        return response.json({status: 500, message: 'Error creating PostModel. Try again', data: null})
     }
 }
 
@@ -96,7 +96,7 @@ export async function getPostByPetIdController (request: Request, response: Resp
 }
 export async function getPostByPostIdController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = z.string().uuid({message: 'Please provide a valid Post Id'}).safeParse(request.params.postId)
+        const validationResult = z.string().uuid({message: 'Please provide a valid PostModel Id'}).safeParse(request.params.postId)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)

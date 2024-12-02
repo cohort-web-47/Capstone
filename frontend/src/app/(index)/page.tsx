@@ -1,21 +1,20 @@
-import {Post} from "@/components/Post";
-export default function Home() {
-    const posts = [
-        {postId: "1", postImageUrl: "https://picsum.photos/200", postCaption: "I love cat", postPetId: "1"},
-        {postId: "2", postImageUrl: "https://picsum.photos/200", postCaption: "I love dog", postPetId: "1"},
-        {postId: "3", postImageUrl: "https://picsum.photos/200", postCaption: "I love cow", postPetId: "1"},
+import {PostCard} from "@/components/PostCard";
+import {fetchAllPosts} from "@/utils/models/post/post.action";
 
-    ]
-    const pets=[
-        {petProfileId:"1", petId:"1", petImageUrl:"https://picsum.photos/200",petName:"Fido"}
-    ]
+
+
+
+
+export default async function Home() {
+
+const posts = await fetchAllPosts();
     return (
         <>
 
 
             <h1 className={"text-3xl font-bold underline"}>Home Page</h1>
             <div className="container mx-auto">
-                {posts.map(post => <Post post={post} pet={pets[0]} key={post.postId}/>)}
+                {posts.map(post => <PostCard post={post} key={post.postId}/>)}
             </div>
         </>
     )

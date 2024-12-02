@@ -2,7 +2,7 @@ import {FiHome} from "react-icons/fi";
 import {IoMdNotificationsOutline, IoMdSearch} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {CiBookmark} from "react-icons/ci";
-import {Post} from "@/components/Post";
+import {PostCard} from "@/components/PostCard";
 import ProfileTab from "@/components/ProfileTab";
 
 export default function CommentsPage() {
@@ -72,7 +72,7 @@ export default function CommentsPage() {
 
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
-                        {posts.map(post => <Post post={post} pet={CommentPagePets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post} pet={CommentPagePets[0]} key={post.postId}/>)}
                     </div>
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
@@ -90,7 +90,7 @@ export default function CommentsPage() {
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
                     <div className="container w-full pr-8">
-                        {posts.map(post => <Post post={post} pet={CommentPagePets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post} pet={CommentPagePets[0]} key={post.postId}/>)}
 
                     </div>
                     <div className={"container flex mx-auto  border-2 border-black w-full py-4 self-center mb-10 pl-4"}>
