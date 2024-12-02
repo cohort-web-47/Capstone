@@ -14,8 +14,8 @@ router.route ('/').post(postLikeController)
 router.route('/likePostId/:likePostId').delete(deleteLikeController)
 router.route('/likePostId/:likePostId').get(getLikesByLikePostIdController)
 router.route('/likePetId/:likePetId').get(getLikesByPetIdController)
-router.route('/toggle').post(isLoggedInController, toggleLikeController)
 
+router.route('/toggle').post(isLoggedInController, toggleLikeController)
 
 
 
