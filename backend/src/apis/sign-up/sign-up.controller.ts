@@ -8,8 +8,8 @@ import {SignUpValidator} from './sign-up.validator'
 import {zodErrorResponse} from '../../utils/response.utils'
 
 /**
- * Express controller for sign-up
- * @endpoint POST /apis/sign-up/
+ * Express controller for sign-up-modal
+ * @endpoint POST /apis/sign-up-modal/
  * @param request an object containing the body contain a profileName, profileEmail, profilePassword and profilePasswordConfirm.
  * @param response an object modeling the response that will be sent to the client.
  * @returns response to the client indicating whether the sign up was successful or not

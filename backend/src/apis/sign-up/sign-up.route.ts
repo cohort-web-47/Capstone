@@ -3,7 +3,7 @@ import { signupProfileController } from './sign-up.controller'
 import { activationController } from './activation.controller'
 
 // declare a basePath for this router
-const basePath = '/apis/sign-up'
+const basePath = '/apis/sign-up-modal'
 
 // instantiate a new router object
 const router = Router()
