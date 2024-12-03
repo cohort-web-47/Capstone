@@ -8,18 +8,22 @@ import {FaRegBookmark} from "react-icons/fa6";
 import {CiBookmark} from "react-icons/ci";
 import Searchbar from "@/components/Searchbar";
 import {Nav} from "@/components/Nav";
+import {fetchAllPosts} from "@/utils/models/post/post.action";
 
 
-export default function HomePage() {
+export default async function HomePage() {
 
-    const posts = [
-        {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
-        {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
-        {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
-        {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
-        {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
+    // const posts = [
+    //     {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
+    //     {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
+    //     {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
+    //     {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
+    //     {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
+    //
+    // ]
 
-    ]
+    const posts = await fetchAllPosts();
+
     const pets = [
         {petId: "1", petProfileId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
     ]
@@ -77,7 +81,7 @@ export default function HomePage() {
 
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
-                        {posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post} key={post.postId}/>)}
                     </div>
 
                 </div>
@@ -88,7 +92,7 @@ export default function HomePage() {
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
                     <div className="container w-full pr-8">
-                        {posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>
 
                 </div>
@@ -98,7 +102,7 @@ export default function HomePage() {
                     <div
                         className="w-full bg-themeBackround pr-8 flex flex-col gap-6 items-center justify-center flex-1">
                         <div className="w-3/4 h-auto">
-                        <PostCard post={posts[0]} pet={pets[0]}/>
+                        <PostCard post={posts[2]} />
                         </div>
 
 

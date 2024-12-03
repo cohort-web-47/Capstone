@@ -9,18 +9,23 @@ import {CiBookmark} from "react-icons/ci";
 
 import Searchbar from "@/components/Searchbar";
 import {Footer} from "@/components/Footer";
+import {fetchAllPosts} from "@/utils/models/post/post.action";
 
 
-export default function SearchPage() {
+export default async function SearchPage() {
 
-    const posts = [
-        {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
-        {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
-        {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
-        {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
-        {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
+    // const posts = [
+    //     {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
+    //     {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
+    //     {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
+    //     {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
+    //     {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
+    //
+    // ]
 
-    ]
+
+    const posts = await fetchAllPosts();
+
     const pets = [
         {petProfileId: "1", petId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
     ]
@@ -78,7 +83,7 @@ let med = {width: 'w-1/3', position: 'left-1/3'};
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
-                        {posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
@@ -99,7 +104,7 @@ let med = {width: 'w-1/3', position: 'left-1/3'};
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
                     <div className="container w-full pr-8">
-                        {posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}
+                        {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>
 
                 </div>

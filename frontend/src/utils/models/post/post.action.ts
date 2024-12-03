@@ -3,7 +3,7 @@ import {Post, PostSchema} from "@/utils/models/post/post.model";
 
 
 export async function fetchAllPosts(): Promise<Post[]> {
-const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/post`,{
+const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/post`,{ //why is data in curly braces? destructure or obj?
     method: "get",
     headers: {
         'Content-Type': 'application/json'
