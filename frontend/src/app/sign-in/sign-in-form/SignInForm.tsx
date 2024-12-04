@@ -2,7 +2,7 @@
 
 
 import {Button, Label, TextInput} from "flowbite-react";
-import {SignUpModal} from "@/app/sign-in/sign-in-form/sign-up-modal/SignUpModal";
+import {SignUpModal} from "@/app/sign-up/SignUpModal";
 import {SignIn, SignInProfileSchema} from "@/utils/models/sign-in/sign-in.model";
 import {preformSignIn} from "@/utils/models/sign-in/sign-in.action";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -11,6 +11,8 @@ import {Status} from "@/utils/interfaces/Status";
 import React from "react";
 import {DisplayError} from "@/components/navigation/DisplayError";
 import {DisplayStatus} from "@/components/navigation/DisplayStatus";
+import {SignUpForm} from "@/app/sign-up/SignUpForm";
+import Link from "next/link";
 
 
 export function SignInForm() {
@@ -73,7 +75,7 @@ export function SignInForm() {
                     />
                     <DisplayError error={errors.profilePassword?.message}/>
                 </div>
-                <SignUpModal/>
+                <Link href={"/sign-up"}>Don't have an account?</Link>
                 <Button type="submit" className="">Submit</Button>
             </form>
             <DisplayStatus status={status}/>

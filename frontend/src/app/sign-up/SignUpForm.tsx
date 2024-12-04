@@ -1,6 +1,9 @@
+'use client'
+
+
 import {Button, Label, TextInput} from "flowbite-react";
 import React from "react";
-import {useForm} from "react-hook-form";
+
 import {zodResolver} from "@hookform/resolvers/zod";
 import {ProfileSchema} from "@/utils/models/profile/profile.model";
 import {z} from "zod";
@@ -10,6 +13,7 @@ import {Status} from "@/utils/interfaces/Status";
 import {DisplayError} from "@/components/navigation/DisplayError";
 import {DisplayStatus} from "@/components/navigation/DisplayStatus";
 import {DevTool} from "@hookform/devtools"
+import {useForm} from "react-hook-form";
 
 export function SignUpForm() {
 
