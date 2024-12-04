@@ -6,6 +6,16 @@ import session from 'express-session'
 import { createClient,  RedisClientType } from 'redis'
 import RedisStore from 'connect-redis'
 import {signUpRoute} from "./apis/sign-up/sign-up.route";
+import {signInRoute} from "./apis/sign-in/sign-in.route";
+import {signOutRoute} from "./apis/sign-out/sign-out.route";
+import {petRoute} from "./apis/pet/pet.route";
+import {postRoute} from "./apis/post/post.route";
+import {commentRoute} from "./apis/comment/comment.route";
+import {likeRoute} from "./apis/like/like.route";
+import {followRoute} from "./apis/follow/follow.route";
+import {saveRoute} from "./apis/save/save.route";
+
+
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -44,6 +54,16 @@ export class App {
   private routes (): void {
     this.app.use(indexRoute.basePath, indexRoute.router)
     this.app.use(signUpRoute.basePath, signUpRoute.router)
+    this.app.use(signInRoute.basePath, signInRoute.router)
+    this.app.use(signOutRoute.basePath, signOutRoute.router)
+    this.app.use(petRoute.basePath, petRoute.router)
+    this.app.use(postRoute.basePath, postRoute.router)
+    this.app.use(commentRoute.basePath, commentRoute.router)
+    this.app.use(likeRoute.basePath, likeRoute.router)
+    this.app.use(followRoute.basePath, followRoute.router)
+    this.app.use(saveRoute.basePath, saveRoute.router)
+
+
   }
 
   // starts the server and tells the terminal to post a message that the server is running and on what port
@@ -52,3 +72,4 @@ export class App {
     console.log('Express application built successfully')
   }
 }
+

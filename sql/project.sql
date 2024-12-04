@@ -63,7 +63,8 @@ create table if not exists "like"
     like_post_id  uuid      not null,
     like_datetime timestamp not null,
     foreign key (like_pet_id) references pet (pet_id),
-    foreign key (like_post_id) references post (post_id)
+    foreign key (like_post_id) references post (post_id),
+    primary key (like_pet_id, like_post_id)
 
 );
 CREATE INDEX ON "like"(like_pet_id);
@@ -76,8 +77,9 @@ create table if not exists save
     save_profile_id uuid      not null,
     save_datetime   timestamp not null,
     foreign key (save_post_id) references post (post_id),
-    foreign key (save_profile_id) references profile (profile_id)
+    foreign key (save_profile_id) references profile (profile_id),
 
+primary key (save_post_id, save_profile_id)
 );
 CREATE INDEX ON save(save_post_id);
 CREATE INDEX ON save(save_profile_id);
@@ -89,7 +91,8 @@ create table if not exists follow
     follower_pet_id uuid not null,
     followee_pet_id uuid not null,
     foreign key (follower_pet_id) references pet (pet_id),
-    foreign key (followee_pet_id) references pet (pet_id)
+    foreign key (followee_pet_id) references pet (pet_id),
+    primary key (follower_pet_id, followee_pet_id)
 );
 CREATE INDEX ON follow(follower_pet_id);
 CREATE INDEX ON follow(followee_pet_id);
