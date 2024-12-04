@@ -7,8 +7,9 @@ import {IoMdSearch} from "react-icons/io";
 import {CiBookmark} from "react-icons/ci";
 
 
-import Searchbar from "@/components/Searchbar";
+// import Searchbar from "@/components/Searchbar";
 import {Footer} from "@/components/Footer";
+
 
 
 export default function () {
@@ -17,37 +18,26 @@ export default function () {
     const posts = [
         {
             postId: "1",
-            postImageUrl: "https://picsum.photos/400",
-            postCaption: "I love cat",
-            postPetId: "1",
+            postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1",
             postDatetime: new Date()
         },
         {
             postId: "2",
-            postImageUrl: "https://picsum.photos/400",
-            postCaption: "I love dog",
-            postPetId: "1",
+            postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1",
             postDatetime: new Date()
         },
         {
             postId: "3",
-            postImageUrl: "https://picsum.photos/400",
-            postCaption: "I love cow",
-            postPetId: "1",
+            postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1",
             postDatetime: new Date()
         },
         {
             postId: "4",
-            postImageUrl: "https://picsum.photos/400",
-            postCaption: "I love swine",
-            postPetId: "1",
+            postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1",
             postDatetime: new Date()
         },
         {
-            postId: "5",
-            postImageUrl: "https://picsum.photos/400",
-            postCaption: "I love goats",
-            postPetId: "1",
+            postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1",
             postDatetime: new Date()
         },
 
@@ -67,9 +57,9 @@ export default function () {
 
     return (
         <>
-            <Searchbar med={med}/>
+            {/*<Searchbar med={med}/>*/}
 
-            <div className="container bg-themeBackround flex-col md:flex-row ">
+            {/*<div className="container bg-themeBackround flex-col md:flex-row ">*/}
 
                 {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
 
@@ -104,8 +94,6 @@ export default function () {
                         </button>
                     </div>
                 </div>
-
-
                 {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
 
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
@@ -126,7 +114,7 @@ export default function () {
                 {/*Followers section portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
 
                 <div
-                    className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
+                    className="md:flex md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                     <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
                         <p className={"text-2xl"}>Connections</p>
@@ -136,8 +124,7 @@ export default function () {
 
                 </div>
 
-
-            </div>
+            {/*</div>*/}
 
         </>
     )
