@@ -1,5 +1,5 @@
 import {Button} from "flowbite-react";
-import {InputText} from "@/app/create-post/inputtext";
+import {PostInputText} from "@/components/PostInputText";
 import ProfileTab from "@/components/ProfileTab"
 import {ProfileDropdown} from "@/components/ProfileDropdown";
 import {customTheme} from "@/utils/theme.utils";
@@ -15,7 +15,7 @@ export default function () {
                     <button className='bg-themeNavbar rounded px-4 py-1 hover:bg-yellow-500'>Add</button>
                 </div>
                 <div>
-                    <InputText/>
+                    <PostInputText/>
                 </div>
                 <div className="mx-auto text-center my-2.5 ">
                     <button className='bg-themeNavbar rounded px-4 py-1 hover:bg-yellow-500'>Generate</button>
