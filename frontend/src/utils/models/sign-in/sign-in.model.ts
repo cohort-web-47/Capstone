@@ -5,7 +5,7 @@ import { z } from 'zod'
  * @property profilePassword {string} the password
  * @property profileEmail {string} the email
  */
-export const signInProfileSchema = z.object({
+export const SignInProfileSchema = z.object({
     profilePassword: z.string({
         required_error: 'profilePassword is required',
         invalid_type_error: 'Please provide a valid profilePassword'
@@ -16,4 +16,4 @@ export const signInProfileSchema = z.object({
     }).email({ message: 'please provide a valid email' }).max(128, { message: 'please provide a valid email (max 128 characters)' })
 })
 
-export type SignIn = z.infer<typeof signInProfileSchema>
+export type SignIn = z.infer<typeof SignInProfileSchema>
