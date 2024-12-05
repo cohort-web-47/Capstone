@@ -47,15 +47,16 @@ export default function () {
         <>
 
             <div>
-                <img className="rounded-full w-36 h-36 mx-auto" src={"https://placehold.co/400"} alt="placeholder"/>
+                <img className="rounded-full w-36 h-36 mx-auto my-5" src={"https://placehold.co/400"} alt="placeholder"/>
             </div>
-            <form onSubmit={handleSubmit(createPets)} className="flex max-w-md flex-col gap-4 mx-auto">
-                <div>
+            <div className="flex justify-center">
+            <form onSubmit={handleSubmit(createPets)} className="">
+                <div className={"max-w-md"}>
                     <h3 className={"text-center"}>Create Pet Profile</h3>
 
-                    <div className="w-36">
+                    <div className= "max-w-md">
                         <div className="mb-2 block">
-                            <Label htmlFor="SelectTypeofPet" value="Select Type of PetModel"/>
+                            <Label htmlFor="SelectTypeofPet" value="Select Type of Pet"/>
                         </div>
 
                         <Select id="Selected Pet" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)} required>
@@ -71,15 +72,14 @@ export default function () {
                         {selectedValue === 'Dog' && (
                             <Dog register={register}/>
                         )}
-                        <Button type="submit"> Edit Profile | Save </Button>
+                        <Button type="submit" className=" mx-auto my-4"> Edit Profile | Save </Button>
 
                     </div>
 
                 </div>
-
             </form>
+            </div>
             <DevTool control={control} />
-
 
 
         </>

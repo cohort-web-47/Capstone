@@ -10,13 +10,13 @@ export function Dog(props:Props) {
     return (
         <>
 
-                <div>
+                <div className="max-w-md">
                     <div className="mb-2 block">
-                        <Label htmlFor="petname" value="PetModel Name"/>
+                        <Label htmlFor="petname" value="Pet Name"/>
                     </div>
-                    <TextInput id="petname" type="PetModel Name" placeholder='"PetModel Name"' required shadow/>
+                    <TextInput id="petname" type="PetModel Name" placeholder='"Pet Name"' required shadow/>
                 </div>
-                <div>
+                <div className="max-w-md">
                     <div className="mb-2 block">
                         <Label htmlFor="DogBreed" value="Dog Breed"/>
                     </div>
