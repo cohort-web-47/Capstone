@@ -15,8 +15,8 @@ export default function SearchPage() {
     ]
     return (
         <>
-            <Searchbar />
-            <div className="container bg-themeBackround flex-col md:flex-row ">
+            {/*<Searchbar />*/}
+            {/*<div className="container bg-themeBackground flex-col md:flex-row ">*/}
 
 
                 <div id="mobile-view" className="h-screen w-screen bg-themeBackground flex flex-col py-20 md:hidden">
@@ -39,7 +39,7 @@ export default function SearchPage() {
                     className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
 
                 </div>
-            </div>
+            {/*</div>*/}
         </>
     )
 }

@@ -53,19 +53,15 @@ export default function () {
         {profileId: "5", imageUrl: "https://picsum.photos/100", profileName: "Lemmy"},
 
     ]
-    let med = {width: 'w-1/3', position: 'left-1/3'};
+
 
     return (
         <>
-            {/*<Searchbar med={med}/>*/}
-
-            {/*<div className="container bg-themeBackround flex-col md:flex-row ">*/}
-
-                {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
+            {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
 
                 <div
                     className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
-                    <div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>
+                    {/*<div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>*/}
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl font-bold ">Home</p>
@@ -76,7 +72,7 @@ export default function () {
                     </div>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
                         className={"min-h-10 min-w-10"}/><p
-                        className="hidden lg:block text-2xl cursor-pointer">Connections</p>
+                        className="hidden lg:block text-2xl cursor-pointer">Followers</p>
                     </div>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
                         <IoMdNotificationsOutline
@@ -86,7 +82,7 @@ export default function () {
                         className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
                     <div className="flex flex-col pr-40">
                         <button
-                            className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
+                            className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Following
                         </button>
                         <button
                             className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
@@ -103,7 +99,7 @@ export default function () {
                     </div>
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
-                        <p className={"text-2xl"}>Connections</p>
+                        <p className={"text-4xl font-bold"}>Followers</p>
 
                         {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
@@ -117,15 +113,13 @@ export default function () {
                     className="md:flex min-h-dvh md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                     <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
-                        <p className={"text-2xl"}>Followers</p>
+                        <p className={"text-4xl"}>Followers</p>
                         {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
                     </div>
 
                 </div>
 
-            {/*</div>*/}
-
-        </>
+           </>
     )
 }
