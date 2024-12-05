@@ -96,7 +96,7 @@ export default function () {
                 </div>
                 {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
 
-                <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
+                <div id="mobile-view" className="h-full w-screen bg-themeBackground flex flex-col py-20 md:hidden">
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
                         {/*{posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}*/}
@@ -114,10 +114,10 @@ export default function () {
                 {/*Followers section portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
 
                 <div
-                    className="md:flex md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
+                    className="md:flex min-h-dvh md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                     <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
-                        <p className={"text-2xl"}>Connections</p>
+                        <p className={"text-2xl"}>Followers</p>
                         {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
                     </div>
