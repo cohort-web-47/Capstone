@@ -54,6 +54,7 @@ export function SignUpForm() {
     return (
         <>
             {/*call React hooks forms handle submit and pass it our function for form submission*/}
+
             <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-auto gap-4 min-w-full flex-col grow">
                 <h1 className="text-3xl font-bold">Create an account.</h1>
                 <div>
