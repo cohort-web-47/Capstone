@@ -89,7 +89,7 @@ export default async function HomePage() {
                     className="middle hidden md:flex border-white border-2 md:bg-themeBackground md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                     <Nav/>
                     <div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>
-                        <p className={"text-3xl text-center"}>Popular Post</p>
+                        {/*<p className={"text-3xl text-center"}>Popular Post</p>*/}
                     </div>
                     <div className="container w-full pr-8">
                         {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
@@ -102,7 +102,7 @@ export default async function HomePage() {
                     <div
                         className="w-full bg-themeBackround pr-8 flex flex-col gap-6 items-center justify-center flex-1">
                         <div className="w-3/4 h-auto">
-                        <PostCard post={posts[2]} />
+                        {/*<PostCard post={posts[2]} />*/}
                         </div>
 
 
