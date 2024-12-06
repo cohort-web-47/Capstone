@@ -12,6 +12,7 @@ export default function () {
             <br/>
             <section>
                 <div>
+                    <
                 <Notification/>
                     <Notification/>
                 </div>
