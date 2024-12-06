@@ -48,7 +48,9 @@ export function SignInForm() {
 
     return(
         <>
-            <img src="/petlogo.jpg" alt="PetModel Logo" className="login-logo"/>
+            <div className="flex flex-col justify-center">
+
+            <img src="/petlogo.jpg" alt="PetModel Logo" className="login-logo mx-auto"/>
             <form onSubmit={handleSubmit(fireServerAction)} className="flex  flex-col mx-auto gap-4">
                 <h1 className="text-3xl font-bold">Welcome back.</h1>
                 <div>
@@ -78,6 +80,8 @@ export function SignInForm() {
                 <Link href={"/sign-up"}>Don't have an account?</Link>
                 <Button type="submit" className="">Submit</Button>
             </form>
+
+            </div>
             <DisplayStatus status={status}/>
         </>
     )
