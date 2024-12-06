@@ -63,35 +63,34 @@ export default function () {
             <div
                 className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
                 {/*<div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>*/}
-            export default function Page() {
-                return (
-                    <link href="/" className="home-link">
-                        <FaHome /> Home
-                    </link>
-                )
-            }
-                }
-                <div>
-                    export default function Page() {
-                    return (
-                        <link href={"/" className="home-link">
-                       className: {"left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"}>
-                       <FaHome/> Home
-                    className={"min-h-10 min-w-10"}/><p
-                    className="hidden lg:block text-2xl font-bold ">Home</p>
-                </div>
-                <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><IoMdSearch
-                    className={"min-h-10 min-w-10"}/><p
-                    className="hidden lg:block text-2xl">Search</p>
-                </div>
-                <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
-                    className={"min-h-10 min-w-10"}/><p
-                    className="hidden lg:block text-2xl cursor-pointer">Following</p>
-                </div>
-                <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
-                    <IoMdNotificationsOutline
-                        className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p>
-                </div>
+
+                <Link href={'/'}>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl font-bold ">Home</p>
+                    </div>
+                </Link>
+
+                <Link href={'search'}>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><IoMdSearch
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl">Search</p>
+                    </div>
+                </Link>
+
+                <Link href={'followers-page'}>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl cursor-pointer">Followers</p>
+                    </div>
+                </Link>
+
+                <Link href={'notification-page'}>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
+                        <IoMdNotificationsOutline
+                            className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p>
+                    </div>
+                </Link>
                 <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
                     className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
                 <div className="flex flex-col pr-40">
