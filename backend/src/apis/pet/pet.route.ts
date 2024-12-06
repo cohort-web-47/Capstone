@@ -10,6 +10,7 @@ import {
     getPetByPetPersonalityController, postPetController, updatePetController, deletePetController
 } from "./pet.controller"
 import {getPetByPetProfileId, updatePet} from "./pet.model";
+import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
 
 
 const basePath = '/apis/pet'
@@ -18,7 +19,7 @@ const basePath = '/apis/pet'
 const router = Router()
 
 
-router.route('/').post(postPetController)
+router.route('/').post(isLoggedInController, postPetController)
 router.route('/:petId').get(getPetByPetIdController)
 router.route('/petProfileId/:petProfileId').get(getPetByPetProfileIdController)
 router.route('/').get(getAllPetsController)

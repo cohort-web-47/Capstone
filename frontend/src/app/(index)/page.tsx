@@ -7,6 +7,7 @@ import {fetchAllPosts} from "@/utils/models/post/post.action";
 
 export default async function Home() {
 
+
 const posts = await fetchAllPosts();
     return (
         <>

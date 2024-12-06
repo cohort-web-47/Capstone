@@ -35,6 +35,7 @@ export class App {
 
   // private method that sets the port for the sever, to one from index.route.ts, and external .env file or defaults to 3000
   public settings (): void {
+    this.app.set('trust proxy', 2)
     this.app.set('port', this.port)
   }
 
@@ -47,7 +48,10 @@ export class App {
       store: this.redisStore,
       saveUninitialized: false,
       secret: process.env.SESSION_SECRET as string,
-      resave: false
+      resave: false,
+      cookie: {
+        sameSite: 'lax'
+      }
     }))
   }
   // private method for setting up routes in their basic sense (ie. any route that performs an action on profiles starts with /profiles)
