@@ -5,6 +5,7 @@ import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
 import {IoMdSearch} from "react-icons/io";
 import {CiBookmark} from "react-icons/ci";
+import Link from "next/link";
 
 
 
@@ -133,6 +134,6 @@ export default function () {
 
                 </div>
 
-           </>
+        </>
     )
 }
