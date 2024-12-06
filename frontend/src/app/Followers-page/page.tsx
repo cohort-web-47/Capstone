@@ -8,13 +8,6 @@ import {CiBookmark} from "react-icons/ci";
 
 
 
-// import Searchbar from "@/components/Searchbar";
-import {Footer} from "@/components/Footer";
-import Link from "next/link";
-import {FaHome} from "react-icons/fa";
-
-
-
 export default function () {
 
 
@@ -97,25 +90,31 @@ export default function () {
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
                         className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
                     <div className="flex flex-col pr-40">
+                        <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
+                            className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
+                        <div className="flex flex-col pr-40">
+                            {/*<button*/}
+                            {/*    className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post*/}
+                            {/*</button>*/}
 
-                        <button
+                            <button
                             className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
                             out
-                        </button>
+                            </button>
                     </div>
                 </div>
-                {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
+            {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
 
-                <div id="mobile-view" className="h-full w-screen bg-themeBackground flex flex-col py-20 md:hidden">
+            <div id="mobile-view" className="h-full w-screen bg-themeBackground flex flex-col py-20 md:hidden">
 
-                    <div className="container mx-auto flex flex-col items-center pr-8">
-                        {/*{posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}*/}
-                    </div>
-                    <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
+                <div className="container mx-auto flex flex-col items-center pr-8">
+                    {/*{posts.map(post => <PostCard post={post} pet={pets[0]} key={post.postId}/>)}*/}
+                </div>
+                <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
-                        <p className={"text-4xl font-bold"}>Followers</p>
+                    <p className={"text-4xl font-bold"}>Followers</p>
 
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
+                    {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
 
                     </div>
