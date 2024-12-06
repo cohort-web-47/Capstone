@@ -5,6 +5,7 @@ import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
 import {IoMdSearch} from "react-icons/io";
 import {CiBookmark} from "react-icons/ci";
+import Link from 'next/link';
 
 
 // import Searchbar from "@/components/Searchbar";
@@ -62,7 +63,20 @@ export default function () {
             <div
                 className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
                 {/*<div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>*/}
-                <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
+            export default function Page() {
+                return (
+                    <link href="/" className="home-link">
+                        <FaHome /> Home
+                    </link>
+                )
+            }
+                }
+                <div>
+                    export default function Page() {
+                    return (
+                        <link href={"/" className="home-link">
+                       className: {"left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"}>
+                       <FaHome/> Home
                     className={"min-h-10 min-w-10"}/><p
                     className="hidden lg:block text-2xl font-bold ">Home</p>
                 </div>
