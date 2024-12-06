@@ -3,10 +3,11 @@ import {Pet, PetSchema} from "@/utils/models/pet/pet.model";
 import {Status} from "@/utils/interfaces/Status";
 import {getSession} from "@/utils/session.utils";
 import {cookies, headers} from "next/headers";
+import {setHeaders} from "@/utils/set-headers.utils";
 
 
 export async function fetchPetById(petId:string): Promise<Pet> {
-const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/${petId}`,{
+const {data} = await fetch(`${process.env.REST_API_URL}/apis/pet/${petId}`,{
     method: "get",
     headers: {
         'Content-Type': 'application/json'
@@ -26,34 +27,28 @@ const requestBody: any = {...pet}
     // update pet object with the correct pet profileId and set petId to null
 
     const session = await getSession()
-    const authorization = session?.authorization ?? ''
-
 
 
     if(session!=undefined) {
         requestBody.petProfileId = session.profile.profileId
         requestBody.petId = null
     }
-    const incomingHeaders = await headers()
-    const cookies =  incomingHeaders.raw()
-    console.log('cookies', cookies)
+    const headers = await setHeaders()
+    console.log('headers:',headers)
 
-    return fetch(`${process.env.PUBLIC_API_URL}/apis/pet`, {
+
+    const response = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet`, {
         method: "post",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': authorization,
-            'Set-Cookie': cookies,
+        credentials:'include',
+        headers,
 
-
-        },
         body: JSON.stringify(requestBody)
     }).then((response) => {
+
+
         if (!response.ok) {
             throw new Error('Network response was not ok')
         }
-
-
         return response.json()
 
 
@@ -63,6 +58,8 @@ const requestBody: any = {...pet}
         throw error
 
     })
+    console.log('I made it here!')
+    return response
 }
 
 

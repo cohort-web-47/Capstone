@@ -48,7 +48,10 @@ export class App {
       store: this.redisStore,
       saveUninitialized: false,
       secret: process.env.SESSION_SECRET as string,
-      resave: false
+      resave: false,
+      cookie: {
+        sameSite: 'lax'
+      }
     }))
   }
   // private method for setting up routes in their basic sense (ie. any route that performs an action on profiles starts with /profiles)
