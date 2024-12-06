@@ -35,6 +35,7 @@ export class App {
 
   // private method that sets the port for the sever, to one from index.route.ts, and external .env file or defaults to 3000
   public settings (): void {
+    this.app.set('trust proxy', 2)
     this.app.set('port', this.port)
   }
 

@@ -17,7 +17,7 @@ export async function preformSignIn(signIn: SignIn) {
 
     if (authorization) {
         const cookieJar = await cookies()
-        cookieJar.set("jwt-token", authorization, {path: "/", sameSite:"strict", httpOnly: true, maxAge:10_800})
+        cookieJar.set("earl-grey", authorization, {path: "/", sameSite:"strict", httpOnly: true, maxAge:10_800})
     }
 
     return response.json().then((response) => {

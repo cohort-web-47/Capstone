@@ -12,3 +12,4 @@ export const PetSchema = z.object({
 })
 
 export type Pet = z.infer<typeof PetSchema>
+export const PartialPetSchema = PetSchema.omit({petId: true, petProfileId: true})

@@ -13,6 +13,8 @@ import {SignUpSchema} from "@/utils/models/sign-up/sign-up.model";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {DevTool} from "@hookform/devtools";
+import {z} from "zod";
+import {DisplayStatus} from "@/components/navigation/DisplayStatus";
 
 export default function () {
     const [selectedValue, setSelectedValue] = useState<string>('Model Type');
@@ -28,20 +30,30 @@ export default function () {
         petType: ""
     }
 
-    const {register, handleSubmit, control, reset, formState: {errors}} = useForm<Pet>({
-        resolver: zodResolver(PetSchema),
+    const PartialPetSchema = PetSchema.omit({petId: true, petProfileId: true})
+
+    type PartialPet = z.infer< typeof PartialPetSchema>
+    const {register, handleSubmit, control, reset, formState: {errors}} = useForm<PartialPet>({
+        resolver: zodResolver(PartialPetSchema),
         defaultValues,
         mode: 'onBlur'
     })
-    const createPets = async (data:Pet) => {
+
+
+
+
+    const createPets = async (data:PartialPet) => {
         try {
-            const response = await preformCreatePet(data)
+            const pet= {...data, petProfileId: '', petId: ''}
+            const response = await preformCreatePet(pet)
 
             if (response.status === 200) {
                 reset()
             }
             setStatus(response)
-        }catch (error) {setStatus({status:500, message: 'Internal Server Error try again later', data: undefined})}
+        }catch (error) {
+            setStatus({status:500, message: 'Internal Server Error try again later', data: undefined})
+        }
     }
     return (
         <>
@@ -59,7 +71,7 @@ export default function () {
                             <Label htmlFor="SelectTypeofPet" value="Select Type of Pet"/>
                         </div>
 
-                        <Select id="Selected Pet" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)} required>
+                        <Select {...register('petType')} id="Selected Pet" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)} required>
                             <option value={""}>PetModel Type</option>
                             <option value={"Cat"}>Cat</option>
                             <option value={"Dog"}>Dog</option>
@@ -77,9 +89,11 @@ export default function () {
                     </div>
 
                 </div>
+                <DisplayStatus  status={status}/>
             </form>
+
             </div>
-            <DevTool control={control} />
+
 
 
         </>
