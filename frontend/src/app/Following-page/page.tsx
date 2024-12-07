@@ -94,9 +94,9 @@ export default function () {
                 <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
                     className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
                 <div className="flex flex-col pr-40">
-                    <button
-                        className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Followers
-                    </button>
+                    {/*<button*/}
+                    {/*    className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Followers*/}
+                    {/*</button>*/}
                     <button
                         className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
                         out
