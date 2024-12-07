@@ -18,7 +18,7 @@ export function Footer   () {
 {/*>>>>>>> develop*/}
                     <Link href={'/'}> <FiHome className={"h-12 w-12"}/></Link>
                     <Link href={'search'}><IoMdSearch className={"h-12 w-12"}/></Link>
-                    <Link href={'Followers-page'}> <GoPeople className={"h-12 w-12"}/></Link>
+                    <Link href={'followers'}> <GoPeople className={"h-12 w-12"}/></Link>
                     <Link href={'saved'}><FaRegBookmark className={"h-12 w-12"}/></Link>
                     <Link href={'notifications'}><IoMdNotificationsOutline className={"h-12 w-12"}/></Link>
                 </footer>

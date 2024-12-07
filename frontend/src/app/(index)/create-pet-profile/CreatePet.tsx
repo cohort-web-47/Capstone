@@ -2,8 +2,8 @@
 import {Button, Checkbox, Label, Select, TextInput} from "flowbite-react";
 import Link from "next/link";
 import React, {useState} from "react";
-import {Cat} from "@/app/create-pet-profile/Cat";
-import {Dog} from "@/app/create-pet-profile/Dog";
+import {Cat} from "@/app/(index)/create-pet-profile/Cat";
+import {Dog} from "@/app/(index)/create-pet-profile/Dog";
 import {Pet, PetSchema} from "@/utils/models/pet/pet.model";
 import {preformCreatePet} from "@/utils/models/pet/pet.action";
 import {string} from "postcss-selector-parser";

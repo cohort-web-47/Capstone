@@ -59,7 +59,7 @@ export default function () {
                 className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
                 {/*<div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>*/}
 
-                <Link href={'/'}>
+                <Link href={'/frontend/public'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl font-bold ">Home</p>
@@ -73,21 +73,23 @@ export default function () {
                     </div>
                 </Link>
 
-                <Link href={'Followers-page'}>
+                <Link href={'following'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
                         className={"min-h-10 min-w-10"}/><p
-                        className="hidden lg:block text-2xl cursor-pointer">Followers</p>
+                        className="hidden lg:block text-2xl cursor-pointer">Following</p>
                     </div>
                 </Link>
 
-                <Link href={'notification-page'}>
+                <Link href={'notification'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
                         <IoMdNotificationsOutline
                             className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p>
                     </div>
                 </Link>
+
+
                 <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
-                    className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
+                    className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">extra-save-page</p></div>
                 <div className="flex flex-col pr-40">
                     {/*<button*/}
                     {/*    className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Followers*/}
@@ -107,7 +109,7 @@ export default function () {
                 </div>
                 <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
-                    <p className={"text-4xl font-bold"}>Following</p>
+                    <p className={"text-4xl font-bold"}>extra Saved Page</p>
 
                     {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
@@ -121,7 +123,7 @@ export default function () {
                 className="md:flex min-h-dvh md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                 <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
-                    <p className={"text-4xl"}>Following</p>
+                    <p className={"text-4xl"}>extra-saved-page</p>
                     {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
                 </div>
