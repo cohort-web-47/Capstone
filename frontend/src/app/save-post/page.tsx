@@ -14,15 +14,6 @@ import {fetchAllPosts} from "@/utils/models/post/post.action";
 
 export default async function SavePostPage() {
 
-    // const posts = [
-    //     {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
-    //     {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
-    //     {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
-    //     {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
-    //     {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
-    //
-    // ]
-
 
     const posts = await fetchAllPosts();
 
