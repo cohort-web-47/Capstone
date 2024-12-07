@@ -8,11 +8,6 @@ import {CiBookmark} from "react-icons/ci";
 import Link from 'next/link';
 
 
-// import Searchbar from "@/components/Searchbar";
-import {Footer} from "@/components/Footer";
-
-
-
 export default function () {
 
 
@@ -78,7 +73,7 @@ export default function () {
                     </div>
                 </Link>
 
-                <Link href={'followers-page'}>
+                <Link href={'Followers-page'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl cursor-pointer">Followers</p>
@@ -120,7 +115,7 @@ export default function () {
                 </div>
             </div>
 
-            {/*Followers section portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
+            {/*Following section portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
 
             <div
                 className="md:flex min-h-dvh md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
