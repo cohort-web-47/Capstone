@@ -11,15 +11,12 @@ export function Footer   () {
         <>
 
             <div>
-{/*/!*<<<<<<< HEAD*!/*/}
-{/*                <footer className="bg-[#D1BBA0] flex justify-between w-full bottom-0 fixed">*/}
-{/*=======*/}
+
                 <footer className="bg-themeNavbar flex justify-between w-full bottom-0 fixed">
-{/*>>>>>>> develop*/}
                     <Link href={'/'}> <FiHome className={"h-12 w-12"}/></Link>
                     <Link href={'search'}><IoMdSearch className={"h-12 w-12"}/></Link>
-                    <Link href={'followers'}> <GoPeople className={"h-12 w-12"}/></Link>
-                    <Link href={'saved'}><FaRegBookmark className={"h-12 w-12"}/></Link>
+                    <Link href={'following'}> <GoPeople className={"h-12 w-12"}/></Link>
+                    <Link href={'save-post'}><FaRegBookmark className={"h-12 w-12"}/></Link>
                     <Link href={'notifications'}><IoMdNotificationsOutline className={"h-12 w-12"}/></Link>
                 </footer>
             </div>
