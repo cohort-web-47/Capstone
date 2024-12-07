@@ -73,7 +73,7 @@ export default function () {
                     </div>
                 </Link>
 
-                <Link href={'followers-page'}>
+                <Link href={'Followers-page'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl cursor-pointer">Followers</p>
