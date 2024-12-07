@@ -9,18 +9,21 @@ import {CiBookmark} from "react-icons/ci";
 
 import Searchbar from "@/components/Searchbar";
 import {Footer} from "@/components/Footer";
-import {fetchAllPosts} from "@/utils/models/post/post.action";
+import {fetchAllPosts, fetchSavedPosts} from "@/utils/models/post/post.action";
 import {LeftSideBar} from "@/components/LeftSideBar";
+import {getSession} from "@/utils/session.utils";
+import {redirect} from "next/navigation";
 
 
 export default async function SavePostPage() {
+const session = await getSession()
+    if(session===undefined){
+        redirect("/sign-in")
+    }
+const profileId = session.profile.profileId
+    const posts = await fetchSavedPosts(profileId);
 
 
-    const posts = await fetchAllPosts();
-
-    const pets = [
-        {petProfileId: "1", petId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
-    ]
     const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},
