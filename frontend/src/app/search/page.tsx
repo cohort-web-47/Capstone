@@ -49,7 +49,7 @@ let med = {width: 'w-1/3', position: 'left-1/3'};
 
                 <div
                     className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
-                    <div className="rounded-full border-black border-2 bg-gray-200 h-16 w-16 cursor-pointer">LOGO</div>
+                    <img src={"/petlogo.jpg"} alt="petlogo" className="rounded-full h-16 w-16 cursor-pointer"/>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl font-bold ">Home</p>
