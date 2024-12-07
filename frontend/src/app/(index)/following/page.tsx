@@ -7,6 +7,8 @@ import {IoMdSearch} from "react-icons/io";
 import {CiBookmark} from "react-icons/ci";
 import Link from 'next/link';
 import {LeftSideBar} from "@/components/LeftSideBar";
+import React from "react";
+import {Footer} from "@/components/Footer";
 
 
 export default function () {
@@ -87,7 +89,7 @@ export default function () {
                 </div>
 
             </div>
-
+<Footer />
         </>
     )
 }
