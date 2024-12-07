@@ -53,40 +53,53 @@ export function SignUpForm() {
 
     return (
         <>
-            {/*call React hooks forms handle submit and pass it our function for form submission*/}
 
-            <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-auto gap-4 min-w-full flex-col grow">
-                <h1 className="text-3xl font-bold">Create an account.</h1>
+      <div>
+            {/*call React hooks forms handle submit and pass it our function for form submission*/}
+            <form onSubmit={handleSubmit(onSubmit)} className="flex mx-auto min-h-auto gap-4 min-w-full flex-col grow">
                 <div>
-                    <div className="mb-2 block">
+                {/*    insert a image*/}
+                    <img src="/petlogo.jpg" alt="PetModel Logo" className="login-logo rounded-full w-44 h-44 mx-auto my-5"/>
+                </div>
+                <h1 className="text-3xl mx-auto font-bold">Create an account.</h1>
+                <div className="mx-auto">
+                    <div className=" mb-2 block">
                         <Label htmlFor="email1" value="email"/>
                     </div>
                     {/*tie the individual input field to a field in the default values*/}
-                    <TextInput aria-invalid={errors.profileEmail ? true: false} {...register('profileEmail')} autoComplete='email' id="email1" type="email"/>
+                    <TextInput aria-invalid={errors.profileEmail ? true : false} {...register('profileEmail')}
+                               autoComplete='email' id="email1" type="email"/>
                     {/*display the error message if the field has an error*/}
                 </div>
-                <div>
+                <div className="mx-auto">
                     <div className="mb-2 block">
                         <Label htmlFor="profileUsername" value="name"/>
                     </div>
-                    <TextInput aria-invalid={errors.profileUsername ? true : false } autoComplete='username' {...register('profileUsername')} id="profileUsername" type="text"/>
+                    <TextInput aria-invalid={errors.profileUsername ? true : false}
+                               autoComplete='username' {...register('profileUsername')} id="profileUsername"
+                               type="text"/>
                 </div>
-                <div>
+                <div className={"mx-auto"}>
                     <div className="mb-2 block">
                         <Label htmlFor="profilePassword" value="password"/>
                     </div>
-                    <TextInput aria-invalid={errors.profilePassword ? true: false} autoComplete={'new-password'} id="profilePassword" {...register('profilePassword')} type="password"/>
+                    <TextInput aria-invalid={errors.profilePassword ? true : false} autoComplete={'new-password'}
+                               id="profilePassword" {...register('profilePassword')} type="password"/>
                     <DisplayError error={errors.profilePassword?.message}/>
                 </div>
-                <div>
+                <div className={"mx-auto"}>
                     <div className="mb-2 block">
                         <Label htmlFor="profilePasswordConfirm" value="password confirm"/>
                     </div>
-                    <TextInput aria-invalid={errors.profilePasswordConfirm ? true : false} {...register('profilePasswordConfirm')} id="profilePasswordConfirm" autoComplete={'new-password confirm'} type="password" />
+                    <TextInput
+                        aria-invalid={errors.profilePasswordConfirm ? true : false} {...register('profilePasswordConfirm')}
+                        id="profilePasswordConfirm" autoComplete={'new-password confirm'} type="password"/>
                     <DisplayError error={errors.profilePasswordConfirm?.message}/>
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button className={"mx-auto"} type="submit">Submit</Button>
             </form>
+
+      </div>
             <DisplayStatus status={status}/>
             <DevTool control={control}/>
         </>
