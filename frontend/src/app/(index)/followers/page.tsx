@@ -56,8 +56,8 @@ export default function () {
     return (
         <>
             {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
+<LeftSideBar />
 
-            <LeftSideBar />
             {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
 
             <div id="mobile-view" className="h-full w-screen bg-themeBackground flex flex-col py-20 md:hidden">

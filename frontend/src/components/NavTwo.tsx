@@ -75,7 +75,7 @@ export function NavTwo() {
 function DropdownItem({ img, text }: DropdownItemProps) {
     return (
         <li className="dropdownItem">
-            <img src={img} alt={text} />
+            <img src={img} alt={text}/>
             <a>{text}</a>
         </li>
     );

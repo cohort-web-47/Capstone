@@ -45,27 +45,33 @@ export default async function HomePage() {
             {/*<div className={"fixed z-10 w-screen"}><Nav/></div>*/}
             <div className="container bg-themeBackround flex-col md:flex-row ">
 
-<LeftSideBar />
 
-                <div
-                    className="middle hidden md:flex border-white border-2 md:bg-themeBackground md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
-
-
+                <LeftSideBar/>
+                <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
                     <NavTwo/>
 
 
+                    <div className="container mx-auto flex flex-col items-center pr-8">
+                        {posts.map(post => <PostCard post={post} key={post.postId}/>)}
+                    </div>
+
+                </div>
+                <div
+                    className="middle hidden md:flex border-white border-2 md:bg-themeBackground md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
+                    <NavTwo/>
+                    {/*<div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>*/}
+                    {/*    */}
+                    {/*</div>*/}
                     <div className="container w-full pr-8">
                         {posts.map(post => <PostCard post={post}  key={post.postId}/> )}
                     </div>
 
-
+                </div>
                 <div
                     className="right-side hidden md:flex md:w-1/3 md:h-svh md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
                     <Searchbar med={med}/>
                     <div
                         className="w-full bg-themeBackround pr-8 flex flex-col gap-6 items-center justify-center flex-1">
-
-
 
 
 
@@ -78,7 +84,6 @@ export default async function HomePage() {
 
                 </div>
 
-            </div>
             </div>
 
         </>
