@@ -37,3 +37,21 @@ export async function fetchSavedPosts(profileId: string): Promise<Post[]> {
     })
 return PostSchema.array().parse(data)
 }
+
+export async function fetchFolloweePosts(followeePetId: string): Promise<Post[]> {
+    const headers = await setHeaders()
+    const {data} = await fetch(`${process.env.REST_API_URL}/apis/follow/post/${followeePetId}`, {
+        method: "GET",
+        headers
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        return[]
+    })
+    return PostSchema.array().parse(data)
+}
