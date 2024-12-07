@@ -72,7 +72,7 @@ export default function () {
                         </div>
 
                         <Select {...register('petType')} id="Selected Pet" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)} required>
-                            <option value={""}>PetModel Type</option>
+                            <option value={""}>Cat or Dog</option>
                             <option value={"Cat"}>Cat</option>
                             <option value={"Dog"}>Dog</option>
                         </Select>
