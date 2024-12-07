@@ -1,5 +1,5 @@
 import {Button} from "flowbite-react";
-import {InputText} from "@/app/post-page-with-picture/inputtext";
+import {InputText} from "@/app/(index)/post-page-with-picture/inputtext";
 import ProfileTab from "@/components/ProfileTab"
 import {customTheme} from "@/utils/theme.utils";
 import {Dropdown} from "flowbite-react";
