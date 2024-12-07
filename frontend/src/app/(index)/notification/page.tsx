@@ -1,5 +1,5 @@
 import React from 'react'
-import {Notification} from "@/app/notification-page/Notification";
+import {Notification} from "@/app/(index)/notification/Notification";
 
 
 
@@ -12,8 +12,8 @@ export default function () {
             <br/>
             <section>
                 <div>
-                <Notification/>
-                    <Notification/>
+
+                    <Notification />
                 </div>
 
 
