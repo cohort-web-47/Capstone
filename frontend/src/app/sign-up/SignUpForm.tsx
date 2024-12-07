@@ -54,10 +54,10 @@ export function SignUpForm() {
     return (
         <>
             {/*call React hooks forms handle submit and pass it our function for form submission*/}
-            <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-auto gap-4 min-w-full flex-col grow">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex mx auto min-h-auto gap-4 min-w-full flex-col grow">
                 <h1 className="text-3xl font-bold">Create an account.</h1>
-                <div>
-                    <div className="mb-2 block">
+                <div className="mx-auto">
+                    <div className=" mb-2 block">
                         <Label htmlFor="email1" value="email"/>
                     </div>
                     {/*tie the individual input field to a field in the default values*/}
