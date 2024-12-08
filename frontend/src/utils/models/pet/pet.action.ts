@@ -4,6 +4,7 @@ import {Status} from "@/utils/interfaces/Status";
 import {getSession} from "@/utils/session.utils";
 import {cookies, headers} from "next/headers";
 import {setHeaders} from "@/utils/set-headers.utils";
+import {Post, PostSchema} from "@/utils/models/post/post.model";
 
 
 export async function fetchPetById(petId:string): Promise<Pet> {
@@ -62,6 +63,27 @@ const requestBody: any = {...pet}
     return response
 }
 
+
+
+
+
+
+export async function fetch PetsByFollowers(): Promise<Pet[]> {
+const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/followers/uuid`,{ //why is data in curly braces? destructure or obj?
+//         method: "get",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     }).then((response) => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok')
+//         } else {
+//             return response.json()
+//         }
+//
+//     })
+//     return PostSchema.array().parse(data)
+// }
 
 
 

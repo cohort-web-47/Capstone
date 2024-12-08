@@ -1,6 +1,8 @@
 import {z} from "zod"
 import {createZodErrorMessages} from "../../utils/zod.utils";
 import {sql} from "../../utils/database.utils";
+import {Post} from "../post/post.model";
+import {PostSchema} from "../post/post.validator";
 
 
 export const PrivateProfileSchema =z.object({

@@ -7,7 +7,11 @@ import {
     getPetByPetSizeController,
     getPetByPetTypeController,
     getPetByPetNameController,
-    getPetByPetPersonalityController, postPetController, updatePetController, deletePetController
+    getPetByPetPersonalityController,
+    postPetController,
+    updatePetController,
+    deletePetController,
+    getPetsByFollowersController
 } from "./pet.controller"
 import {getPetByPetProfileId, updatePet} from "./pet.model";
 import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
@@ -30,6 +34,7 @@ router.route('/petName/:petName').get(getPetByPetNameController)
 router.route('/petPersonality/:petPersonality').get(getPetByPetPersonalityController)
 router.route('/:petId').put(updatePetController)
 router.route('/:petId').delete(deletePetController)
+router.route('/followers/:petFollowerId').get(getPetsByFollowersController)
 
 
 
