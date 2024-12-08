@@ -5,12 +5,12 @@ import {Post} from "../post/post.model";
 
 export type Pet = z.infer<typeof PetSchema>
 
-export async function insertPet(pet: Pet): Promise<string> {
+export async function insertPet(pet: Pet) {
     const {petProfileId, petBreed, petImageUrl, petName, petPersonality, petSize, petType} = pet
 
-    await sql`INSERT INTO pet (pet_id, pet_profile_id, pet_breed, pet_image_url, pet_name, pet_personality, pet_size, pet_type)
-VALUES (gen_random_uuid(), ${petProfileId}, ${petBreed}, ${petImageUrl}, ${petName}, ${petPersonality}, ${petSize}, ${petType})`
-    return 'PetModel Profile Successfully Created'
+    const petId = await sql`INSERT INTO pet (pet_id, pet_profile_id, pet_breed, pet_image_url, pet_name, pet_personality, pet_size, pet_type)
+VALUES (gen_random_uuid(), ${petProfileId}, ${petBreed}, ${petImageUrl}, ${petName}, ${petPersonality}, ${petSize}, ${petType}) Returning pet_id`
+    return petId[0]
 }
 
 

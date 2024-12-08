@@ -10,6 +10,7 @@ import Searchbar from "@/components/Searchbar";
 import {NavTwo} from "@/components/NavTwo";
 import {fetchAllPosts} from "@/utils/models/post/post.action";
 import {LeftSideBar} from "@/components/LeftSideBar";
+import {ProfileDropdownServer} from "@/app/profile-dropdown/ProfileDropdown.server";
 
 
 export default async function HomePage() {
@@ -48,7 +49,9 @@ export default async function HomePage() {
 
                 <LeftSideBar/>
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
-                    <NavTwo/>
+                    <NavTwo>
+                        <ProfileDropdownServer/>
+                    </NavTwo>
 
 
                     <div className="container mx-auto flex flex-col items-center pr-8">
@@ -58,7 +61,10 @@ export default async function HomePage() {
                 </div>
                 <div
                     className="middle hidden md:flex border-white border-2 md:bg-themeBackground md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
-                    <NavTwo/>
+                    <NavTwo>
+                        <ProfileDropdownServer/>
+                    </NavTwo>
+
                     {/*<div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>*/}
                     {/*    */}
                     {/*</div>*/}

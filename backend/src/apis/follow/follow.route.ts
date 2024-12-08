@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {
     deleteFollowController,
     getFollowsByFolloweePetIdController,
-    getFollowsByFollowerPetIdController,
+    getFollowsByFollowerPetIdController, getPostsByFolloweePetIdController,
     postFollowController, toggleFollowController
 } from "./follow.controller";
 import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
@@ -14,8 +14,13 @@ const router = Router();
 
 router.route('/').post(postFollowController)
 router.route('/followerPetId/:followerPetId').get(getFollowsByFollowerPetIdController)
-                                            .delete(deleteFollowController)
+                                                    .delete(deleteFollowController)
 router.route('/followeePetId/:followeePetId').get(getFollowsByFolloweePetIdController)
+
+router.route('/post/:petId')
+    .get(getPostsByFolloweePetIdController)
+
+
 router.route('/toggle').post(isLoggedInController, toggleFollowController)
 
 export const followRoute = {basePath, router}
