@@ -28,7 +28,7 @@ export function SignInForm() {
     const fireServerAction = async (data: SignIn) => {
         try {
             const response = await preformSignIn(data)
-            console.log('response', response)
+
 
             if(response.status === 200) {
                 reset()

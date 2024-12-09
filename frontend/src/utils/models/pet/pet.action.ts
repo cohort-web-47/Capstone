@@ -36,7 +36,7 @@ const requestBody: any = {...pet}
         requestBody.petId = null
     }
     const headers = await setHeaders()
-    console.log('headers:',headers)
+
 
 
     const response = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet`, {
@@ -60,7 +60,6 @@ const requestBody: any = {...pet}
         throw error
 
     })
-    console.log('I made it here!')
     if (response.status===200){
         requestBody.petId = response.data
         await switchPet(requestBody)

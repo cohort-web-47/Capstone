@@ -11,24 +11,15 @@ import {NavTwo} from "@/components/NavTwo";
 import {fetchAllPosts} from "@/utils/models/post/post.action";
 import {LeftSideBar} from "@/components/LeftSideBar";
 import {ProfileDropdownServer} from "@/app/profile-dropdown/ProfileDropdown.server";
+import {fetchPostLike, getLikesByPostId} from "@/utils/models/like/like.action";
 
 
 export default async function HomePage() {
 
-    // const posts = [
-    //     {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
-    //     {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
-    //     {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
-    //     {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
-    //     {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
-    //
-    // ]
 
     const posts = await fetchAllPosts();
 
-    const pets = [
-        {petId: "1", petProfileId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
-    ]
+
     const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},
@@ -39,6 +30,8 @@ export default async function HomePage() {
     ]
     let med = {width: 'w-1/3', position: 'right-1/3'};
 
+    const likes = await getLikesByPostId('b847f5ce-2939-4c12-93ba-6badbe15be0e')
+console.log(likes)
 
     return (
         <>

@@ -7,8 +7,13 @@ import {Post} from "@/utils/models/post/post.model";
 import React from "react";
 import {HR} from "flowbite-react";
 import {getCurrentPet} from "@/app/profile-dropdown/switch-pet.action";
-import {fetchPostLike} from "@/utils/models/like/like.action";
+import {fetchPostLike, getLikesByPostId} from "@/utils/models/like/like.action";
 import {LikeButton} from "@/components/post-card/LikeButton";
+import {SaveButton} from "@/components/post-card/SaveButton";
+import {getSession} from "@/utils/session.utils";
+import {Profile} from "@/utils/models/profile/profile.model";
+import {fetchPostBySave} from "@/utils/models/save/save.action";
+import {fetchSavedPosts} from "@/utils/models/post/post.action";
 
 
 type PostProps = {
@@ -17,8 +22,19 @@ type PostProps = {
 
 export async function PostCard(props: PostProps) {
     const {post} = props;
-    console.log(post.postPetId)
-const pet = await fetchPetById(post.postPetId)
+    const session = await getSession();
+    const profile = session?.profile as Profile
+    const pet = await fetchPetById(post.postPetId);
+    const likes = await getLikesByPostId(post.postId);
+
+    const savedPosts = await fetchSavedPosts(post.postId);
+   const savedPostsDictionary = savedPosts.reduce((acc: any,  currentValue: any) => {
+       return acc[currentValue.postId as string] = currentValue
+
+   }, {})
+    console.log(savedPostsDictionary);
+
+
     const currentPet = await getCurrentPet();
     return (
         <>
@@ -33,8 +49,8 @@ const pet = await fetchPetById(post.postPetId)
                     {post.postImageUrl && <img src={post.postImageUrl} alt="postpicture" className="w-full h-auto"/>}
                     <div className="flex justify-between bg-navbar">
                     <FaRegComment/>
-                        <LikeButton postId={post.postId} currentPet={currentPet}/>
-                        <IoIosSave/>
+                        <LikeButton postId={post.postId} currentPet={currentPet} likes={likes} />
+                        <SaveButton savePostId={post.postId} saveProfileId={profile.profileId}  />
                     </div>
                 </div>
             </div>

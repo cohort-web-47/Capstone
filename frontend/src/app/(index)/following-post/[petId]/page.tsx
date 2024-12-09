@@ -22,11 +22,10 @@ export default async function FollowingPostPage(props: PageProps<{petId:string}>
         redirect("/sign-in")
     }
     const {petId} = await props.params
-    console.log(petId)
+
 
     const posts = await fetchFolloweePosts(petId);
 
-console.log(petId)
     const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},

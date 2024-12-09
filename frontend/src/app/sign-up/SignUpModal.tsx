@@ -9,7 +9,7 @@ export function SignUpModal() {
         <>
             <a className="block cursor-pointer text-blue-500 active:text-purple-500 " onClick={() => {
 
-                console.log("clicked")
+
                 setIsModalOpen(true)
             }}>Dont have an account?</a>
             <Modal id='sign-up-modal' show={isModalOpen} onClose={() => {

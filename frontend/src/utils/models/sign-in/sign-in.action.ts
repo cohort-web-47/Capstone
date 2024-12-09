@@ -25,7 +25,6 @@ export async function preformSignIn(signIn: SignIn) {
                 acc[decodeURIComponent(key.trim())] = decodeURIComponent(value.trim());
                 return acc;
             }, {});
-    console.log(cookie)
     if (cookie[0]){
         const session = parseCookie(cookie[0])
 
