@@ -26,10 +26,18 @@ export function LeftSideBar() {
                     </div>
                 </Link>
 
+
+                <Link href={'followers'}>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl cursor-pointer">Follower</p>
+                    </div>
+                </Link>
+
                 <Link href={'following'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
                         className={"min-h-10 min-w-10"}/><p
-                        className="hidden lg:block text-2xl cursor-pointer">Following</p>
+                        className="hidden lg:block text-2xl cursor-pointer">Followee</p>
                     </div>
                 </Link>
 
@@ -40,17 +48,25 @@ export function LeftSideBar() {
                     </div>
                 </Link>
 
-
+                <Link href={'savePostPage'}>
                 <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
-                    className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
+                    className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p>
+                </div>
+                </Link>
+
+
                 <div className="flex flex-col pr-40">
                     {/*<button*/}
                     {/*    className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Followers*/}
                     {/*</button>*/}
+
+                    <Link href={'sign-in'}>
                     <button
                         className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
                         out
                     </button>
+                    </Link>
+
                 </div>
             </div>
         </>

@@ -65,35 +65,38 @@ const requestBody: any = {...pet}
 
 
 
+export async function fetchPetsByFollowersController(uuid:string): Promise<Pet[]>{
+            const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/followers/${uuid}`,{
+            method: "get",
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            } else {
+                return response.json()
+            }
 
+        })
+        return PetSchema.array().parse(data)
+}
 
+export async function fetchPetsByFolloweeController(uuid:string): Promise<Pet[]>{
+    const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/followee/${uuid}`,{
+        method: "get",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        } else {
+            return response.json()
+        }
 
-export async function fetch PetsByFollowers(): Promise<Pet[]> {
-const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/followers/uuid`,{ //why is data in curly braces? destructure or obj?
-//         method: "get",
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     }).then((response) => {
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok')
-//         } else {
-//             return response.json()
-//         }
-//
-//     })
-//     return PostSchema.array().parse(data)
-// }
-
-
-
-
-
-
-
-
-
-
-
+    })
+    return PetSchema.array().parse(data)
+}
 
 

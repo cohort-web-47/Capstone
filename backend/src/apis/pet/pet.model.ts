@@ -188,5 +188,16 @@ export async function selectPetByFollowerPetId(followerPetId: string): Promise<P
     return PetSchema.array().parse(rowList)
 }
 
+export async function selectPetByFolloweePetId(followeePetId: string): Promise<Pet[]> {
+
+    const rowList = <Pet[]>await sql`SELECT follower_pet.pet_id, follower_pet.pet_profile_id, follower_pet.pet_breed, follower_pet.pet_size, follower_pet. pet_type, follower_pet.pet_image_url, follower_pet.pet_personality, follower_pet.pet_name
+
+                                     FROM follow
+                                              INNER JOIN pet AS followee_pet ON follow.followee_pet_id = followee_pet.pet_id
+                                              INNER JOIN pet AS follower_pet ON follow.follower_pet_id = follower_pet.pet_id
+                                     WHERE followee_pet.pet_id =${followeePetId}`
+    return PetSchema.array().parse(rowList)
+}
+
 
 

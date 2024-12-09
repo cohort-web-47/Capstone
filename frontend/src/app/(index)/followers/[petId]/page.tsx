@@ -5,46 +5,23 @@ import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
 import {IoMdSearch} from "react-icons/io";
 import {CiBookmark} from "react-icons/ci";
-import Link from 'next/link';
+import Link from "next/link";
 import {LeftSideBar} from "@/components/LeftSideBar";
+import {PageProps} from "@/utils/interfaces/NextComponent";
+import {fetchPetsByFollowersController} from "@/utils/models/pet/pet.action";
 import React from "react";
-import {Footer} from "@/components/Footer";
+import PetTab from "@/components/PetTab";
 
 
-export default function () {
+
+export default async function (props:PageProps<{petId:string}>) {
+const params = await props.params
+    const petId = params.petId
+    const followers = await fetchPetsByFollowersController(petId)
 
 
-    const posts = [
-        {
-            postId: "1",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "2",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "3",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "4",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1",
-            postDatetime: new Date()
-        },
 
-    ]
-    const pets = [
-        {petProfileId: "1", petId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
-    ]
-    const profiles = [
+const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},
         {profileId: "3", imageUrl: "https://picsum.photos/300", profileName: "Clancy"},
@@ -57,8 +34,7 @@ export default function () {
     return (
         <>
             {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
-
-            <LeftSideBar />
+<LeftSideBar />
 
             {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
 
@@ -69,10 +45,9 @@ export default function () {
                 </div>
                 <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
-                    <p className={"text-4xl font-bold"}>Following</p>
+                    <p className={"text-4xl font-bold"}>Followers</p>
 
-                    {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
-
+                    {followers.map(follower => (<PetTab pet = {follower} key = {follower.petId} />))}
 
                 </div>
             </div>
@@ -83,13 +58,13 @@ export default function () {
                 className="md:flex min-h-dvh md:bg-themeBackground md:border-2 md:border-white md:w-2/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
                 <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
-                    <p className={"text-4xl"}>Following</p>
-                    {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
+                    <p className={"text-4xl"}>Followers</p>
+                    {followers.map(follower => (<PetTab pet = {follower} key = {follower.petId} />))}
 
                 </div>
 
             </div>
-<Footer />
+
         </>
     )
 }

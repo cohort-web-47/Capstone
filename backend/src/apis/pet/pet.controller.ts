@@ -16,7 +16,7 @@ import {
     selectPetsByPetPersonality,
     updatePet,
     selectPetByPetId,
-    deletePetByPetId, selectPetByFollowerPetId
+    deletePetByPetId, selectPetByFollowerPetId, selectPetByFolloweePetId
 } from "./pet.model";
 import {z} from "zod";
 import session from "express-session";
@@ -335,6 +335,29 @@ export async function getPetsByFollowersController(request: Request, response: R
     }
 }
 
+export async function getPetsByFolloweeController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.string().uuid({message: 'Please provide a valid PetModel Id'}).safeParse(request.params.petFolloweeId)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const petFolloweeId = validationResult.data
+
+        const data = await selectPetByFolloweePetId(petFolloweeId)
+
+        return response.json({status: 200, message: null, data})
+
+    } catch (error) {
+        console.log(error)
+        return response.json ({
+            status: 500,
+            message: '',
+            data: []
+        })
+    }
+}
 
 
 

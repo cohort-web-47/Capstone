@@ -11,7 +11,7 @@ import {
     postPetController,
     updatePetController,
     deletePetController,
-    getPetsByFollowersController
+    getPetsByFollowersController, getPetsByFolloweeController
 } from "./pet.controller"
 import {getPetByPetProfileId, updatePet} from "./pet.model";
 import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
@@ -35,7 +35,7 @@ router.route('/petPersonality/:petPersonality').get(getPetByPetPersonalityContro
 router.route('/:petId').put(updatePetController)
 router.route('/:petId').delete(deletePetController)
 router.route('/followers/:petFollowerId').get(getPetsByFollowersController)
-
+router.route('/followee/:petFolloweeId').get(getPetsByFolloweeController)
 
 
 export const petRoute = { basePath, router }
