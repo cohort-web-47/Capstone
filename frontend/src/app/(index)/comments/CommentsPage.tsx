@@ -2,7 +2,7 @@ import {FiHome} from "react-icons/fi";
 import {IoMdNotificationsOutline, IoMdSearch} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {CiBookmark} from "react-icons/ci";
-import {PostCard} from "@/components/PostCard";
+import {PostCard} from "@/components/post-card/PostCard";
 import ProfileTab from "@/components/ProfileTab";
 import {LeftSideBar} from "@/components/LeftSideBar";
 
