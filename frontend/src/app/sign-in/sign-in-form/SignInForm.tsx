@@ -13,10 +13,12 @@ import {DisplayError} from "@/components/navigation/DisplayError";
 import {DisplayStatus} from "@/components/navigation/DisplayStatus";
 import {SignUpForm} from "@/app/sign-up/SignUpForm";
 import Link from "next/link";
+import {redirect} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 
 export function SignInForm() {
-
+const router = useRouter();
     const [status, setStatus] = React.useState<Status | null>(null)
 
     const defaultValues : SignIn = {
@@ -32,6 +34,7 @@ export function SignInForm() {
 
             if(response.status === 200) {
                 reset()
+                router.push('choose-pet')
             }
             setStatus(response)
         } catch (error) {

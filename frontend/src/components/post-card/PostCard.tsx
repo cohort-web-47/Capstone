@@ -29,10 +29,12 @@ export async function PostCard(props: PostProps) {
 
     const savedPosts = await fetchSavedPosts(post.postId);
    const savedPostsDictionary = savedPosts.reduce((acc: any,  currentValue: any) => {
-       return acc[currentValue.postId as string] = currentValue
+       acc[currentValue.postId as string] = currentValue
+       return acc
 
    }, {})
     console.log(savedPostsDictionary);
+
 
 
     const currentPet = await getCurrentPet();
@@ -50,7 +52,7 @@ export async function PostCard(props: PostProps) {
                     <div className="flex justify-between bg-navbar">
                     <FaRegComment/>
                         <LikeButton postId={post.postId} currentPet={currentPet} likes={likes} />
-                        <SaveButton savePostId={post.postId} saveProfileId={profile.profileId}  />
+                        <SaveButton savePostId={post.postId} saveProfileId={profile.profileId} savedPostsDictionary={savedPostsDictionary} />
                     </div>
                 </div>
             </div>

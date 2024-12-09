@@ -4,6 +4,7 @@ import ProfileTab from "@/components/ProfileTab"
 import {ProfileDropdown} from "@/app/profile-dropdown/ProfileDropdown";
 import {customTheme} from "@/utils/theme.utils";
 import {Dropdown} from "flowbite-react";
+import {ProfileDropdownServer} from "@/app/profile-dropdown/ProfileDropdown.server";
 
 
 export default function () {
@@ -16,7 +17,8 @@ export default function () {
                 </div>
 
                 <div className="mx-auto flex flex-row p-4">
-                    <ProfileDropdown/>
+                    <ProfileDropdownServer/>
+
                     <p className="text-center pt-2 px-2">PetName</p>
                 </div>
                 <div>
