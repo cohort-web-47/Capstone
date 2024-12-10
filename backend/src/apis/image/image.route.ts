@@ -1,16 +1,16 @@
-import { Request, Response } from 'express'
-import { uploadToCloudinary } from '../../utils/cloudinary.utils'
 
-export async function imageUploadController (request: Request, response: Response): Promise<Response> {
-    try {
-        // uncomment if in production
-        if (request.file === undefined) {
-            throw new Error('Please provide a valid file type ')
-        }
+import { Router } from 'express'
+import {imageUploadController, imageUploader} from "./image.controller";
 
-        const message: string = await uploadToCloudinary(request.file)
-        return response.json({ status: 200, data: null, message: message })
-    } catch (error: any) {
-        return response.json({ status: 400, message: error.message, data: null })
-    }
-}
+
+// declare a basePath for this router
+const basePath = '/apis/image'
+
+// instantiate a new router object
+const router = Router()
+
+router.route('/')
+    .post(imageUploader, imageUploadController)
+
+// export the router with the basePath and router object
+export const imageRoute = { basePath, router }
