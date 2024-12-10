@@ -105,3 +105,21 @@ export async function postImage(image: FormData): Promise<Status> {
     })
 
 }
+
+export async function fetchAiCaption(post: Post): Promise<Status> {
+    const headers = await setHeaders()
+    return  fetch(`${process.env.REST_API_URL}/apis/post/aiPost`, {
+        method: "post",
+        headers,
+        body: JSON.stringify(post)
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        throw error
+    })
+
+}

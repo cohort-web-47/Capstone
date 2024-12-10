@@ -76,12 +76,11 @@ export function ImageUploadDropZone(props: Props) {
         return (
             <div {...getRootProps()}>
                 <div className="mb-2 block">
-                    <label className="form-label" htmlFor="profileAvatar">Profile Avatar</label>
+                    <label className="form-label" htmlFor="profileAvatar">Upload Image</label>
                 </div>
                 <TextInput
                     {...getInputProps()}
-                    aria-label="profile avatar file drag and drop area"
-                    aria-describedby="image drag drop area"
+                    aria-label="Image drag and drop area"
                     className="form-control-file"
                     accept="image/*"
                 />
