@@ -13,6 +13,7 @@ import {Profile} from "@/utils/models/profile/profile.model";
 import {useRouter} from "next/navigation";
 import {InputText} from "@/app/(index)/create-post/inputtext";
 import {DevTool} from "@hookform/devtools";
+import {ImageUploadDropZone} from "@/components/ImageUploadDropZone";
 
 
 type Props = {
@@ -29,19 +30,34 @@ const router = useRouter();
     }
     const FormValidation = PostSchema
     .pick({postCaption: true})
-    // .extend({
-    //     postImageUrl: z.any().optional()
-    // })
+    .extend({
+        postImageUrl: z.preprocess((val) => (val === "" ? null : val), z.any().optional())
+
+
+
+
+
+
+
+
+
+
+
+    })
     type Form = z.infer<typeof FormValidation>;
 
 
 // create a state variable to hold the status of the form
     const [status, setStatus] = React.useState<Status | null>(null)
+    const [selectedImage, setSelectedImage] = React.useState<string|null>(null)
+
 
     // create a default value for the form to hold the data created in the form
     const defaultValues: Form = {
         postCaption: '',
+        postImageUrl: '',
      }
+
 
     // register the form with react-hook-form
     const {register, handleSubmit, control, reset, formState: {errors}} = useForm<Post>({
@@ -82,6 +98,7 @@ const post = {...data, postId: null, postPetId: currentPetId, postProfileId: pro
                         <InputText register={register} name={'postCaption'} />
                         <DisplayError error={errors.postCaption?.message} />
                     </div>
+                    <ImageUploadDropZone control={control} fieldValue={'postImageUrl'} setSelectedImage={setSelectedImage} />
                     <div className="mx-auto flex flex-row pl-4 justify-left bg-themeNavbar mt-2">
 
                         <button className='bg-themeNavbar rounded px-2 py-0 hover:bg-themeBackground'><img
