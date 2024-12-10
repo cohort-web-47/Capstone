@@ -36,7 +36,7 @@ const requestBody: any = {...pet}
         requestBody.petId = null
     }
     const headers = await setHeaders()
-    console.log('headers:',headers)
+
 
 
     const response = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet`, {

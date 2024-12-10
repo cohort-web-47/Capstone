@@ -1,6 +1,8 @@
 'use server'
 import {Post, PostSchema} from "@/utils/models/post/post.model";
 import {setHeaders} from "@/utils/set-headers.utils";
+import {SignUp} from "@/utils/models/sign-up/sign-up.model";
+import {Status} from "@/utils/interfaces/Status";
 
 
 export async function fetchAllPosts(): Promise<Post[]> {
@@ -54,4 +56,22 @@ export async function fetchFolloweePosts(followeePetId: string): Promise<Post[]>
         return[]
     })
     return PostSchema.array().parse(data)
+}
+
+export async function preformCreatePost(post: Post): Promise<Status> {
+    const headers = await setHeaders()
+    return  fetch(`${process.env.REST_API_URL}/apis/post`, {
+        method: "post",
+        headers,
+        body: JSON.stringify(post)
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        throw error
+    })
+
 }
