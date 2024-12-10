@@ -54,11 +54,14 @@ export function LeftSideBar() {
                 </div>
                 </Link>
 
-
+                <Link href={'create-post'}>
                 <div className="flex flex-col pr-40">
-                    {/*<button*/}
-                    {/*    className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Followers*/}
-                    {/*</button>*/}
+                    <button
+                        className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
+                    </button>
+                </div>
+                    </Link>
+
 
                     <Link href={'sign-in'}>
                     <button
@@ -68,7 +71,6 @@ export function LeftSideBar() {
                     </Link>
 
                 </div>
-            </div>
         </>
 
     )
