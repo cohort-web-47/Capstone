@@ -4,7 +4,7 @@ import React from "react";
 import {Status} from "@/utils/interfaces/Status";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Post, PostSchema} from "@/utils/models/post/post.model";
-import {preformCreatePost} from "@/utils/models/post/post.action";
+import {postImage, preformCreatePost} from "@/utils/models/post/post.action";
 import {useForm} from "react-hook-form";
 import {Label, TextInput} from "flowbite-react";
 import {DisplayError} from "@/components/navigation/DisplayError";
@@ -14,6 +14,7 @@ import {useRouter} from "next/navigation";
 import {InputText} from "@/app/(index)/create-post/inputtext";
 import {DevTool} from "@hookform/devtools";
 import {ImageUploadDropZone} from "@/components/ImageUploadDropZone";
+import {DisplayStatus} from "@/components/navigation/DisplayStatus";
 
 
 type Props = {
@@ -32,17 +33,6 @@ const router = useRouter();
     .pick({postCaption: true})
     .extend({
         postImageUrl: z.preprocess((val) => (val === "" ? null : val), z.any().optional())
-
-
-
-
-
-
-
-
-
-
-
     })
     type Form = z.infer<typeof FormValidation>;
 
@@ -60,7 +50,7 @@ const router = useRouter();
 
 
     // register the form with react-hook-form
-    const {register, handleSubmit, control, reset, formState: {errors}} = useForm<Post>({
+    const {register, handleSubmit, setError, control, reset, formState: {errors}} = useForm<Post>({
         resolver: zodResolver(FormValidation),
         defaultValues,
         mode: 'onBlur'
@@ -70,7 +60,18 @@ const router = useRouter();
     //define the function to handle the form submission
     const onSubmit = async (data: Form) => {
         try {
-const post = {...data, postId: null, postPetId: currentPetId, postProfileId: profile?.profileId, postDatetime: null}
+            let postImageUrl = null
+            if(data.postImageUrl) {
+                console.log(data.postImageUrl)
+                const response = await postImage(data.postImageUrl);
+               if(response.status === 200) {
+                   postImageUrl = response.message
+               } else {
+                   setStatus({status: 500, message: 'Image failed to upload', data: undefined})
+                   return
+               }
+            }
+const post = {postImageUrl, postCaption: data.postCaption, postId: null, postPetId: currentPetId, postProfileId: profile?.profileId, postDatetime: null}
             // @ts-ignore
             const response = await  preformCreatePost(post)
             console.log(response)
@@ -98,24 +99,18 @@ const post = {...data, postId: null, postPetId: currentPetId, postProfileId: pro
                         <InputText register={register} name={'postCaption'} />
                         <DisplayError error={errors.postCaption?.message} />
                     </div>
-                    <ImageUploadDropZone control={control} fieldValue={'postImageUrl'} setSelectedImage={setSelectedImage} />
+                    <ImageUploadDropZone control={control} fieldValue={'postImageUrl'} setError={setError} setSelectedImage={setSelectedImage}  />
+                    <DisplayError error={errors.postImageUrl?.message} />
                     <div className="mx-auto flex flex-row pl-4 justify-left bg-themeNavbar mt-2">
 
-                        <button className='bg-themeNavbar rounded px-2 py-0 hover:bg-themeBackground'><img
-                            src="/picture_icon.svg" alt="dog icon"
-                            className="w-10"/>
-                        </button>
-                        <button className='bg-themeNavbar rounded px-2 py-0 hover:bg-themeBackground'><img
-                            src="/dog-icon.png" alt="dog icon"
-                            className="w-10 rounded border-2 border-yellow-950"/>
-                        </button>
+                        { selectedImage && <img src={selectedImage} alt="selected image"/> }
                     </div>
                     <div className="mx-auto flex flex-row justify-between p-4">
                         <button className='bg-themeNavbar rounded px-2 py-1 hover:bg-yellow-500'>Cancel</button>
                         <button className='bg-themeNavbar rounded px-4 py-1 hover:bg-yellow-500' type={"submit"}>Post</button>
                     </div>
+                    <DisplayStatus status={status} />
                 </form>
-                <DevTool control={control}  />
             </div>
 
         </>

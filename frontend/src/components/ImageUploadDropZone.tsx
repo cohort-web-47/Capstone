@@ -14,12 +14,12 @@ type Props = {
     control: any,
     fieldValue: string,
     setSelectedImage: React.Dispatch<React.SetStateAction<any>>,
-
+    setError: any
 }
 
 
 export function ImageUploadDropZone(props: Props) {
-    const {fieldValue, setSelectedImage, control} = props
+    const {fieldValue, setSelectedImage, control, setError} = props
 
     const MAX_FILE_SIZE = 2000000
     const ACCEPTED_IMAGE_TYPES = [
@@ -51,6 +51,7 @@ export function ImageUploadDropZone(props: Props) {
             const validationResult = FileSchema.safeParse(acceptedFiles[0])
             if(!validationResult.success) {
                 // set error in react-hook-form
+                setError(fieldValue, {type: 'manual', message: validationResult.error.issues[0]})
 
             } else {
                 const formData = new FormData()
@@ -63,7 +64,7 @@ export function ImageUploadDropZone(props: Props) {
                 })
 
                 // set value in react-hook-form
-                onChange(acceptedFiles[0])
+                onChange(formData)
 
             }
 
@@ -106,13 +107,3 @@ type DisplayUploadErrorProps = {
 
 }
 
-export function DisplayUploadErrorProps(props: DisplayUploadErrorProps) {
-    const {errors, field} = props
-    if (errors[field]) {
-        return (
-            <Alert color="failure">
-                {errors[field] as string}
-            </Alert>
-        )
-    }
-}
