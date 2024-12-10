@@ -13,7 +13,6 @@ import {PublicProfile} from "../profile/profile.model";
 import {Pet, selectPetByPetId} from "../pet/pet.model";
 import {z} from "zod";
 import OpenAI from "openai";
-const openai = new OpenAI();
 
 
 export async function createPostController(request: Request, response: Response): Promise<Response | undefined> {
@@ -202,15 +201,19 @@ export async function createPostWithAiController(request: Request, response: Res
         //     postDatetime: null,
         // }
 
+        const openai = new OpenAI({
+            apiKey: process.env.OPEN_AI_KEY,
+        });
+
         const aiSuggestedCaption = await openai.chat.completions.create({
-            model: "gpt-4o",
+            model: "gpt-4o-mini",
             messages: [
                 {
                     "role": "user",
                     "content": [
                         {
                             "type": "text",
-                            "text": `Imagine ${pet.petId}, a ${pet.petBreed}, ${pet.petSize}, with a ${pet.petPersonality} personality, is observing or interacting with the scene in the image. Write a fun, charming, or humorous caption that reflects their unique perspective, voice, and thoughts. Include their specific traits (such as being playful, lazy, curious, protective, etc.) and their way of expressing themselves. The caption should capture the pet's distinct voice, as though they were describing the moment in their own words. ${postCaption}`
+                            "text": `Imagine ${pet.petName}, a ${pet.petBreed}, ${pet.petSize}, with a ${pet.petPersonality} personality, is observing or interacting with the scene in the image. Write a fun, charming, or humorous caption that reflects their unique perspective, voice, and thoughts. Include their specific traits (such as being playful, lazy, curious, protective, etc.) and their way of expressing themselves. The caption should capture the pet's distinct voice, as though they were describing the moment in their own words.  Character limit max 128.  ${postCaption}`
                         }
                     ]
                 }
@@ -220,8 +223,11 @@ export async function createPostWithAiController(request: Request, response: Res
 
 
         //const result = await insertPost(post)
-
-        const status: Status = {status: 200, message: 'AI Suggested Caption', data: aiSuggestedCaption};
+let data = aiSuggestedCaption?.choices[0]?.message?.content
+        if (!data){
+            return response.json({status:400, message: 'No result given from openAI'})
+        }
+        const status: Status = {status: 200, message: 'AI Suggested Caption', data};
         return response.json(status)
     } catch (error) {
         console.log(error)
