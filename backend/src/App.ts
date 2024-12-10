@@ -14,6 +14,7 @@ import {commentRoute} from "./apis/comment/comment.route";
 import {likeRoute} from "./apis/like/like.route";
 import {followRoute} from "./apis/follow/follow.route";
 import {saveRoute} from "./apis/save/save.route";
+import {imageRoute} from "./apis/image/image.route";
 
 
 
@@ -66,6 +67,7 @@ export class App {
     this.app.use(likeRoute.basePath, likeRoute.router)
     this.app.use(followRoute.basePath, followRoute.router)
     this.app.use(saveRoute.basePath, saveRoute.router)
+    this.app.use(imageRoute.basePath, imageRoute.router)
 
 
   }

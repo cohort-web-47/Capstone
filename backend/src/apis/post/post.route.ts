@@ -1,6 +1,11 @@
 import { Router } from 'express';
 import {
-    createPostController, deletePostByPostIdController, getAllPosts, getPostByPetIdController, getPostByPostIdController
+    createPostController,
+    createPostWithAiController,
+    deletePostByPostIdController,
+    getAllPosts,
+    getPostByPetIdController,
+    getPostByPostIdController
 
 } from "./post.controller";
 import {isLoggedInController} from "../../utils/controllers/isloggedin.controller";
@@ -13,7 +18,7 @@ router.route('/').post(isLoggedInController,createPostController)
 router.route('/').get(getAllPosts)
 router.route('/petId/:petId').get(getPostByPetIdController)
 router.route('/:postId').get(getPostByPostIdController).delete(isLoggedInController, deletePostByPostIdController)
-
+router.route('/aiPost').post(isLoggedInController, createPostWithAiController)
 
 
 
