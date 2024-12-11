@@ -15,6 +15,9 @@ import {useForm} from "react-hook-form";
 import {DevTool} from "@hookform/devtools";
 import {z} from "zod";
 import {DisplayStatus} from "@/components/navigation/DisplayStatus";
+import Image from "next/image";
+import {ImageUploadDropZone} from "@/components/ImageUploadDropZone";
+import {postImage} from "@/utils/models/post/post.action";
 
 export default function () {
     const [selectedValue, setSelectedValue] = useState<string>('Model Type');
@@ -30,27 +33,44 @@ export default function () {
         petType: ""
     }
 
-    const PartialPetSchema = PetSchema.omit({petId: true, petProfileId: true})
+    const PartialPetSchema = PetSchema.omit({petId: true, petProfileId: true}).extend(
+        {
+            petImageUrl: z.preprocess((val) => (val === "" ? null : val), z.any().optional())
+
+        }
+    )
 
     type PartialPet = z.infer< typeof PartialPetSchema>
-    const {register, handleSubmit, control, reset, formState: {errors}} = useForm<PartialPet>({
+    const {register, handleSubmit, control, setError, reset, formState: {errors}} = useForm<PartialPet>({
         resolver: zodResolver(PartialPetSchema),
         defaultValues,
         mode: 'onBlur'
     })
 
 
+    const [selectedImage, setSelectedImage] = React.useState<string|null>(null)
+
 
 
     const createPets = async (data:PartialPet) => {
         try {
-            const pet= {...data, petProfileId: '', petId: ''}
-            const response = await preformCreatePet(pet)
+            let petImageUrl = null
+            if(data.petImageUrl) {
 
-            if (response.status === 200) {
-                reset()
-            }
-            setStatus(response)
+                const response = await postImage(data.petImageUrl);
+                console.log(response)
+                if (response.status === 200) {
+                    petImageUrl = response.message
+                } else {
+                    setStatus({status: 500, message: 'Image failed to upload', data: undefined})
+                    return
+                }
+           }
+
+            // @ts-ignore
+            const finalResponse = await preformCreatePet({...data, petImageUrl})
+            setStatus(finalResponse)
+
         }catch (error) {
             setStatus({status:500, message: 'Internal Server Error try again later', data: undefined})
         }
@@ -76,6 +96,9 @@ export default function () {
                             <option value={"Cat"}>Cat</option>
                             <option value={"Dog"}>Dog</option>
                         </Select>
+                        {selectedImage && <img src={selectedImage} alt="selected image" width={300}/>}
+
+                        <ImageUploadDropZone control={control} fieldValue={'petImageUrl'} setSelectedImage={setSelectedImage} setError={setError}/>
 
                         {selectedValue === 'Cat' && (
                             <Cat register={register}/>
