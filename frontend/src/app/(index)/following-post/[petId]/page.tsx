@@ -1,5 +1,5 @@
 import ProfileTab from "@/components/ProfileTab";
-import {PostCard} from "@/components/PostCard";
+import {PostCard} from "@/components/post-card/PostCard";
 import {IoMdNotificationsOutline} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
@@ -22,11 +22,10 @@ export default async function FollowingPostPage(props: PageProps<{petId:string}>
         redirect("/sign-in")
     }
     const {petId} = await props.params
-    console.log(petId)
+
 
     const posts = await fetchFolloweePosts(petId);
 
-console.log(petId)
     const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},

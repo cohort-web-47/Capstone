@@ -3,6 +3,7 @@
 import {Avatar, Dropdown, DropdownItem} from "flowbite-react";
 import {Profile} from "@/utils/models/profile/profile.model";
 import {Pet} from "@/utils/models/pet/pet.model";
+import {redirect} from "next/navigation";
 
 type Props = {
     profile: Profile;
@@ -24,12 +25,17 @@ export function ProfileDropdown(props: Props) {
                 <span className="block text-sm">{profile.profileUsername}</span>
                 <span className="block truncate text-sm font-medium">{profile.profileEmail}</span>
             </Dropdown.Header>
-            {pets.map(pet =><DropdownItem onClick={async ()=>{await switchPet(pet)}} key={pet.petId}>{pet.petName}</DropdownItem>)}
+            {pets.map(pet =><DropdownItem onClick={async ()=>{
+                await switchPet(pet)
+                redirect('/')
+            }
+            } key={pet.petId}>{pet.petName}</DropdownItem>)}
             <Dropdown.Divider/>
             <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown>
     );
 }
+
 
 
 

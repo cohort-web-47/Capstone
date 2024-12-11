@@ -23,9 +23,9 @@ import session from "express-session";
 
 export async function postPetController(request: Request, response: Response): Promise<Response | undefined> {
     try {
-        console.log(request.body);
+
         const validationResult = PetSchema.safeParse(request.body);
-        console.log(validationResult.data);
+
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)

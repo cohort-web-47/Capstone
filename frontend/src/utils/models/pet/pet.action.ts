@@ -60,7 +60,6 @@ const requestBody: any = {...pet}
         throw error
 
     })
-    console.log('I made it here!')
     if (response.status===200){
         requestBody.petId = response.data
         await switchPet(requestBody)

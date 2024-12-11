@@ -1,5 +1,5 @@
 import ProfileTab from "@/components/ProfileTab";
-import {PostCard} from "@/components/PostCard";
+import {PostCard} from "@/components/post-card/PostCard";
 import {IoMdNotificationsOutline} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
