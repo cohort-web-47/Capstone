@@ -27,7 +27,7 @@ export function ProfileDropdown(props: Props) {
             </Dropdown.Header>
             {pets.map(pet =><DropdownItem onClick={async ()=>{
                 await switchPet(pet)
-                redirect('/')
+
             }
             } key={pet.petId}>{pet.petName}</DropdownItem>)}
             <Dropdown.Divider/>
