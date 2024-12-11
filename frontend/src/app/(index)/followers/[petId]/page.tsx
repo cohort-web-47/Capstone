@@ -7,43 +7,21 @@ import {IoMdSearch} from "react-icons/io";
 import {CiBookmark} from "react-icons/ci";
 import Link from "next/link";
 import {LeftSideBar} from "@/components/LeftSideBar";
+import {PageProps} from "@/utils/interfaces/NextComponent";
+import {fetchPetsByFollowersController} from "@/utils/models/pet/pet.action";
+import React from "react";
+import PetTab from "@/components/PetTab";
 
 
 
-export default function () {
+export default async function (props:PageProps<{petId:string}>) {
+const params = await props.params
+    const petId = params.petId
+    const followers = await fetchPetsByFollowersController(petId)
 
 
-    const posts = [
-        {
-            postId: "1",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "2",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "3",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "4",
-            postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1",
-            postDatetime: new Date()
-        },
-        {
-            postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1",
-            postDatetime: new Date()
-        },
 
-    ]
-    const pets = [
-        {petProfileId: "1", petId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido"}
-    ]
-    const profiles = [
+const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},
         {profileId: "3", imageUrl: "https://picsum.photos/300", profileName: "Clancy"},
@@ -69,8 +47,7 @@ export default function () {
 
                     <p className={"text-4xl font-bold"}>Followers</p>
 
-                    {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
-
+                    {followers.map(follower => (<PetTab pet = {follower} key = {follower.petId} />))}
 
                 </div>
             </div>
@@ -82,7 +59,7 @@ export default function () {
                 <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
 
                     <p className={"text-4xl"}>Followers</p>
-                    {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
+                    {followers.map(follower => (<PetTab pet = {follower} key = {follower.petId} />))}
 
                 </div>
 

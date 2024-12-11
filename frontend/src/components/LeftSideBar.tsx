@@ -1,11 +1,14 @@
+'use server'
 import Link from "next/link";
 import {FiHome} from "react-icons/fi";
 import {IoMdNotificationsOutline, IoMdSearch} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {CiBookmark} from "react-icons/ci";
+import {getCurrentPet} from "@/app/profile-dropdown/switch-pet.action";
 
-export function LeftSideBar() {
+export async function LeftSideBar() {
 
+    const currentPet = await getCurrentPet();
     return (
         <>
             <div
@@ -19,40 +22,58 @@ export function LeftSideBar() {
                     </div>
                 </Link>
 
-                <Link href={'search'}>
+                <Link href={'/search'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><IoMdSearch
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl">Search</p>
                     </div>
                 </Link>
 
-                <Link href={'following'}>
+
+                <Link href={`/followers/${currentPet.petId}`}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
                         className={"min-h-10 min-w-10"}/><p
-                        className="hidden lg:block text-2xl cursor-pointer">Following</p>
+                        className="hidden lg:block text-2xl cursor-pointer">Follower</p>
                     </div>
                 </Link>
 
-                <Link href={'notification'}>
+                <Link href={`/following/${currentPet.petId}`}>
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
+                        className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl cursor-pointer">Followee</p>
+                    </div>
+                </Link>
+
+                <Link href={'/notification'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
                         <IoMdNotificationsOutline
                             className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p>
                     </div>
                 </Link>
 
-
+                <Link href={'/save-post'}>
                 <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><CiBookmark
-                    className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p></div>
+                    className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Bookmarks</p>
+                </div>
+                </Link>
+
+                <Link href={'/create-post'}>
                 <div className="flex flex-col pr-40">
-                    {/*<button*/}
-                    {/*    className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Followers*/}
-                    {/*</button>*/}
+                    <button
+                        className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
+                    </button>
+                </div>
+                    </Link>
+
+
+                    <Link href={'/sign-in'}>
                     <button
                         className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
                         out
                     </button>
+                    </Link>
+
                 </div>
-            </div>
         </>
 
     )

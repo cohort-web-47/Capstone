@@ -2,11 +2,8 @@
 import {Pet, PetSchema} from "@/utils/models/pet/pet.model";
 import {Status} from "@/utils/interfaces/Status";
 import {getSession} from "@/utils/session.utils";
-import {cookies, headers} from "next/headers";
 import {setHeaders} from "@/utils/set-headers.utils";
-import {Post, PostSchema} from "@/utils/models/post/post.model";
 import {switchPet} from "@/app/profile-dropdown/switch-pet.action";
-
 
 export async function fetchPetById(petId:string): Promise<Pet> {
 const {data} = await fetch(`${process.env.REST_API_URL}/apis/pet/${petId}`,{
@@ -87,14 +84,38 @@ export async function fetchPetsByProfileID(petProfileID: string): Promise<Pet[]>
 
 
 
+export async function fetchPetsByFollowersController(uuid:string): Promise<Pet[]>{
+            const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/followers/${uuid}`,{
+            method: "get",
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            } else {
+                return response.json()
+            }
 
+        })
+        return PetSchema.array().parse(data)
+}
 
+export async function fetchPetsByFolloweeController(uuid:string): Promise<Pet[]>{
+    const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet/followee/${uuid}`,{
+        method: "get",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        } else {
+            return response.json()
+        }
 
-
-
-
-
-
-
+    })
+    return PetSchema.array().parse(data)
+}
 
 
