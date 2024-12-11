@@ -21,7 +21,7 @@ export default async function (props : PageProps<{postId:string}>) {
 
         <>
  <Searchbar med={med}/>
-<CommentsPage/>
+<CommentsPage comments = {comments} post = {post}/>
 
         </>
 

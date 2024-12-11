@@ -1,13 +1,22 @@
+'use server'
+
 import {FiHome} from "react-icons/fi";
+
 import {IoMdNotificationsOutline, IoMdSearch} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {CiBookmark} from "react-icons/ci";
 import {PostCard} from "@/components/post-card/PostCard";
 import ProfileTab from "@/components/ProfileTab";
 import {LeftSideBar} from "@/components/LeftSideBar";
+import {Post} from "@/utils/models/post/post.model";
+import {Comment} from "@/utils/models/comment/comment.model";
+type Props = {
+    comments: Comment[]
+    post: Post
+}
+export default async function CommentsPage(props : Props) {
 
-export default function CommentsPage() {
-
+    const {post, comments} = props;
     const posts = [
         {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
         // {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
@@ -27,11 +36,7 @@ export default function CommentsPage() {
         {profileId: "5", imageUrl: "https://picsum.photos/100", profileName: "Lemmy"},
 
     ]
-    const comments = [
-        {commentId: "1", commentText: "This is a comment", commentPostId: "1", commentProfileId: "1"},
-    ]
 
-    // Need
     return (
         <>
 
@@ -61,7 +66,7 @@ export default function CommentsPage() {
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
                     <div className="container w-full pr-8">
-                        {/*{posts.map(post => <PostCard post={post} pet={CommentPagePets[0]} key={post.postId}/>)}*/}
+                      <PostCard post={post} />
 
                     </div>
                     <div className={"container flex mx-auto  border-2 border-black w-full py-4 self-center mb-10 pl-4"}>
