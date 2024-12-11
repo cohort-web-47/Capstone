@@ -43,6 +43,7 @@ const router = useRouter();
     const [selectedImage, setSelectedImage] = React.useState<string|null>(null)
     const [aiCaption, setAiCaption] = React.useState<Status|null>(null)
     const [openModal, setOpenModal] = useState(false);
+    const [savePost, setSavePost] = React.useState<Post>();
 
     // create a default value for the form to hold the data created in the form
     const defaultValues: Form = {
@@ -72,15 +73,33 @@ const handleFinalSubmission = async (data: Form) => {
         }
     }
 
-    const post = {postImageUrl, postCaption: data.postCaption, postId: null, postPetId: currentPetId, postProfileId: profile?.profileId, postDatetime: null}
+    const post = {postImageUrl, postCaption: data.postCaption, postId: null, postPetId: currentPetId, postDatetime: null}
     // @ts-ignore
     const response = await  preformCreatePost(post)
     console.log(response)
     if (response.status === 200) {
+        console.log(post)
+        // @ts-ignore
+        setSavePost(post)
+
         setOpenModal(false)
         reset()
     }
     setStatus(response)
+}
+
+const handleRegenCaption =async () => {
+    // @ts-ignore
+    console.log(savePost)
+    const aiStatus = await fetchAiCaption(savePost)
+    console.log(aiStatus)
+    if (aiStatus.status === 200){
+        setAiCaption(aiStatus)
+    }else {
+        setStatus({status: 400, message: 'Ai caption generation failed', data: undefined})
+
+    }
+
 }
 
     //define the function to handle the form submission
@@ -130,7 +149,7 @@ const handleFinalSubmission = async (data: Form) => {
                         {selectedImage && <img src={selectedImage} alt="selected image" width={300}/>}
                     </div>
                     <div className="flex items-center gap-2">
-                        <Checkbox {...register('useAi')}id="accept" />
+                        <Checkbox {...register('useAi')} id="accept" />
                         <Label htmlFor="accept" className="flex">
                             UseAi to generate caption.
                         </Label>
@@ -143,21 +162,15 @@ const handleFinalSubmission = async (data: Form) => {
                     <DisplayStatus status={status}/>
                 </form>
             </div>
+            { aiCaption&& <>{aiCaption?.data}
 
-            <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header>Use this caption?</Modal.Header>
-                <Modal.Body>
+                <Button onClick={() => setOpenModal(false)}>I accept</Button>
+    <Button color="gray" onClick={handleRegenCaption}>
+        Decline
 
-                    {aiCaption?.data}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={() => setOpenModal(false)}>I accept</Button>
-                    <Button color="gray" onClick={async () => setOpenModal(false)}>
-                        Decline
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
+    </Button>
+            </>
+            }
         </>
     )
 }
