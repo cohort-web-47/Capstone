@@ -5,6 +5,8 @@ import {IoMdNotificationsOutline, IoMdSearch} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {CiBookmark} from "react-icons/ci";
 import {getCurrentPet} from "@/app/profile-dropdown/switch-pet.action";
+import { BsPeople } from "react-icons/bs";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 export async function LeftSideBar() {
 
@@ -13,7 +15,7 @@ export async function LeftSideBar() {
         <>
             <div
                 className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
-                <img src={"/petlogo.jpg"} alt="petlogo" className="rounded-full h-16 w-16 cursor-pointer"/>
+                <img src={"/TalkingPet LogoNew.png"} alt="petlogo" className="rounded-full h-24 w-24 cursor-pointer"/>
 
                 <Link href={'/'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome
@@ -31,23 +33,26 @@ export async function LeftSideBar() {
 
 
                 <Link href={`/followers/${currentPet.petId}`}>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
+
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><BsFillPeopleFill
                         className={"min-h-10 min-w-10"}/><p
                         className="hidden lg:block text-2xl cursor-pointer">Follower</p>
                     </div>
                 </Link>
 
                 <Link href={`/following/${currentPet.petId}`}>
-                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><GoPeople
+
+                    <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><BsPeople
                         className={"min-h-10 min-w-10"}/><p
-                        className="hidden lg:block text-2xl cursor-pointer">Followee</p>
+                        className="hidden lg:block text-2xl cursor-pointer">Following</p>
                     </div>
                 </Link>
 
                 <Link href={'/notification'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer">
                         <IoMdNotificationsOutline
-                            className={"min-h-10 min-w-10"}/><p className="hidden lg:block text-2xl">Notifications</p>
+                            className={"min-h-10 min-w-10"}/><p
+                        className="hidden lg:block text-2xl">Notifications</p>
                     </div>
                 </Link>
 
@@ -60,21 +65,23 @@ export async function LeftSideBar() {
                 <Link href={'/create-post'}>
                 <div className="flex flex-col pr-40">
                     <button
-                        className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
+                        className="bg-themeNavbar text-black ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Post
                     </button>
                 </div>
-                    </Link>
+                </Link>
 
 
-                    <Link href={'/sign-in'}>
-                    <button
-                        className="bg-blue-500 text-white ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
-                        out
-                    </button>
-                    </Link>
-
+                <Link href={'/sign-in'}>
+                <div className="flex flex-col pr-40">
+                        <button
+                            className="bg-themeNavbar text-black ml-32 border-2 border-black w-28 rounded-lg p-2 mt-12 self-center">Sign
+                            out
+                        </button>
+                    </div>
+                </Link>
                 </div>
+
         </>
 
-    )
+)
 }
