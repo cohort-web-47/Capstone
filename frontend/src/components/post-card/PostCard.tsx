@@ -14,6 +14,7 @@ import {getSession} from "@/utils/session.utils";
 import {Profile} from "@/utils/models/profile/profile.model";
 import {fetchPostBySave} from "@/utils/models/save/save.action";
 import {fetchSavedPosts} from "@/utils/models/post/post.action";
+import {ReplyButton} from "@/components/post-card/ReplyButton";
 
 
 type PostProps = {
@@ -44,13 +45,13 @@ export async function PostCard(props: PostProps) {
             <div className="flex p-4">
 
 
-                <img className={"rounded-full w-12 h-12 mx-4"} src={pet.petImageUrl} alt="profile picture"/>
+                <img className={"rounded-full w-12 h-12 mx-4"} src={pet.petImageUrl?? '/default-pet.png'} alt="profile picture"/>
                 <div className="w-3/4 h-auto">
                     <p>{pet.petName}</p>
                     <p>{post.postCaption}</p>
                     {post.postImageUrl && <img src={post.postImageUrl} alt="postpicture" className="w-full h-auto"/>}
                     <div className="flex justify-between bg-navbar">
-                    <FaRegComment/>
+                        <ReplyButton postId = {post.postId} />
                         <LikeButton postId={post.postId} currentPet={currentPet} likes={likes} />
                         <SaveButton savePostId={post.postId} saveProfileId={profile.profileId} savedPostsDictionary={savedPostsDictionary} />
                     </div>

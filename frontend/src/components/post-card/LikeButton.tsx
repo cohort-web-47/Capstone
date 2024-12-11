@@ -40,7 +40,7 @@ export function LikeButton(props: Props) {
     return (
 
         <>
-            <span>
+            <span className = {'flex justify-between'}>
                 {isLiked  ?
 
                     <AiFillLike

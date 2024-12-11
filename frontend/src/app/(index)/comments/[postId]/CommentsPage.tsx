@@ -10,6 +10,8 @@ import ProfileTab from "@/components/ProfileTab";
 import {LeftSideBar} from "@/components/LeftSideBar";
 import {Post} from "@/utils/models/post/post.model";
 import {Comment} from "@/utils/models/comment/comment.model";
+import {CommentCard} from "@/app/(index)/comments/[postId]/CommentCard";
+import {ConnectionsPanel} from "@/components/ConnectionsPanel";
 type Props = {
     comments: Comment[]
     post: Post
@@ -37,6 +39,8 @@ export default async function CommentsPage(props : Props) {
 
     ]
 
+
+
     return (
         <>
 
@@ -52,49 +56,36 @@ export default async function CommentsPage(props : Props) {
                     </div>
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
-                        <p className={"text-2xl"}>Connections</p>
-
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
-
-
+                        <p className={"text-2xl"}>Comments</p>
+                        <PostCard post={post} />
+                        {comments.map(comment => <CommentCard comment={comment} key={comment.commentId}/>)}
                     </div>
                 </div>
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
 
                     <div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>
-                        <p className={"text-3xl text-center"}>Popular Post</p>
-                    </div>
-                    <div className="container w-full pr-8">
-                      <PostCard post={post} />
-
+                        <p className={"text-3xl text-center"}>Comments</p>
                     </div>
                     <div className={"container flex mx-auto  border-2 border-black w-full py-4 self-center mb-10 pl-4"}>
-                        <img className={"rounded-full"} src={"https://picsum.photos/100"} alt={"Cat"} />
-                        <div className = "flex-col pl-6">
-                        <p>FIDO</p>
-                        <p> Do you really love the Cat? Example comment."</p>
+                  
+                        <div className="flex-col pl-6">
+
+                            <div className="container w-full pr-8">
+                                <PostCard post={post}/>
+                                {comments.map(comment => <CommentCard comment={comment} key={comment.commentId}/>)}
+
+                            </div>
                         </div>
                     </div>
 
                 </div>
+                <ConnectionsPanel />
 
-                <div
-                    className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
-                    <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
-
-                        <p className={"text-2xl"}>Connections</p>
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
-
-                    </div>
-
-
-                </div>
 
             </div>
 
         </>
 
     )
-
 }

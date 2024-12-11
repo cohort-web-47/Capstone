@@ -3,21 +3,22 @@
 import {Avatar, Dropdown, DropdownItem} from "flowbite-react";
 import {Profile} from "@/utils/models/profile/profile.model";
 import {Pet} from "@/utils/models/pet/pet.model";
-import {redirect} from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 
 type Props = {
     profile: Profile;
     pets: Pet[];
     currentPet: Pet;
     switchPet: (arg0:Pet) => void
-
+    redirectHome?: boolean
 }
 export function ProfileDropdown(props: Props) {
-    const {pets, profile, currentPet, switchPet} = props;
+    const {pets, profile, currentPet, switchPet, redirectHome} = props;
+    const router = useRouter();
     return (
         <Dropdown
             label={<>
-                <Avatar alt={currentPet.petName} img={currentPet.petImageUrl} rounded/>
+                <Avatar alt={currentPet.petName} img={currentPet.petImageUrl?? '/default-pet.png'}  rounded/>
                 <span className = 'pl-2'>{currentPet.petName} </span></>}
 
 
@@ -30,6 +31,9 @@ export function ProfileDropdown(props: Props) {
             </Dropdown.Header>
             {pets.map(pet =><DropdownItem onClick={async ()=>{
                 await switchPet(pet)
+                if (redirectHome){
+                    router.push('/')
+                }
 
             }
             } key={pet.petId}>{pet.petName}</DropdownItem>)}

@@ -7,6 +7,6 @@ export const CommentSchema = z.object({
     commentCaption:
         z.string().max(3200, {message: 'please provide a valid commentCaption'}),
     commentDatetime:
-        z.date({required_error: 'please provide a valid commentDatetime or null'}).nullable(),
+        z.coerce.date({required_error: 'please provide a valid commentDatetime or null'}).nullable(),
 })
 export type Comment = z.infer<typeof CommentSchema>
