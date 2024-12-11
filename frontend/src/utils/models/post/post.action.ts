@@ -125,3 +125,17 @@ export async function fetchAiCaption(post: Post): Promise<Status> {
     })
 
 }
+
+export async function fetchPost(postId: string): Promise<Post | null> {
+    const headers = await setHeaders()
+    const {data} = await fetch(`${process.env.REST_API_URL}/apis/post/${postId}`, {
+        method: "GET",
+        headers
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    })
+    return PostSchema.nullable().parse(data)
+}
