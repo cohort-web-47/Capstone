@@ -16,7 +16,10 @@ export function ProfileDropdown(props: Props) {
     const {pets, profile, currentPet, switchPet} = props;
     return (
         <Dropdown
-            label={<Avatar alt={currentPet.petName} img={currentPet.petImageUrl} rounded/>}
+            label={<>
+                <Avatar alt={currentPet.petName} img={currentPet.petImageUrl} rounded/>
+                <span className = 'pl-2'>{currentPet.petName} </span></>}
+
 
             arrowIcon={false}
             inline

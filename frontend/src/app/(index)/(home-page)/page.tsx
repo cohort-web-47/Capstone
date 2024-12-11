@@ -14,6 +14,7 @@ import {ProfileDropdownServer} from "@/app/profile-dropdown/ProfileDropdown.serv
 import {fetchPostLike, getLikesByPostId} from "@/utils/models/like/like.action";
 import {getSession} from "@/utils/session.utils";
 import {redirect} from "next/navigation";
+import {ConnectionsPanel} from "@/components/ConnectionsPanel";
 
 
 export default async function HomePage() {
@@ -72,7 +73,7 @@ console.log(likes)
                     </div>
 
                 </div>
-
+<ConnectionsPanel />
 
             </div>
 
