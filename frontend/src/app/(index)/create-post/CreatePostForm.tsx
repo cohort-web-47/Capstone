@@ -10,7 +10,7 @@ import {Button, Checkbox, Label, Modal, TextInput} from "flowbite-react";
 import {DisplayError} from "@/components/navigation/DisplayError";
 import {z} from "zod";
 import {Profile} from "@/utils/models/profile/profile.model";
-import {useRouter} from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 import {InputText} from "@/app/(index)/create-post/inputtext";
 import {DevTool} from "@hookform/devtools";
 import {ImageUploadDropZone} from "@/components/ImageUploadDropZone";
@@ -81,8 +81,10 @@ const handleFinalSubmission = async (data: Form) => {
     if (response.status === 200) {
         console.log(post)
 
+
         setOpenModal(false)
         reset()
+         redirect('/')
     }
     setStatus(response)
 }
@@ -111,6 +113,7 @@ const handleRegenCaption =async () => {
                 const aiStatus = await fetchAiCaption(post)
                 if (aiStatus.status === 200){
                     post.postCaption = aiStatus.data
+                    // @ts-ignore
                     setSavePost(post)
                     setAiCaption(aiStatus)
                     setOpenModal(true)
@@ -171,6 +174,7 @@ const handleRegenCaption =async () => {
                     <Button onClick={async () => {
                         const data ={...savePost, petCaption:aiCaption}
 
+                        // @ts-ignore
                         await handleFinalSubmission(data)
                         setOpenModal(false)}}>I accept</Button>
                     <Button color="gray" onClick={handleRegenCaption}>

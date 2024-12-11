@@ -18,6 +18,7 @@ import {DisplayStatus} from "@/components/navigation/DisplayStatus";
 import Image from "next/image";
 import {ImageUploadDropZone} from "@/components/ImageUploadDropZone";
 import {postImage} from "@/utils/models/post/post.action";
+import {redirect} from "next/navigation";
 
 export default function () {
     const [selectedValue, setSelectedValue] = useState<string>('Model Type');
@@ -61,6 +62,7 @@ export default function () {
                 console.log(response)
                 if (response.status === 200) {
                     petImageUrl = response.message
+                    redirect('/')
                 } else {
                     setStatus({status: 500, message: 'Image failed to upload', data: undefined})
                     return
