@@ -3,6 +3,8 @@ import {FollowSchema} from "./follow.validator";
 import {sql} from "../../utils/database.utils";
 import {LikeSchema} from "../like/like.validator";
 import {Like} from "../like/like.model";
+import {PostSchema} from "../post/post.validator";
+import {Post} from "../post/post.model";
 
 export type Follow = z.infer<typeof FollowSchema>
 
@@ -73,4 +75,16 @@ export async function selectFollowByFollowId(follow: Follow): Promise<Follow | n
 
     // return the follow that was selected
     return result.length === 0 ? null : result[0]
+}
+
+export async function selectPostsByFolloweePetId(followeePetId: string): Promise<Post[]> {
+
+
+    const rowList = <Post[]>await sql`SELECT post_id, post_pet_id, post_caption, post_image_url, post_datetime 
+                                    FROM post
+                                    INNER JOIN follow
+                                    ON post.post_pet_id = follow.followee_pet_id
+                                    WHERE followee_pet_id = ${followeePetId}`
+    return PostSchema.array().parse(rowList)
+
 }

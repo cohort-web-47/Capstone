@@ -3,7 +3,7 @@ import {InputText} from "@/app/(index)/post-page-with-picture/inputtext";
 import ProfileTab from "@/components/ProfileTab"
 import {customTheme} from "@/utils/theme.utils";
 import {Dropdown} from "flowbite-react";
-import {ProfileDropdown} from "@/components/ProfileDropdown";
+import {ProfileDropdown} from "@/app/profile-dropdown/ProfileDropdown";
 
 
 export default function () {

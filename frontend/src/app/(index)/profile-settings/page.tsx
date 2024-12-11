@@ -1,7 +1,7 @@
 
 
 import ProfileTab from "@/components/ProfileTab";
-import {PostCard} from "@/components/PostCard";
+import {PostCard} from "@/components/post-card/PostCard";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoPeople } from "react-icons/go";
 import { FiHome } from "react-icons/fi";
@@ -11,7 +11,7 @@ import { CiBookmark } from "react-icons/ci";
 
 import Searchbar from "@/components/Searchbar";
 import {Footer} from "@/components/Footer";
-import {ProfileDropdown} from "@/components/ProfileDropdown";
+import {ProfileDropdown} from "@/app/profile-dropdown/ProfileDropdown";
 import {Nav} from "@/components/Nav";
 import React from "react";
 import {LeftSideBar} from "@/components/LeftSideBar";

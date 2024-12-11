@@ -1,5 +1,5 @@
 import ProfileTab from "@/components/ProfileTab";
-import {PostCard} from "@/components/PostCard";
+import {PostCard} from "@/components/post-card/PostCard";
 import {IoMdNotificationsOutline} from "react-icons/io";
 import {GoPeople} from "react-icons/go";
 import {FiHome} from "react-icons/fi";
@@ -48,7 +48,9 @@ let med = {width: 'w-1/3', position: 'left-1/3'};
 
                 {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
 
+
                <LeftSideBar/>
+
                 {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
 
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">

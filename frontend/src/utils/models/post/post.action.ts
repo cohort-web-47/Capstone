@@ -1,6 +1,10 @@
 'use server'
 import {Post, PostSchema} from "@/utils/models/post/post.model";
 import {setHeaders} from "@/utils/set-headers.utils";
+import {SignUp} from "@/utils/models/sign-up/sign-up.model";
+import {Status} from "@/utils/interfaces/Status";
+import {getSession} from "@/utils/session.utils";
+import {headers as incomingHeaders} from "next/dist/server/request/headers";
 
 
 export async function fetchAllPosts(): Promise<Post[]> {
@@ -22,7 +26,7 @@ return PostSchema.array().parse(data)
 
 export async function fetchSavedPosts(profileId: string): Promise<Post[]> {
     const headers = await setHeaders()
-    const {data} = await fetch(`${process.env.REST_API_URL}/apis/save/saveProfileId/${profileId}`, {
+    const response= await fetch(`${process.env.REST_API_URL}/apis/save/saveProfileId/${profileId}`, {
         method: "GET",
         headers
     }).then((response) => {
@@ -35,5 +39,103 @@ export async function fetchSavedPosts(profileId: string): Promise<Post[]> {
         console.error(error)
         return[]
     })
-return PostSchema.array().parse(data)
+
+return PostSchema.array().parse(response.data)
+}
+
+export async function fetchFolloweePosts(followeePetId: string): Promise<Post[]> {
+    const headers = await setHeaders()
+    const {data} = await fetch(`${process.env.REST_API_URL}/apis/follow/post/${followeePetId}`, {
+        method: "GET",
+        headers
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        return[]
+    })
+    return PostSchema.array().parse(data)
+}
+
+export async function preformCreatePost(post: Post): Promise<Status> {
+    const headers = await setHeaders()
+    return  fetch(`${process.env.REST_API_URL}/apis/post`, {
+        method: "post",
+        headers,
+        body: JSON.stringify(post)
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        throw error
+    })
+
+}
+
+export async function postImage(image: FormData): Promise<Status> {
+    const headers = new Headers()
+
+    const session = await getSession()
+    const authorization = session?.authorization
+    if(authorization) {
+        headers.append("authorization", authorization)
+    }
+
+    const incomingHeadersObject = await incomingHeaders()
+
+    const cookie = incomingHeadersObject.get('cookie')
+    if (cookie){
+        headers.append('cookie', cookie)
+    }
+    return fetch(`${process.env["REST_API_URL"]}/apis/image`,{
+        headers,
+        body: image,
+        method: "post"
+    }).then(response => {
+        if(!response.ok){
+            throw new Error('network response not ok')
+        }
+        return response.json()
+    })
+
+}
+
+export async function fetchAiCaption(post: Post): Promise<Status> {
+    const headers = await setHeaders()
+    post.postImageUrl = null
+    return  fetch(`${process.env.REST_API_URL}/apis/post/aiPost`, {
+        method: "post",
+        headers,
+        body: JSON.stringify(post)
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        throw error
+    })
+
+}
+
+export async function fetchPost(postId: string): Promise<Post | null> {
+    const headers = await setHeaders()
+    const {data} = await fetch(`${process.env.REST_API_URL}/apis/post/${postId}`, {
+        method: "GET",
+        headers
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    })
+    return PostSchema.nullable().parse(data)
 }

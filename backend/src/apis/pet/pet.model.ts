@@ -6,12 +6,12 @@ import {PostSchema} from "../post/post.validator";
 
 export type Pet = z.infer<typeof PetSchema>
 
-export async function insertPet(pet: Pet): Promise<string> {
+export async function insertPet(pet: Pet) {
     const {petProfileId, petBreed, petImageUrl, petName, petPersonality, petSize, petType} = pet
 
-    await sql`INSERT INTO pet (pet_id, pet_profile_id, pet_breed, pet_image_url, pet_name, pet_personality, pet_size, pet_type)
-VALUES (gen_random_uuid(), ${petProfileId}, ${petBreed}, ${petImageUrl}, ${petName}, ${petPersonality}, ${petSize}, ${petType})`
-    return 'PetModel Profile Successfully Created'
+    const petId = await sql`INSERT INTO pet (pet_id, pet_profile_id, pet_breed, pet_image_url, pet_name, pet_personality, pet_size, pet_type)
+VALUES (gen_random_uuid(), ${petProfileId}, ${petBreed}, ${petImageUrl}, ${petName}, ${petPersonality}, ${petSize}, ${petType}) Returning pet_id`
+    return petId[0]
 }
 
 
@@ -141,7 +141,7 @@ export async function selectPetsByPetPersonality (petPersonality: string): Promi
 }
 
 export async function updatePet (pet: Pet): Promise<String> {
-    console.log("PetModel Inside", pet)
+
     const {petBreed, petImageUrl, petName, petPersonality, petSize, petType, petId} = pet
     await sql `UPDATE pet SET pet_breed = ${petBreed}, pet_image_url = ${petImageUrl}, pet_name = ${petName}, pet_personality = ${petPersonality}, pet_size = ${petSize}, pet_type = ${petType}
 WHERE pet_id =${petId}`

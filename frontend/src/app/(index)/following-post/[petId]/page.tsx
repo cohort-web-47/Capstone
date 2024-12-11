@@ -1,24 +1,31 @@
-import {FiHome} from "react-icons/fi";
-import {IoMdNotificationsOutline, IoMdSearch} from "react-icons/io";
-import {GoPeople} from "react-icons/go";
-import {CiBookmark} from "react-icons/ci";
-import {PostCard} from "@/components/PostCard";
 import ProfileTab from "@/components/ProfileTab";
+import {PostCard} from "@/components/post-card/PostCard";
+import {IoMdNotificationsOutline} from "react-icons/io";
+import {GoPeople} from "react-icons/go";
+import {FiHome} from "react-icons/fi";
+import {IoMdSearch} from "react-icons/io";
+import {CiBookmark} from "react-icons/ci";
+
+
+import Searchbar from "@/components/Searchbar";
+import {Footer} from "@/components/Footer";
+import {fetchAllPosts, fetchFolloweePosts, fetchSavedPosts} from "@/utils/models/post/post.action";
 import {LeftSideBar} from "@/components/LeftSideBar";
+import {getSession} from "@/utils/session.utils";
+import {redirect} from "next/navigation";
+import {PageProps} from "@/utils/interfaces/NextComponent";
 
-export default function CommentsPage() {
 
-    const posts = [
-        {postId: "1", postImageUrl: "https://picsum.photos/400", postCaption: "I love cat", postPetId: "1"},
-        // {postId: "2", postImageUrl: "https://picsum.photos/400", postCaption: "I love dog", postPetId: "1"},
-        // {postId: "3", postImageUrl: "https://picsum.photos/400", postCaption: "I love cow", postPetId: "1"},
-        // {postId: "4", postImageUrl: "https://picsum.photos/400", postCaption: "I love swine", postPetId: "1"},
-        // {postId: "5", postImageUrl: "https://picsum.photos/400", postCaption: "I love goats", postPetId: "1"},
+export default async function FollowingPostPage(props: PageProps<{petId:string}>) {
+    const session = await getSession()
+    if(session===undefined){
+        redirect("/sign-in")
+    }
+    const {petId} = await props.params
 
-    ]
-    const CommentPagePets = [
-        {petId: "1", petImageUrl: "https://picsum.photos/200", petName: "Fido", petProfileId: "4"}
-    ]
+
+    const posts = await fetchFolloweePosts(petId);
+
     const profiles = [
         {profileId: "1", imageUrl: "https://picsum.photos/400", profileName: "Mittens"},
         {profileId: "2", imageUrl: "https://picsum.photos/200", profileName: "Ruffles"},
@@ -27,23 +34,24 @@ export default function CommentsPage() {
         {profileId: "5", imageUrl: "https://picsum.photos/100", profileName: "Lemmy"},
 
     ]
-    const comments = [
-        {commentId: "1", commentText: "This is a comment", commentPostId: "1", commentProfileId: "1"},
-    ]
+    let med = {width: 'w-1/3', position: 'left-1/3'};
 
-    // Need
     return (
         <>
+            <Searchbar med={med}/>
 
             <div className="container bg-themeBackround flex-col md:flex-row ">
 
+                {/*    LEFT SIDE of the screen when in desktop view. This div is hidden when screen size small.  Display: flex when Md or larger*/}
 
-                <LeftSideBar/>
+
+                <LeftSideBar />
+                {/*MOBILE VIEW. This div is hidden when screen size is Md or larger. Display: flex when Sm*/}
+
                 <div id="mobile-view" className="h-fit w-screen bg-themeBackground flex flex-col py-20 md:hidden">
 
-
                     <div className="container mx-auto flex flex-col items-center pr-8">
-                        {/*{posts.map(post => <PostCard post={post} pet={CommentPagePets[0]} key={post.postId}/>)}*/}
+                        {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>
                     <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
 
@@ -54,6 +62,9 @@ export default function CommentsPage() {
 
                     </div>
                 </div>
+
+                {/*CENTER portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
+
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
 
@@ -61,18 +72,12 @@ export default function CommentsPage() {
                         <p className={"text-3xl text-center"}>Popular Post</p>
                     </div>
                     <div className="container w-full pr-8">
-                        {/*{posts.map(post => <PostCard post={post} pet={CommentPagePets[0]} key={post.postId}/>)}*/}
-
-                    </div>
-                    <div className={"container flex mx-auto  border-2 border-black w-full py-4 self-center mb-10 pl-4"}>
-                        <img className={"rounded-full"} src={"https://picsum.photos/100"} alt={"Cat"} />
-                        <div className = "flex-col pl-6">
-                        <p>FIDO</p>
-                        <p> Do you really love the Cat? Example comment."</p>
-                        </div>
+                        {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>
 
                 </div>
+
+                {/*RIGHT portion of the screen when in desktop view, Hidden when screen size is Sm. Display: flex when Md or larger*/}
 
                 <div
                     className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
@@ -89,7 +94,5 @@ export default function CommentsPage() {
             </div>
 
         </>
-
     )
-
 }

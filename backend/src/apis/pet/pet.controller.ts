@@ -23,9 +23,9 @@ import session from "express-session";
 
 export async function postPetController(request: Request, response: Response): Promise<Response | undefined> {
     try {
-        console.log(request.body);
+
         const validationResult = PetSchema.safeParse(request.body);
-        console.log(validationResult.data);
+
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -50,7 +50,7 @@ export async function postPetController(request: Request, response: Response): P
 
         const result = await insertPet(pet)
 
-        const status: Status = {status: 200, message: result, data: null}
+        const status: Status = {status: 200, message: 'successfully created pet', data: result.petId}
         return response.json(status)
     } catch (error) {
         console.log(error)

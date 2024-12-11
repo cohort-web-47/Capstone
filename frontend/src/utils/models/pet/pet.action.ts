@@ -2,10 +2,8 @@
 import {Pet, PetSchema} from "@/utils/models/pet/pet.model";
 import {Status} from "@/utils/interfaces/Status";
 import {getSession} from "@/utils/session.utils";
-import {cookies, headers} from "next/headers";
 import {setHeaders} from "@/utils/set-headers.utils";
-import {Post, PostSchema} from "@/utils/models/post/post.model";
-
+import {switchPet} from "@/app/profile-dropdown/switch-pet.action";
 
 export async function fetchPetById(petId:string): Promise<Pet> {
 const {data} = await fetch(`${process.env.REST_API_URL}/apis/pet/${petId}`,{
@@ -35,7 +33,7 @@ const requestBody: any = {...pet}
         requestBody.petId = null
     }
     const headers = await setHeaders()
-    console.log('headers:',headers)
+
 
 
     const response = await fetch(`${process.env.PUBLIC_API_URL}/apis/pet`, {
@@ -59,8 +57,29 @@ const requestBody: any = {...pet}
         throw error
 
     })
-    console.log('I made it here!')
+    if (response.status===200){
+        requestBody.petId = response.data
+        await switchPet(requestBody)
+    }
     return response
+}
+
+export async function fetchPetsByProfileID(petProfileID: string): Promise<Pet[]> {
+    const headers = await setHeaders()
+    const {data} = await fetch(`${process.env.REST_API_URL}/apis/pet/petProfileId/${petProfileID}`, {
+        method: "GET",
+        headers
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+
+        }
+        return response.json()
+    }).catch((error) => {
+        console.error(error)
+        return[]
+    })
+    return PetSchema.array().parse(data)
 }
 
 

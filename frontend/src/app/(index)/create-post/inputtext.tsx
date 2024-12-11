@@ -4,10 +4,16 @@
 import { Label, Textarea } from "flowbite-react";
 import ProfileTab from "@/components/ProfileTab";
 
-export function InputText() {
+type Props = {
+    register: any,
+    name: string,
+}
+export function InputText(props: Props) {
+   const { register, name } = props;
+
     return (
         <div className="mx-auto px-4">
-            <Textarea id="comment"  placeholder="Start Typing..." required rows={15} />
+            <Textarea {...register(name)} id="comment"  placeholder="Start Typing..." required rows={15} />
         </div>
     );
 }

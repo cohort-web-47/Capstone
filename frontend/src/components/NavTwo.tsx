@@ -1,12 +1,15 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef, ReactNode} from 'react';
 
 interface DropdownItemProps {
     img: string;
     text: string;
 }
-
-export function NavTwo() {
+type Props = {
+    children: ReactNode;
+}
+export function NavTwo(props :Props) {
+    const {children} = props
     const [open, setOpen] = useState<boolean>(false);
     const [timedPopup, setTimedPopup] = useState<boolean>(false);
 
@@ -37,9 +40,7 @@ export function NavTwo() {
     return (
         <div className="App">
             {/* User's Profile Picture Functionality */}
-            <div className='userpfp'>
-                <img src="/user.png" alt="User Profile" />
-            </div>
+            {children}
 
             {/* Logo Functionality */}
             {/*<div className="logo-container">*/}

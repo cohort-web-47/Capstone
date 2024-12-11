@@ -2,7 +2,11 @@ import {Request, Response} from 'express';
 import {
     deleteFollow,
     Follow,
-    insertFollow, selectFollowByFollowId, selectFollowsByFolloweePetId, selectFollowsByFollowerPetId
+    insertFollow,
+    selectFollowByFollowId,
+    selectFollowsByFolloweePetId,
+    selectFollowsByFollowerPetId,
+    selectPostsByFolloweePetId
 } from "./follow.model";
 import {Status} from "../../utils/interfaces/Status";
 import {zodErrorResponse} from "../../utils/response.utils";
@@ -12,6 +16,9 @@ import {selectPetByPetId} from "../pet/pet.model";
 import {z} from "zod";
 import {LikeSchema} from "../like/like.validator";
 import {deleteLike, insertLike, Like, selectLikeByLikeId} from "../like/like.model";
+import {selectPostsBySaveProfileId} from "../save/save.model";
+import {SaveSchema} from "../save/save.validator";
+import {createZodErrorMessages} from "../../utils/zod.utils";
 
 
 export async function postFollowController(request: Request, response: Response): Promise<Response> {
@@ -196,5 +203,26 @@ export async function toggleFollowController(request: Request, response: Respons
     } catch (error: any) {
         return (response.json({status: 500, data: null, message: error.message}))
 
+    }
+}
+export async function getPostsByFolloweePetIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.string(createZodErrorMessages('petId')).uuid('please provide a valid petId').safeParse(request.params.petId)
+
+        console.log(validationResult);
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+        const petId= validationResult.data
+        const data = await selectPostsByFolloweePetId(petId)
+
+        return response.json({status: 200, message: null, data})
+    } catch (error) {
+        console.error(error)
+        return response.json({
+            status: 500,
+            message: 'followeePetId not found',
+            data: []
+        })
     }
 }
