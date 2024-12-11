@@ -84,7 +84,7 @@ const handleFinalSubmission = async (data: Form) => {
 
         setOpenModal(false)
         reset()
-         redirect('/')
+        router.push('/')
     }
     setStatus(response)
 }
