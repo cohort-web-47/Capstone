@@ -31,7 +31,8 @@ export async function postPetController(request: Request, response: Response): P
             return zodErrorResponse(response, validationResult.error)
         }
 
-        const {petId, petBreed, petImageUrl, petName, petType, petPersonality, petSize} =validationResult.data
+        const {petId, petBreed, petName, petType, petPersonality, petSize} =validationResult.data
+        const petImageUrl = validationResult.data.petImageUrl ?? '/default-pet.png'
 
         const profile: PublicProfile = request.session.profile as PublicProfile
 
