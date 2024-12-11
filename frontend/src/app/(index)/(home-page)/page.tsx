@@ -12,11 +12,17 @@ import {fetchAllPosts} from "@/utils/models/post/post.action";
 import {LeftSideBar} from "@/components/LeftSideBar";
 import {ProfileDropdownServer} from "@/app/profile-dropdown/ProfileDropdown.server";
 import {fetchPostLike, getLikesByPostId} from "@/utils/models/like/like.action";
+import {getSession} from "@/utils/session.utils";
+import {redirect} from "next/navigation";
 
 
 export default async function HomePage() {
 
 
+    const session = await getSession()
+    if (!session){
+        redirect("/sign-in")
+    }
     const posts = await fetchAllPosts();
 
 

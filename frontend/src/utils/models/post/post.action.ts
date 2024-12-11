@@ -26,7 +26,7 @@ return PostSchema.array().parse(data)
 
 export async function fetchSavedPosts(profileId: string): Promise<Post[]> {
     const headers = await setHeaders()
-    const {data} = await fetch(`${process.env.REST_API_URL}/apis/save/saveProfileId/${profileId}`, {
+    const response= await fetch(`${process.env.REST_API_URL}/apis/save/saveProfileId/${profileId}`, {
         method: "GET",
         headers
     }).then((response) => {
@@ -39,7 +39,8 @@ export async function fetchSavedPosts(profileId: string): Promise<Post[]> {
         console.error(error)
         return[]
     })
-return PostSchema.array().parse(data)
+
+return PostSchema.array().parse(response.data)
 }
 
 export async function fetchFolloweePosts(followeePetId: string): Promise<Post[]> {
@@ -108,6 +109,7 @@ export async function postImage(image: FormData): Promise<Status> {
 
 export async function fetchAiCaption(post: Post): Promise<Status> {
     const headers = await setHeaders()
+    post.postImageUrl = null
     return  fetch(`${process.env.REST_API_URL}/apis/post/aiPost`, {
         method: "post",
         headers,

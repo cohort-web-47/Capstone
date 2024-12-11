@@ -61,10 +61,12 @@ const router = useRouter();
     })
 
 const handleFinalSubmission = async (data: Form) => {
+        console.log(data)
     let postImageUrl = null
     if(data.postImageUrl) {
         console.log(data.postImageUrl)
         const response = await postImage(data.postImageUrl);
+        console.log(response)
         if(response.status === 200) {
             postImageUrl = response.message
         } else {
@@ -76,11 +78,8 @@ const handleFinalSubmission = async (data: Form) => {
     const post = {postImageUrl, postCaption: data.postCaption, postId: null, postPetId: currentPetId, postDatetime: null}
     // @ts-ignore
     const response = await  preformCreatePost(post)
-    console.log(response)
     if (response.status === 200) {
         console.log(post)
-        // @ts-ignore
-        setSavePost(post)
 
         setOpenModal(false)
         reset()
@@ -90,9 +89,7 @@ const handleFinalSubmission = async (data: Form) => {
 
 const handleRegenCaption =async () => {
     // @ts-ignore
-    console.log(savePost)
     const aiStatus = await fetchAiCaption(savePost)
-    console.log(aiStatus)
     if (aiStatus.status === 200){
         setAiCaption(aiStatus)
     }else {
@@ -108,11 +105,13 @@ const handleRegenCaption =async () => {
             if (data.useAi===false){
             await handleFinalSubmission(data)
             }else {
-                const post = {postImageUrl:null, postCaption: data.postCaption, postId: null, postPetId: currentPetId,  postDatetime: null}
+                const post = {postImageUrl:data.postImageUrl, postCaption: data.postCaption, postId: null, postPetId: currentPetId,  postDatetime: null}
 
                 // @ts-ignore
                 const aiStatus = await fetchAiCaption(post)
                 if (aiStatus.status === 200){
+                    post.postCaption = aiStatus.data
+                    setSavePost(post)
                     setAiCaption(aiStatus)
                     setOpenModal(true)
                 }else {
@@ -162,15 +161,24 @@ const handleRegenCaption =async () => {
                     <DisplayStatus status={status}/>
                 </form>
             </div>
-            { aiCaption&& <>{aiCaption?.data}
+            <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
+                <Modal.Header>Use this caption?</Modal.Header>
+                <Modal.Body>
 
-                <Button onClick={() => setOpenModal(false)}>I accept</Button>
-    <Button color="gray" onClick={handleRegenCaption}>
-        Decline
+                    {aiCaption?.data}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={async () => {
+                        const data ={...savePost, petCaption:aiCaption}
 
-    </Button>
-            </>
-            }
+                        await handleFinalSubmission(data)
+                        setOpenModal(false)}}>I accept</Button>
+                    <Button color="gray" onClick={handleRegenCaption}>
+                        Decline
+
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }
