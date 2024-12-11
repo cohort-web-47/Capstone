@@ -6,12 +6,11 @@ import {ProfileDropdown} from "@/app/profile-dropdown/ProfileDropdown";
 import {customTheme} from "@/utils/theme.utils";
 import {Dropdown} from "flowbite-react";
 import {ProfileDropdownServer} from "@/app/profile-dropdown/ProfileDropdown.server";
-<<<<<<< HEAD
+
 import {getSession} from "@/utils/session.utils";
 import {getCurrentPet} from "@/app/profile-dropdown/switch-pet.action";
 import {CreatePostForm} from "@/app/(index)/create-post/CreatePostForm";
-=======
->>>>>>> like-wiring
+
 
 
 export default async function () {
