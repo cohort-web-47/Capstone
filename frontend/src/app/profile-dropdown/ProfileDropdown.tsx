@@ -38,7 +38,10 @@ export function ProfileDropdown(props: Props) {
             }
             } key={pet.petId}>{pet.petName}</DropdownItem>)}
             <Dropdown.Divider/>
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{
+                router.push('/create-pet-profile')
+            }}>Create Pet</Dropdown.Item>
+
         </Dropdown>
     );
 }

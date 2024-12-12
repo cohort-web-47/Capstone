@@ -15,7 +15,7 @@ export async function LeftSideBar() {
         <>
             <div
                 className="left hidden  md:flex md:flex-col bg-themeBackground md:w-1/3 md:h-full md:fixed md:top-0 md:left-0 md:pl-6 md:pt-8 md:pb-12">
-                <img src={"/TalkingPet LogoNew.png"} alt="petlogo" className="rounded-full h-24 w-24 cursor-pointer"/>
+                <img src={"/talking-pet-logo-new.png"} alt="petlogo" className="rounded-full h-24 w-24 cursor-pointer"/>
 
                 <Link href={'/'}>
                     <div className="left flex gap-28 items-center w-5/6 m-6 pl-10 cursor-pointer"><FiHome

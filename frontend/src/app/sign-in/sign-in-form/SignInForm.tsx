@@ -56,7 +56,7 @@ const router = useRouter();
                     <br/><br/><br/><br/>
                 </div>
 
-            <img src="/petlogo.jpg" alt="PetModel Logo" className="login-logo mx-auto"/>
+            <img src="/talking-pet-logo-new.png" alt="PetModel Logo" className="login-logo mx-auto"/>
             <form onSubmit={handleSubmit(fireServerAction)} className="flex  flex-col mx-auto gap-4">
                 <h1 className="text-3xl font-bold">Welcome back.</h1>
                 <div>

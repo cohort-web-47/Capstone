@@ -1,8 +1,7 @@
-import type { Config } from 'tailwindcss'
 import {content, plugin} from "flowbite-react/tailwind"
+/** @type {import('tailwindcss').Config} */
 
-
-const config: Config = {
+const config = {
   content: [
     content(),
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,7 +10,6 @@ const config: Config = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-    plugin(),
   ],
 // }
   theme: {

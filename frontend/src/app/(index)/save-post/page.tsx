@@ -13,6 +13,7 @@ import {fetchAllPosts, fetchSavedPosts} from "@/utils/models/post/post.action";
 import {LeftSideBar} from "@/components/LeftSideBar";
 import {getSession} from "@/utils/session.utils";
 import {redirect} from "next/navigation";
+import {ConnectionsPanel} from "@/components/ConnectionsPanel";
 
 
 export default async function SavePostPage() {
@@ -51,14 +52,8 @@ const profileId = session.profile.profileId
                     <div className="container mx-auto flex flex-col items-center pr-8">
                         {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>
-                    <div className=" bg-themeBackground my-6 flex flex-col gap-6 items-center ">
-
-                        <p className={"text-2xl"}>Connections</p>
-
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
 
 
-                    </div>
                 </div>
 
                 {/*CENTER portion of the screen when in desktop view. Hidden when screen size is Sm. Display: flex when Md or larger*/}
@@ -76,18 +71,7 @@ const profileId = session.profile.profileId
                 </div>
 
                 {/*RIGHT portion of the screen when in desktop view, Hidden when screen size is Sm. Display: flex when Md or larger*/}
-
-                <div
-                    className="right-side hidden md:flex md:w-1/3 md:h-full md:bg-themeBackground md:flex-col md:items-center md:fixed md:top-0 md:right-0">
-                    <div className="w-full bg-themeBackround my-6  flex flex-col gap-6 items-center justify-center">
-
-                        <p className={"text-2xl"}>Connections</p>
-                        {profiles.map(profile => <ProfileTab profile={profile} key={profile.profileId}/>)}
-
-                    </div>
-
-
-                </div>
+                <ConnectionsPanel/>
 
             </div>
 

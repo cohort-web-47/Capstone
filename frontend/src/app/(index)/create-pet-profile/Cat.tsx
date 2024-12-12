@@ -1,5 +1,4 @@
 import {Button, Label, Select, TextInput} from "flowbite-react";
-// import React from "types-react";
 
 type Props = {
     register:any
@@ -33,7 +32,7 @@ const {register} = props
                 {/*</div>*/}
                 <div className="max-w-md">
                     <div className="mb-2 block">
-                        <Label htmlFor="Personality" value="Personality of your dog"/>
+                        <Label htmlFor="Personality" value="Personality of your cat"/>
                     </div>
                     <Select {...register('petPersonality')} id="Personality" required>
                         <option value={'Personality'}>Personality</option>

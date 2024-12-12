@@ -12,7 +12,6 @@ import {z} from "zod";
 import {Profile} from "@/utils/models/profile/profile.model";
 import {redirect, useRouter} from "next/navigation";
 import {InputText} from "@/app/(index)/create-post/inputtext";
-import {DevTool} from "@hookform/devtools";
 import {ImageUploadDropZone} from "@/components/ImageUploadDropZone";
 import {DisplayStatus} from "@/components/navigation/DisplayStatus";
 
