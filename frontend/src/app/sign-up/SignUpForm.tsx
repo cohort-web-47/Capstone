@@ -12,7 +12,6 @@ import {preformSignUp} from "@/utils/models/sign-up/sign-up.action";
 import {Status} from "@/utils/interfaces/Status";
 import {DisplayError} from "@/components/navigation/DisplayError";
 import {DisplayStatus} from "@/components/navigation/DisplayStatus";
-import {DevTool} from "@hookform/devtools"
 import {useForm} from "react-hook-form";
 
 export function SignUpForm() {
@@ -101,7 +100,6 @@ export function SignUpForm() {
 
       </div>
             <DisplayStatus status={status}/>
-            <DevTool control={control}/>
         </>
     )
 }

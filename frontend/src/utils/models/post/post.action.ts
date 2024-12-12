@@ -139,3 +139,20 @@ export async function fetchPost(postId: string): Promise<Post | null> {
     })
     return PostSchema.nullable().parse(data)
 }
+
+export async function fetchPostsByPet(petId:string): Promise<Post[]> {
+    const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/post/petId/${petId}`,{ //why is data in curly braces? destructure or obj?
+        method: "get",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        } else {
+            return response.json()
+        }
+
+    })
+    return PostSchema.array().parse(data)
+}

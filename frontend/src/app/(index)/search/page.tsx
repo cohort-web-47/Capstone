@@ -73,9 +73,7 @@ let med = {width: 'w-1/3', position: 'left-1/3'};
                 <div
                     className="middle hidden md:flex  md:bg-themeBackground md:border-2 md:border-white md:w-1/3 md:flex-col md:absolute md:overflow-auto md:top-0 md:left-1/3 md:py-20">
 
-                    <div id={"label"} className={"bg-header w-full py-4 self-center mb-10"}>
-                        <p className={"text-3xl text-center"}>Popular Post</p>
-                    </div>
+
                     <div className="container w-full pr-8">
                         {posts.map(post => <PostCard post={post}  key={post.postId}/>)}
                     </div>

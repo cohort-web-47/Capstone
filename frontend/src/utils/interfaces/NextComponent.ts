@@ -7,6 +7,6 @@ export type LayoutProps = {
 type DefaultParams = { slug?: string };
 
 export type PageProps<T = DefaultParams> = {
-	params: T;
-	searchParams: { [key: string]: string | string[] | undefined };
+	params: Promise<T>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };

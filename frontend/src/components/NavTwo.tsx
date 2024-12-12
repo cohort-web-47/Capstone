@@ -39,32 +39,25 @@ export function NavTwo(props :Props) {
 
     return (
         <div className="App">
-            {/* User's Profile Picture Functionality */}
             {children}
-
-            {/* Logo Functionality */}
-            {/*<div className="logo-container">*/}
-            {/*    <img src="/petlogo.jpg" alt="PetModel Logo" className="logo-image" />*/}
+            {/*<div className="nav-flex">*/}
+            {/*    /!* Drop Down Menu Functionality *!/*/}
+            {/*    <div className='settings-container' ref={menuRef}>*/}
+            {/*        <div className='menu-trigger' onClick={() => setOpen(!open)}>*/}
+            {/*            <img src="/gear.png" alt="Settings" />*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
             {/*</div>*/}
-
-            <div className="nav-flex">
-                {/* Drop Down Menu Functionality */}
-                <div className='settings-container' ref={menuRef}>
-                    <div className='menu-trigger' onClick={() => setOpen(!open)}>
-                        <img src="/gear.png" alt="Settings" />
-                    </div>
-                </div>
-            </div>
-
-            <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
-                {/* Drop Down Items */}
-                <ul>
-                    <DropdownItem img="/edit.png" text="Edit Profile" />
-                    <DropdownItem img="/pawprint.png" text="My Pets" />
-                    <DropdownItem img="/gear.png" text="Settings" />
-                    <DropdownItem img="/log-out.png" text="Logout" />
-                </ul>
-            </div>
+            {/*</div>*/}
+            {/*<div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>*/}
+            {/*    /!* Drop Down Items *!/*/}
+            {/*    <ul>*/}
+            {/*        <DropdownItem img="/edit.png" text="Edit Profile" />*/}
+            {/*        <DropdownItem img="/pawprint.png" text="My Pets" />*/}
+            {/*        <DropdownItem img="/gear.png" text="Settings" />*/}
+            {/*        <DropdownItem img="/log-out.png" text="Logout" />*/}
+            {/*    </ul>*/}
+            {/*</div>*/}
 
             {/* Uncomment to use Popup */}
             {/* <Popup trigger={timedPopup} setTrigger={setTimedPopup}> */}

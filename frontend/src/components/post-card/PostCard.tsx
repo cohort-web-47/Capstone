@@ -15,6 +15,7 @@ import {Profile} from "@/utils/models/profile/profile.model";
 import {fetchPostBySave} from "@/utils/models/save/save.action";
 import {fetchSavedPosts} from "@/utils/models/post/post.action";
 import {ReplyButton} from "@/components/post-card/ReplyButton";
+import {PetAvatar} from "@/components/post-card/PetAvatar";
 
 
 type PostProps = {
@@ -28,13 +29,14 @@ export async function PostCard(props: PostProps) {
     const pet = await fetchPetById(post.postPetId);
     const likes = await getLikesByPostId(post.postId);
 
+
     const savedPosts = await fetchSavedPosts(post.postId);
    const savedPostsDictionary = savedPosts.reduce((acc: any,  currentValue: any) => {
        acc[currentValue.postId as string] = currentValue
        return acc
 
    }, {})
-    console.log(savedPostsDictionary);
+    console.log(pet);
 
 
 
@@ -44,8 +46,7 @@ export async function PostCard(props: PostProps) {
 
             <div className="flex p-4">
 
-
-                <img className={"rounded-full w-12 h-12 mx-4"} src={pet.petImageUrl?? '/default-pet.png'} alt="profile picture"/>
+                <PetAvatar pet={pet} />
                 <div className="w-3/4 h-auto">
                     <p>{pet.petName}</p>
                     <p>{post.postCaption}</p>

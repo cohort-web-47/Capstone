@@ -81,12 +81,11 @@ export async function getPostByPetIdController (request: Request, response: Resp
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
         }
-        console.log(getPostByPetIdController)
 
         const petId = validationResult.data
 
         const data = await selectPostByPetId(petId)
-
+console.log(data)
         return response.json({status: 200, message: null, data})
     } catch (error) {
         return response.json({
